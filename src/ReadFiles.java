@@ -22,7 +22,7 @@ public class ReadFiles {
         buf.close();
     } catch (
     IOException e) {
-        System.err.printf("Erro na abertura do arquivo dos clientes: %s\n", e.getMessage());
+        System.err.printf("Erro na abertura do arquivo : %s\n", e.getMessage());
     }
         System.out.println("\nFim de leitura do ficheiro " + futilizadores);
 
