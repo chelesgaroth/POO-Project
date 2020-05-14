@@ -44,3 +44,6 @@ Aceite:e1510
 Aceite:e9546
 Aceite:e3737
 Aceite:e9937
+Utilizador:u83, asf, fsd, 0.0, 0.0, [], []
+Utilizador:u0, 0, 0, 0.0, 0.0, [], []
+Utilizador:u33, sfd, sdf, 0.0, 0.0, [], []

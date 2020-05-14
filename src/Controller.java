@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Controller {
@@ -8,7 +5,6 @@ public class Controller {
 
         int opcao;
         String strFile = "Logs.txt";
-        File file = new File("TesteUserFile.txt");
         Load.leitura(strFile);
         do {
             Scanner ler = new Scanner(System.in);
@@ -22,7 +18,12 @@ public class Controller {
                     break;
                 }
                 case 1: {
-                    Register.registo(strFile);
+                    Menu.MenuType();
+                    buf = ler.nextLine();
+                    opcao =Integer.parseInt(buf);
+                    if(opcao==1) Register.registoUser(strFile);
+                    //if(opcao==0)
+                    //if(opcao==2) registoVoluntario..
                     break;
                 }
             }

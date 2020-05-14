@@ -2,12 +2,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Classe que representa um utilizdor
- */
 
 public class User {
-
+    private String userID;
     private String first_name;
     private String last_name;
     private float x_user;
@@ -19,6 +16,7 @@ public class User {
      * Construtor por omissão
      */
     public User() {
+        this.userID = "n/a";
         this.first_name = "n/a";
         this.last_name = "n/a";
         this.x_user = 0;
@@ -31,6 +29,7 @@ public class User {
      * Construtor por cópia
      */
     public User(User user) {
+        this.userID = user.getUserID();
         this.first_name = user.getFirst_name();
         this.last_name = user.getLast_name();
         this.x_user=user.getX_user();
@@ -80,7 +79,13 @@ public class User {
 
     }
 
-    
+    public String getUserID() {
+        return userID;
+    }
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public String getFirst_name(){
         return this.first_name;
     }
@@ -92,7 +97,7 @@ public class User {
         return this.last_name;
     }
     public void setLast_name(String last_name){
-        this.first_name= last_name;
+        this.last_name= last_name;
     }
 
     public float getX_user(){
@@ -153,5 +158,17 @@ public class User {
     //HashCode
     public int hashCode() {
         return Objects.hash(first_name, last_name, x_user, y_user, delivery_requests, delivery_queue);
+    }
+
+
+    public String toString() {
+        return "Utilizador:" +
+                userID +
+                ", " + first_name +
+                ", " + last_name +
+                ", " + x_user +
+                ", " + y_user +
+                ", " + delivery_requests +
+                ", " + delivery_queue;
     }
 }
