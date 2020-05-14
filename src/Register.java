@@ -21,7 +21,8 @@ public class Register {
         //Escrever no ficheiro
         try {
             FileWriter file = new FileWriter(strfile,true);
-            file.write("\nUtilizador:" + nome1 + " " + nome2); //temos de usar o ToString
+            file.write("\n");
+            file.write("Utilizador:" + nome1 + " " + nome2); //temos de usar o ToString
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
