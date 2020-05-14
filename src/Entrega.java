@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Entrega {
+public class Entrega {                  //Encomendas Aceites já entregues
     private Encomenda enco;             //Detalhes da encomenda que foi entregue
     private int precoTotal;             //Total pago
     private int taxaCobrada;            //Taxa da empresa

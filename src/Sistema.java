@@ -1,24 +1,25 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Sistema {
     private ArrayList<Loja> listaLojas; // Register dos 4 tipos
-    private ArrayList<User> listaUsers;
+    private HashSet<User> listaUsers;
     private ArrayList<Empresa> listaEmpr;
     private ArrayList<Volunteer> listaVol;
 
     public Sistema(){
         this.listaLojas = new ArrayList<>();
-        this.listaUsers = new ArrayList<>();
+        this.listaUsers = new HashSet<>();
         this.listaEmpr = new ArrayList<>();
         this.listaVol = new ArrayList<>();
     }
 
-    public Sistema(ArrayList<Loja> listaLojas, ArrayList<User> listaUsers, ArrayList<Empresa> listaEmpr, ArrayList<Volunteer> listaVol){
+    public Sistema(ArrayList<Loja> listaLojas, HashSet<User> listaUsers, ArrayList<Empresa> listaEmpr, ArrayList<Volunteer> listaVol){
         this.listaLojas = new ArrayList<>();
         for(Loja loja: listaLojas){
             this.listaLojas.add(loja.clone());
         }
-        this.listaUsers =  new ArrayList<>();
+        this.listaUsers =  new HashSet<>();
         for(User user: listaUsers){
             this.listaUsers.add(user.clone());
         }
@@ -47,8 +48,8 @@ public class Sistema {
         return lojas;
     }
 
-    public ArrayList<User> getListaUsers() {
-        ArrayList<User> users = new ArrayList<>();
+    public HashSet<User> getListaUsers() {
+        HashSet<User> users = new HashSet<>();
         for(User user : this.listaUsers){
             users.add(user.clone());
         }
@@ -79,8 +80,8 @@ public class Sistema {
         this.listaLojas = lojas;
     }
 
-    public void setListaUsers(ArrayList<User> listaUsers) {
-        ArrayList<User> users = new ArrayList<>();
+    public void setListaUsers(HashSet<User> listaUsers) {
+        HashSet<User> users = new HashSet<>();
         for(User user : listaUsers){
             users.add(user.clone());
         }
@@ -125,4 +126,17 @@ public class Sistema {
     public Sistema clone(){
         return new Sistema(this);
     }
+
+
+    //Adiciona um utilizador ao sistema
+    public Sistema addUser(User c){
+        this.listaUsers.add(c);
+        return this;
+    }
+
+    //Verifica se o utilizador já existe
+    public boolean existsUser(User c){
+        return this.listaUsers.contains(c);
+    }
+
 }

@@ -1,0 +1,4 @@
+Utilizador:u40,LuÃ­s AnÃ­bal Barbosa de AraÃºjo,99.15073,-45.263195
+Utilizador:u68,Pedro GonÃ§alo dos Santos Pires Pinheiro,-71.837296,-29.223396
+Utilizador:u81,Rui Pedro Neto Reis,-67.93489,99.649734
+Utilizador:Raquel Costa

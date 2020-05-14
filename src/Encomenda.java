@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Encomenda {
+    private String encomendaID;
     private String userID;
     private String lojaID;
     private int pesoTotal;
@@ -44,6 +45,10 @@ public class Encomenda {
         this.congelados = enco.getCongelados();
         this.horaEntrega = enco.getHoraEntrega();
         this.validacao = enco.getValidacao();
+    }
+
+    public String getEncomendaID() {
+        return encomendaID;
     }
 
     public String getUserID() {

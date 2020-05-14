@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Classe que representa um utilizdor
@@ -148,4 +149,9 @@ public class User {
                 this.x_user==u.getX_user() && this.y_user==u.getY_user() &&
                 this.delivery_queue.equals(u.getDelivery_queue())&& this.delivery_requests.equals(u.getDelivery_requests());
      }
+
+    //HashCode
+    public int hashCode() {
+        return Objects.hash(first_name, last_name, x_user, y_user, delivery_requests, delivery_queue);
+    }
 }
