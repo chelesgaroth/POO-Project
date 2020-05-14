@@ -2,20 +2,20 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Sistema {
-    private ArrayList<Loja> listaLojas; // Register dos 4 tipos
+    private HashSet<Loja> listaLojas; // Register dos 4 tipos
     private HashSet<User> listaUsers;
-    private ArrayList<Empresa> listaEmpr;
-    private ArrayList<Volunteer> listaVol;
+    private HashSet<Empresa> listaEmpr;
+    private HashSet<Volunteer> listaVol;
 
     public Sistema(){
-        this.listaLojas = new ArrayList<>();
+        this.listaLojas = new HashSet<>();
         this.listaUsers = new HashSet<>();
-        this.listaEmpr = new ArrayList<>();
-        this.listaVol = new ArrayList<>();
+        this.listaEmpr = new HashSet<>();
+        this.listaVol = new HashSet<>();
     }
 
-    public Sistema(ArrayList<Loja> listaLojas, HashSet<User> listaUsers, ArrayList<Empresa> listaEmpr, ArrayList<Volunteer> listaVol){
-        this.listaLojas = new ArrayList<>();
+    public Sistema(HashSet<Loja> listaLojas, HashSet<User> listaUsers, HashSet<Empresa> listaEmpr, HashSet<Volunteer> listaVol){
+        this.listaLojas = new HashSet<>();
         for(Loja loja: listaLojas){
             this.listaLojas.add(loja.clone());
         }
@@ -23,11 +23,11 @@ public class Sistema {
         for(User user: listaUsers){
             this.listaUsers.add(user.clone());
         }
-        this.listaEmpr = new ArrayList<>();
+        this.listaEmpr = new HashSet<>();
         for(Empresa empresa : listaEmpr){
             this.listaEmpr.add(empresa.clone());
         }
-        this.listaVol = new ArrayList<>();
+        this.listaVol = new HashSet<>();
         for(Volunteer voluntario : listaVol){
             this.listaVol.add(voluntario.clone());
         }
@@ -40,8 +40,8 @@ public class Sistema {
         this.listaVol = sistema.getListaVol();
     }
 
-    public ArrayList<Loja> getListaLojas() {
-        ArrayList<Loja> lojas = new ArrayList<>();
+    public HashSet<Loja> getListaLojas() {
+        HashSet<Loja> lojas = new HashSet<>();
         for(Loja loja : this.listaLojas){
             lojas.add(loja.clone());
         }
@@ -56,24 +56,24 @@ public class Sistema {
         return users;
     }
 
-    public ArrayList<Empresa> getListaEmpr(){
-        ArrayList<Empresa> empresas = new ArrayList<>();
+    public HashSet<Empresa> getListaEmpr(){
+        HashSet<Empresa> empresas = new HashSet<>();
         for(Empresa empresa : this.listaEmpr){
             empresas.add(empresa.clone());
         }
         return empresas;
     }
 
-    public ArrayList<Volunteer> getListaVol(){
-        ArrayList<Volunteer> vols = new ArrayList<>();
+    public HashSet<Volunteer> getListaVol(){
+        HashSet<Volunteer> vols = new HashSet<>();
         for (Volunteer vol : this.listaVol){
             vols.add(vol.clone());
         }
         return vols;
     }
 
-    public void setListaLojas(ArrayList<Loja> listaLojas) {
-        ArrayList<Loja> lojas = new ArrayList<>();
+    public void setListaLojas(HashSet<Loja> listaLojas) {
+        HashSet<Loja> lojas = new HashSet<>();
         for(Loja loja : listaLojas){
             lojas.add(loja.clone());
         }
@@ -88,16 +88,16 @@ public class Sistema {
         this.listaUsers = users;
     }
 
-    public void setListaEmpr(ArrayList<Empresa> listaEmpr) {
-        ArrayList<Empresa> empresas = new ArrayList<>();
+    public void setListaEmpr(HashSet<Empresa> listaEmpr) {
+        HashSet<Empresa> empresas = new HashSet<>();
         for(Empresa empresa : listaEmpr){
             empresas.add(empresa.clone());
         }
         this.listaEmpr = empresas;
     }
 
-    public void setListaVol(ArrayList<Volunteer> listaVol) {
-        ArrayList<Volunteer> vols = new ArrayList<>();
+    public void setListaVol(HashSet<Volunteer> listaVol) {
+        HashSet<Volunteer> vols = new HashSet<>();
         for (Volunteer vol : listaVol){
             vols.add(vol.clone());
         }
@@ -134,9 +134,42 @@ public class Sistema {
         return this;
     }
 
-    //Verifica se o utilizador já existe
-    public boolean existsUser(User c){
+    //Verifica se  já existe
+    public boolean existsUser(Volunteer c){
         return this.listaUsers.contains(c);
+    }
+
+    //Adiciona um voluntario ao sistema
+    public Sistema addVoluntario(Volunteer c){
+        this.listaVol.add(c);
+        return this;
+    }
+
+    //Verifica se o voluntario já existe
+    public boolean existsVolunatario(Volunteer c){
+        return this.listaVol.contains(c);
+    }
+
+    //Adiciona uma loja ao sistema
+    public Sistema addLoja(Loja c){
+        this.listaLojas.add(c);
+        return this;
+    }
+
+    //Verifica se a loja já existe
+    public boolean existsLoja(Loja c){
+        return this.listaLojas.contains(c);
+    }
+
+    //Adiciona um utilizador ao sistema
+    public Sistema addEmpresa(Empresa c){
+        this.listaEmpr.add(c);
+        return this;
+    }
+
+    //Verifica se o utilizador já existe
+    public boolean existsEmpresa(Empresa c){
+        return this.listaEmpr.contains(c);
     }
 
 }
