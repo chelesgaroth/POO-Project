@@ -6,6 +6,8 @@ public class Loja {
 
     private int existeEncomenda;
     private int pessoasFila;
+    private String nome;
+    private String codLoja;
     private LocalDateTime tempo;
     private double latitude;
     private double longitude;
@@ -91,6 +93,22 @@ public class Loja {
         this.tempoPessoa = tempoPessoa;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCodLoja() {
+        return codLoja;
+    }
+
+    public void setCodLoja(String codLoja) {
+        this.codLoja = codLoja;
+    }
+
     public ArrayList<Encomenda> getEncs() {
         ArrayList<Encomenda> encs = new ArrayList<>() ;
         for (Encomenda e: this.encs){
@@ -124,15 +142,33 @@ public class Loja {
                 Objects.equals(encs, loja.encs);
     }
 
+    @Override
     public String toString() {
         return "Loja{" +
                 "existeEncomenda=" + existeEncomenda +
                 ", pessoasFila=" + pessoasFila +
+                ", nome='" + nome + '\'' +
+                ", codLoja='" + codLoja + '\'' +
                 ", tempo=" + tempo +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", tempoPessoa=" + tempoPessoa +
                 ", encs=" + encs +
                 '}';
+    }
+
+    public static void  insereLoja(String aux,Sistema s){
+        Loja l = new Loja();
+        String [] auxiliar = aux.split(",",2);
+
+      //  System.out.println (aux);
+        l.setCodLoja(auxiliar[0]);
+        l.setNome(auxiliar[1]);
+     //   System.out.println(auxiliar[0]);
+
+        l.toString();
+        Sistema.insereLoja(l,s);
+
+
     }
 }

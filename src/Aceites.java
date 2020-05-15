@@ -44,4 +44,15 @@ public class Aceites {
         sb.append("\n").append(this.aceites);
         return sb.toString();
     }
+
+    public static void insereAceites(String aux, Aceites c){
+
+        c.aceites.add(aux);
+        c.toString();
+        int j=0;
+        //for( j = 0; j <c.aceites.size();j++) {
+        //     System.out.println("List  " +c.aceites.get(j));
+        //}
+       
+    }
 }

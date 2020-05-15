@@ -4,7 +4,7 @@ public class Controller {
     public static void main(String[] args) {
 
         int opcao;
-        String strFile = "Logs.txt";
+        String strFile = "TesteUserFile.txt";
         Load.leitura(strFile);
         do {
             Scanner ler = new Scanner(System.in);

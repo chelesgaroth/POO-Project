@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Empresa {
+private String idEmpresa;
+private String loja;
 private int aceitaEncomenda;
 private int aceitaMedicamento;
 private LocalDateTime tempo;
@@ -28,11 +30,12 @@ private boolean transito;
         this.taxaAdicional = 0.0;
         this.chuva = false;
         this.transito = false;
+        this.loja = null;
 
     }
 
     public Empresa (int aceitaEncomenda, int aceitaMedicamento, LocalDateTime tempo, double preco, double longitude,
-                    double latitude, double raio, double taxaAdicional, boolean chuva, boolean transito) {
+                    double latitude, double raio, double taxaAdicional, boolean chuva, boolean transito, String loja) {
         this.aceitaEncomenda = aceitaEncomenda;
         this.aceitaMedicamento = aceitaMedicamento;
         this.latitude = latitude;
@@ -43,6 +46,7 @@ private boolean transito;
         this.taxaAdicional = taxaAdicional;
         this.chuva = chuva;
         this.transito = transito;
+        this.loja = loja;
     }
 
     public Empresa (Empresa emp) {
@@ -56,6 +60,7 @@ private boolean transito;
         emp.transito = emp.getTransito();
         emp.chuva = emp.getChuva();
         emp.taxaAdicional = emp.getTaxaAdicional();
+        emp.loja = emp.getLoja();
     }
     public int getAceitaEncomenda() {
 
@@ -85,7 +90,15 @@ private boolean transito;
         this.preco = preco;
     }
 
-      public int getAceitaMedicamento() {
+    public String getIdEmpresa() {
+        return this.idEmpresa;
+    }
+
+    public void setIdEmpresa(String idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    public int getAceitaMedicamento() {
           return this.aceitaMedicamento;
       }
 
@@ -142,9 +155,18 @@ private boolean transito;
         this.transito = transito;
     }
 
+    public String getLoja() {
+        return loja;
+    }
+
+    public void setLoja(String loja) {
+        this.loja = loja;
+    }
+
     public Empresa clone () {
         return new Empresa(this);
       }
+
 
 
     public boolean equals(Object o) {
@@ -177,6 +199,20 @@ private boolean transito;
                 ", chuva=" + chuva +
                 ", transito=" + transito +
                 '}';
+    }
+    public static void insereTransportadora(String aux,Sistema s){
+        System.out.println("Transportadora e"+aux);
+        Empresa e = new Empresa();
+        String[] id= aux.split (",");
+        e.setIdEmpresa(id[0]);
+    //    System.out.println("ID " +id[0]);
+     //   System.out.println("Loja "+ id[1]);
+        e.setLoja(id[1]);
+        e.toString();
+        Sistema.insereEmpresa(e,s);
+
+
+
     }
 
 }

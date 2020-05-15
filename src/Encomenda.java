@@ -6,7 +6,8 @@ public class Encomenda {
     private String encomendaID;
     private String userID;
     private String lojaID;
-    private int pesoTotal;
+    private double pesoTotal;
+    private LinhaEncomenda linhaE;
     private ArrayList<String> prods;
     private boolean medicamentos;
     private boolean congelados;
@@ -16,12 +17,13 @@ public class Encomenda {
     public Encomenda (){
         this.userID = "n/a";
         this.lojaID = "n/a";
-        this.pesoTotal = 0;
+        this.pesoTotal = 0.0;
         this.prods = new ArrayList<>();
         this.medicamentos = false;
         this.congelados = false;
         this.horaEntrega = LocalTime.now();
         this.validacao = false;
+        this.linhaE = null;
     }
 
     public Encomenda (String userID, String lojaID, int pesoTotal, ArrayList<String> prods, boolean medicamentos,
@@ -34,6 +36,7 @@ public class Encomenda {
         this.congelados = congelados;
         this.horaEntrega = horaEntrega;
         this.validacao = validacao;
+        this.linhaE = linhaE;
     }
 
     public Encomenda (Encomenda enco){
@@ -51,6 +54,10 @@ public class Encomenda {
         return encomendaID;
     }
 
+    public void setEncomendaID(String encomendaID) {
+        this.encomendaID = encomendaID;
+    }
+
     public String getUserID() {
         return this.userID;
     }
@@ -59,7 +66,7 @@ public class Encomenda {
         return this.lojaID;
     }
 
-    public int getPesoTotal() {
+    public double getPesoTotal() {
         return this.pesoTotal;
     }
 
@@ -92,7 +99,7 @@ public class Encomenda {
         this.lojaID = lojaID;
     }
 
-    public void setPesoTotal(int pesoTotal) {
+    public void setPesoTotal(double pesoTotal) {
         this.pesoTotal = pesoTotal;
     }
 
@@ -116,6 +123,13 @@ public class Encomenda {
         this.validacao = validacao;
     }
 
+    public LinhaEncomenda getLinhaE() {
+        return this.linhaE;
+    }
+
+    public void setLinhaE(LinhaEncomenda linhaE) {
+        this.linhaE = linhaE;
+    }
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -146,5 +160,26 @@ public class Encomenda {
 
     public Encomenda clone(){
         return new Encomenda(this);
+    }
+
+    public static void insereEncomenda (String aux){
+        Encomenda e = new Encomenda();
+        String [] auxiliar = aux.split(",");
+        e.setEncomendaID(auxiliar[0]);
+        e.setUserID(auxiliar[1]);
+        e.setLojaID(auxiliar[2]);
+        double peso = Double.parseDouble(auxiliar[3]);
+        e.setPesoTotal(peso);
+        //inserir a linha de encomenda auxiliar[4]
+        // System.out.println("ENCOMENDA ID  "+ auxiliar[0]);
+       // System.out.println("USER ID  "+ auxiliar[1]);
+       // System.out.println("Loja ID"+ auxiliar[2]);
+       // System.out.println("Peso  "+ peso);
+        LinhaEncomenda.insereLinhaEncomenda(auxiliar[4],auxiliar[5],auxiliar[6],auxiliar[7]);
+        //System.out.println("Cod prod "+ auxiliar[4]);
+        //System.out.println("Descricao" + auxiliar[5]);
+        e.toString();
+
+
     }
 }

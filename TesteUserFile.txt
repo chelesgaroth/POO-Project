@@ -1,5 +1,10 @@
-Utilizador:u40,LuÃ­s AnÃ­bal Barbosa de AraÃºjo,99.15073,-45.263195
-Utilizador:u68,Pedro GonÃ§alo dos Santos Pires Pinheiro,-71.837296,-29.223396
-Utilizador: Raquel
-Utilizador: Ema
 
+Utilizador:u2,Ema Dias,-3.4,-2,5
+Transportadora:t51,GREYSTAR SA BRAGA,17.10495,11.460815,650245929,35.0,2.5
+Utilizador:u2,Ema Dias,-3.4,-2,5
+Utilizador:u12,Susana VitÃ³ria SÃ¡ Silva Marques,40.76378,-65.03941
+Loja:l49,Prof
+Loja:l48,Bimba&Lola
+Loja:l49,Pingo Doce
+Utilizador:u12,Susana VitÃ³ria SÃ¡ Silva Marques,40.76378,-65.03941
+Utilizador:u12,Susana VitÃ³ria SÃ¡ Silva Marques,40.76378,-65.03941

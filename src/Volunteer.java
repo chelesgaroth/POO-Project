@@ -11,6 +11,10 @@ public class Volunteer {
     private String id_package;
     private String id_store_pickup;
     private List<String> package_list;
+    private String firstName;
+    private String lastName;
+
+
     private float x_volunteer;
     private float y_volunteer;
     private float x_volunteer_home;
@@ -81,6 +85,34 @@ public class Volunteer {
         this.time_finish=time_finish;
     }
 
+    public static void insereVolunteer(String aux,Sistema s) {
+        System.out.println("Voluntario e"+aux);
+        Volunteer v = new Volunteer();
+        String[] id= aux.split (",");
+        v.setId_volunteer(id[0]);
+        System.out.println("ID " +id[0]);
+
+        float x= Float.valueOf(id[2]);
+        float y= Float.valueOf(id[3]);
+        float r = Float.valueOf(id[4]);
+        //FALTA INSERIRI O ID4 NAO SEI O QUE E
+        v.setX_volunteer(x);
+        v.setY_volunteer(y);
+        v.setRadius_volunteer(r);
+      // System.out.println("Coordenada x "+ id[2]);
+       // System.out.println("Coordenada y "+ id[3]);
+
+        String[] textoSeparado = id[1].split(" ");
+
+        v.setFirstName(textoSeparado[0]);
+        //System.out.println("primeiro nome  "+ textoSeparado[0]);
+
+       // System.out.println("Último Nome : "+textoSeparado[textoSeparado.length-1]);
+        v.setLastName(textoSeparado[textoSeparado.length-1]);
+        v.toString();
+        Sistema.insereVol(v,s);
+    }
+
     /**
      * sinalizar que está disposto a recolher uma encomenda
      */
@@ -120,9 +152,26 @@ public class Volunteer {
     public String getId_store_pickup(){
         return this.id_store_pickup;
     }
+
     public void setId_store_pickup(String id_store_pickup){
         this.id_store_pickup=id_store_pickup;
     }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
 
     public List<String> getPackage_list() {
         List<String> res = new ArrayList<>();
