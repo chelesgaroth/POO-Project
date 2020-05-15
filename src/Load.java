@@ -75,7 +75,6 @@ public class Load {
                             System.out.println("é uma encomenda");
                             //ENVIAR PARA ENCOMENDA
                             aux = linhaPartida[1];
-                            System.out.printf("%s",aux);
                             Encomenda.insereEncomenda(aux);
                             break;
                         }

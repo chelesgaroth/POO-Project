@@ -72,7 +72,7 @@ public class LinhaEncomenda {
     }
 
     public String toString() {
-        return "\ncodProduto='" + codProduto + '\'' +
+        return "\nPRODUTO" + "\ncodProduto='" + codProduto + '\'' +
                 "\ndescricao='" + descricao + '\'' +
                 "\nquantidade=" + quantidade +
                 "\nvalor=" + valor  +
@@ -91,8 +91,7 @@ public class LinhaEncomenda {
         l.setQuantidade(qtd);
         float preco = Float.parseFloat(aux4);
         l.setValor(preco);
-        System.out.print("\nPRODUTO");
-        System.out.print(l.toString());
+        //System.out.print(l.toString());
         return l;
     }
 }
