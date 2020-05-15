@@ -178,10 +178,14 @@ public class Encomenda {
         /*LinhaEncomenda linha = LinhaEncomenda.insereLinhaEncomenda(auxiliar[4],auxiliar[5],auxiliar[6],auxiliar[7]);
         linhas.add(linha);*/
         int i=4;
-        while(auxiliar[i] != null){
+        while(auxiliar.length>i){
             System.out.printf("%s,%s,%s,%s \n", auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
             LinhaEncomenda linha = LinhaEncomenda.insereLinhaEncomenda(auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
             linhas.add(linha);
+            System.out.println ("Codigo prod "+auxiliar[i]);
+            System.out.println("Descricao "+ auxiliar[i+1]);
+            System.out.println("Quantidade "+ auxiliar[i+2]);
+            System.out.println("Valor "+auxiliar[i+3]);
             System.out.printf("\nnext encomenda %d\n",i);
             //System.out.printf("\n%s\n",auxiliar[68]);
             //System.out.printf("\nERRO %s\n",auxiliar[69]);
