@@ -86,30 +86,26 @@ public class Volunteer {
     }
 
     public static void insereVolunteer(String aux,Sistema s) {
-        System.out.println("Voluntario e"+aux);
+        //System.out.println("Voluntario e"+aux);
         Volunteer v = new Volunteer();
         String[] id= aux.split (",");
         v.setId_volunteer(id[0]);
-        System.out.println("ID " +id[0]);
+        //System.out.println("ID " +id[0]);
 
-        float x= Float.valueOf(id[2]);
-        float y= Float.valueOf(id[3]);
-        float r = Float.valueOf(id[4]);
-        //FALTA INSERIRI O ID4 NAO SEI O QUE E
+        float x= Float.parseFloat(id[2]);
+        float y= Float.parseFloat(id[3]);
+        float r = Float.parseFloat(id[4]);
+
         v.setX_volunteer(x);
         v.setY_volunteer(y);
         v.setRadius_volunteer(r);
-      // System.out.println("Coordenada x "+ id[2]);
-       // System.out.println("Coordenada y "+ id[3]);
 
         String[] textoSeparado = id[1].split(" ");
 
         v.setFirstName(textoSeparado[0]);
-        //System.out.println("primeiro nome  "+ textoSeparado[0]);
 
-       // System.out.println("Último Nome : "+textoSeparado[textoSeparado.length-1]);
         v.setLastName(textoSeparado[textoSeparado.length-1]);
-        v.toString();
+        //v.toString();
         Sistema.insereVol(v,s);
     }
 

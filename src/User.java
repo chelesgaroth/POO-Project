@@ -174,27 +174,22 @@ public class User  {
 
     public static void insereUser(String linhaUser, Sistema s){
         User u = new User();
-        System.out.println("O User é:"+linhaUser);
+        //System.out.println("O User é:"+linhaUser);
         String[] id= linhaUser.split (",");
         u.setUserID(id[0]);
-        System.out.println("ID " +id[0]);
+        //System.out.println("ID " +id[0]);
 
-        float x= Float.valueOf(id[2]);
-        float y= Float.valueOf(id[3]);
+        float x= Float.parseFloat(id[2]);
+        float y= Float.parseFloat(id[3]);
         u.setX_user(x);
         u.setY_user(y);
 
-       // System.out.println("Coordenada x "+ id[2]);
-       // System.out.println("Coordenada y "+ id[3]);
 
         String[] textoSeparado = id[1].split(" ");
 
         u.setFirst_name(textoSeparado[0]);
-        ///System.out.println("primeiro nome  "+ textoSeparado[0]);
-
-      //  System.out.println("Último Nome : "+textoSeparado[textoSeparado.length-1]);
         u.setLast_name(textoSeparado[textoSeparado.length-1]);
-        u.toString();
+        System.out.println(u.toString());
         Sistema.insereUser(u,s);
 
         }

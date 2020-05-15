@@ -174,43 +174,43 @@ public class Sistema {
 
     public static void insereLoja(Loja l, Sistema s) {
         /** Esta função primeiro verifica se a loja ja existe e se for false insere com o set */
-        Boolean res = s.existsLoja(l);
+        boolean res = s.existsLoja(l);
         if(res==false)  {
             s.listaLojas.add(l);
-            System.out.println("Loja inserida");
+            System.out.println("Loja inserida no Sistema\n\n");
         }
-       else System.out.println("Loja já existente");
+       else System.out.println("Loja já existente\n\n");
     }
 
     public static void insereUser(User u, Sistema s){
-        Boolean res= false;
+        boolean res= false;
         res= s.existsUser(u);
         /** Verifica se o user ja existe antes de inserir */
         if (res == false) {
             s.listaUsers.add(u);
-            System.out.println("User inserido");
+            System.out.println("User inserido no Sistema\n\n");
         }
-       else System.out.println("User já existente");
+       else System.out.println("User já existente\n\n");
     }
 
     public static void insereEmpresa (Empresa e,Sistema s){
         //Verifica se a empresa existe antes de inserir
-        Boolean res= s.existsEmpresa(e);
+        boolean res= s.existsEmpresa(e);
         if (res==false) {
             s.listaEmpr.add(e);
-            System.out.println("Empresa inserida");
+            System.out.println("Empresa inserida no Sistema\n\n");
         }
-        else System.out.println("Empresa já existente");
+        else System.out.println("Empresa já existente\n\n");
     }
 
     public static void insereVol (Volunteer v,Sistema s) {
         //verifica se existe antes de inserir
 
-        Boolean res = s.existsVolunatario(v);
+        boolean res = s.existsVolunatario(v);
         if (res==false) {
             s.listaVol.add(v);
-            System.out.println("Voluntario inserido");
+            System.out.println("Voluntario inserido no Sistema\n\n");
         }
-        else System.out.println("Voluntario já existente");
+        else System.out.println("Voluntario já existente\n\n");
     }
 }

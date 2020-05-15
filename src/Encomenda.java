@@ -7,8 +7,8 @@ public class Encomenda {
     private String userID;
     private String lojaID;
     private double pesoTotal;
-    private LinhaEncomenda linhaE;
-    private ArrayList<String> prods;
+    //private LinhaEncomenda linhaE;
+    private ArrayList<LinhaEncomenda> prods;
     private boolean medicamentos;
     private boolean congelados;
     private LocalTime horaEntrega; // se é null entao tem ser entregue o mais rapido possivel
@@ -23,20 +23,23 @@ public class Encomenda {
         this.congelados = false;
         this.horaEntrega = LocalTime.now();
         this.validacao = false;
-        this.linhaE = null;
+        //this.linhaE = null;
     }
 
-    public Encomenda (String userID, String lojaID, int pesoTotal, ArrayList<String> prods, boolean medicamentos,
+    public Encomenda (String userID, String lojaID, int pesoTotal, ArrayList<LinhaEncomenda> prods, boolean medicamentos,
                       boolean congelados, LocalTime horaEntrega, boolean validacao){
         this.userID = userID;
         this.lojaID = lojaID;
         this.pesoTotal = pesoTotal;
-        this.prods = new ArrayList<>(prods);
+        this.prods = new ArrayList<>();
+        for(LinhaEncomenda enc : prods){
+            this.prods.add(enc.clone());
+        }
         this.medicamentos = medicamentos;
         this.congelados = congelados;
         this.horaEntrega = horaEntrega;
         this.validacao = validacao;
-        this.linhaE = linhaE;
+        //this.linhaE = linhaE;
     }
 
     public Encomenda (Encomenda enco){
@@ -70,8 +73,12 @@ public class Encomenda {
         return this.pesoTotal;
     }
 
-    public ArrayList<String> getProds() {
-        return  new ArrayList<>(this.prods);
+    public ArrayList<LinhaEncomenda> getProds() {
+        ArrayList<LinhaEncomenda> newprods = new ArrayList<>();
+        for(LinhaEncomenda linha : this.prods){
+            newprods.add(linha.clone());
+        }
+        return newprods;
     }
 
     public boolean getMedicamentos(){
@@ -103,8 +110,12 @@ public class Encomenda {
         this.pesoTotal = pesoTotal;
     }
 
-    public void setProds(ArrayList<String> prods) {
-        this.prods = new ArrayList<>(prods);
+    public void setProds(ArrayList<LinhaEncomenda> prods) {
+        ArrayList<LinhaEncomenda> newProds = new ArrayList<>();
+        for(LinhaEncomenda linha : prods){
+            newProds.add(linha.clone());
+        }
+        this.prods = newProds;
     }
 
     public void setMedicamentos(boolean medicamentos) {
@@ -123,13 +134,6 @@ public class Encomenda {
         this.validacao = validacao;
     }
 
-    public LinhaEncomenda getLinhaE() {
-        return this.linhaE;
-    }
-
-    public void setLinhaE(LinhaEncomenda linhaE) {
-        this.linhaE = linhaE;
-    }
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -146,15 +150,15 @@ public class Encomenda {
     }
 
     public String toString() {
-        StringBuffer sb = new StringBuffer("Encomenda: ");
-        sb.append("Username: ").append(this.userID).append(", ");
-        sb.append("Loja: ").append(this.lojaID).append(", ");
-        sb.append("Peso Total: ").append(this.pesoTotal).append(", ");
-        sb.append("Produtos encomendados: ").append(this.prods).append(", ");
-        sb.append("Algum dos produtos é um medicamento?: ").append(this.medicamentos).append(", ");
-        sb.append("Algum dos produtos é um congelado?").append(this.congelados).append(", ");
-        sb.append("A que horas o utilizador quer a encomenda?").append(this.horaEntrega).append(", ");
-        sb.append("A encomenda foi validada?").append(this.validacao).append(", ");
+        StringBuffer sb = new StringBuffer("\n\nEncomenda: ");
+        sb.append("\nUsername: ").append(this.userID).append(", ");
+        sb.append("\nLoja: ").append(this.lojaID).append(", ");
+        sb.append("\nPeso Total: ").append(this.pesoTotal).append(", ");
+        sb.append("\nProdutos encomendados: ").append(this.prods).append(", ");
+        sb.append("\nAlgum dos produtos é um medicamento?: ").append(this.medicamentos).append(", ");
+        sb.append("\nAlgum dos produtos é um congelado?").append(this.congelados).append(", ");
+        sb.append("\nA que horas o utilizador quer a encomenda?").append(this.horaEntrega).append(", ");
+        sb.append("\nA encomenda foi validada?").append(this.validacao).append("\n\n");
         return sb.toString();
     }
 
@@ -170,16 +174,22 @@ public class Encomenda {
         e.setLojaID(auxiliar[2]);
         double peso = Double.parseDouble(auxiliar[3]);
         e.setPesoTotal(peso);
-        //inserir a linha de encomenda auxiliar[4]
-        // System.out.println("ENCOMENDA ID  "+ auxiliar[0]);
-       // System.out.println("USER ID  "+ auxiliar[1]);
-       // System.out.println("Loja ID"+ auxiliar[2]);
-       // System.out.println("Peso  "+ peso);
-        LinhaEncomenda.insereLinhaEncomenda(auxiliar[4],auxiliar[5],auxiliar[6],auxiliar[7]);
-        //System.out.println("Cod prod "+ auxiliar[4]);
-        //System.out.println("Descricao" + auxiliar[5]);
-        e.toString();
-
+        ArrayList<LinhaEncomenda> linhas = new ArrayList<>();
+        /*LinhaEncomenda linha = LinhaEncomenda.insereLinhaEncomenda(auxiliar[4],auxiliar[5],auxiliar[6],auxiliar[7]);
+        linhas.add(linha);*/
+        int i=4;
+        while(auxiliar[i] != null){
+            System.out.printf("%s,%s,%s,%s \n", auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
+            LinhaEncomenda linha = LinhaEncomenda.insereLinhaEncomenda(auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
+            linhas.add(linha);
+            System.out.printf("\nnext encomenda %d\n",i);
+            //System.out.printf("\n%s\n",auxiliar[68]);
+            //System.out.printf("\nERRO %s\n",auxiliar[69]);
+            i=i+4;
+        }
+        System.out.print("FIM DO CICLO");
+        e.setProds(linhas);
+        System.out.print(e.toString());
 
     }
 }

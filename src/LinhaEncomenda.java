@@ -22,6 +22,13 @@ public class LinhaEncomenda {
         this.valor = valor;
     }
 
+    public LinhaEncomenda(LinhaEncomenda linha){
+        this.codProduto = linha.getCodProduto();
+        this.descricao = linha.getDescricao();
+        this.quantidade = linha.getQuantidade();
+        this.valor = linha.getValor();
+    }
+
     public String getCodProduto() {
         return this.codProduto;
     }
@@ -65,15 +72,18 @@ public class LinhaEncomenda {
     }
 
     public String toString() {
-        return "LinhaEncomenda{" +
-                "codProduto='" + codProduto + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", quantidade=" + quantidade +
-                ", valor=" + valor +
-                '}';
+        return "\ncodProduto='" + codProduto + '\'' +
+                "\ndescricao='" + descricao + '\'' +
+                "\nquantidade=" + quantidade +
+                "\nvalor=" + valor  +
+                "\n";
     }
 
-    public static void insereLinhaEncomenda (String aux1, String aux2, String aux3, String aux4){
+    public LinhaEncomenda clone(){
+        return new LinhaEncomenda(this);
+    }
+
+    public static LinhaEncomenda insereLinhaEncomenda (String aux1, String aux2, String aux3, String aux4){
         LinhaEncomenda l= new LinhaEncomenda();
         l.setCodProduto(aux1);
         l.setDescricao(aux2);
@@ -81,9 +91,9 @@ public class LinhaEncomenda {
         l.setQuantidade(qtd);
         float preco = Float.parseFloat(aux4);
         l.setValor(preco);
-        l.toString();
-
-
+        System.out.print("\nPRODUTO");
+        System.out.print(l.toString());
+        return l;
     }
 }
 

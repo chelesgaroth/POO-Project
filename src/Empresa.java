@@ -201,7 +201,7 @@ private boolean transito;
                 '}';
     }
     public static void insereTransportadora(String aux,Sistema s){
-        System.out.println("Transportadora e"+aux);
+     //   System.out.println("Transportadora e"+aux);
         Empresa e = new Empresa();
         String[] id= aux.split (",");
         e.setIdEmpresa(id[0]);

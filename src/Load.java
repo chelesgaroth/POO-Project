@@ -18,7 +18,7 @@ public class Load {
         for (i = 0; i < linhas.size(); i++) {
             //para cada linha do list
             if (linhas.get(i)!=null) {
-                System.out.println("LINHA"+linhas.get(i));
+                //System.out.println("LINHA"+linhas.get(i));
                 linhaPartida = linhas.get(i).split(":", 2); //separar ate ao : em 2
                 if (linhaPartida[0]!=null) {
                     //Em linhaPartida fica o tipo de entidade
@@ -75,6 +75,7 @@ public class Load {
                             System.out.println("é uma encomenda");
                             //ENVIAR PARA ENCOMENDA
                             aux = linhaPartida[1];
+                            System.out.printf("%s",aux);
                             Encomenda.insereEncomenda(aux);
                             break;
                         }
@@ -104,7 +105,7 @@ public class Load {
                 i++;
             }
         } catch (IOException e) {
-            System.err.printf("Erro na abertura do arquivo : %s\n");
+            System.err.print("Erro na abertura do arquivo : %s\n");
         }
 
 
