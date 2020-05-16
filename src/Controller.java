@@ -52,7 +52,15 @@ public class Controller {
                     if(opcao==4) Register.registoEmpresa(strFile,sistema);
                     break;
                 }
-                case 3:{
+                case 2:{
+                    /* Classe login
+                    * 1º) Quando estivermos no register o user escolher uma password.
+                    * 2º) Ligamos o userID à password na classe login atraves de um hashMap
+                    * 3º) No register chamamos a função que adiciona ao hashMap
+                    * 4º) No login , apenas temos de procurar no hashmap a password correspondente ao userID
+                    * 5º) Usamos equals e caso seja verdade tem acesso ao resto do programa
+                    * 6º) O resto do programa permite usar a aplicacao para fazer encomendas etc, consultar o historico...
+                     */
                 }
             }
         }
