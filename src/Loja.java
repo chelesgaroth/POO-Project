@@ -142,33 +142,21 @@ public class Loja {
                 Objects.equals(encs, loja.encs);
     }
 
-    @Override
+
     public String toString() {
-        return "Loja{" +
-                "existeEncomenda=" + existeEncomenda +
-                ", pessoasFila=" + pessoasFila +
-                ", nome='" + nome + '\'' +
-                ", codLoja='" + codLoja + '\'' +
-                ", tempo=" + tempo +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", tempoPessoa=" + tempoPessoa +
-                ", encs=" + encs +
-                '}';
+        return "Loja:" +
+                codLoja + "," +
+                nome ;
     }
 
-    public static void  insereLoja(String aux,Sistema s){
+    public static Loja insereLoja(String aux,Sistema s){
         Loja l = new Loja();
         String [] auxiliar = aux.split(",",2);
 
-      //  System.out.println (aux);
         l.setCodLoja(auxiliar[0]);
         l.setNome(auxiliar[1]);
-     //   System.out.println(auxiliar[0]);
 
-        l.toString();
         Sistema.insereLoja(l,s);
-
-
+        return l;
     }
 }

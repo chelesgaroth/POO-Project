@@ -181,7 +181,7 @@ public class Encomenda {
             linhas.add(linha);
         }
         e.setProds(linhas);
-        System.out.print(e.toString());
+        //System.out.print(e.toString());   ESTE PRINT É PARA VERMOS OS PRODUTOS DA ENCOMENDA É IMPORTANTE
 
     }
 }

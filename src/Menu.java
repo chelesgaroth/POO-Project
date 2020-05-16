@@ -1,4 +1,13 @@
 public class Menu {
+    public static void  Inicio (){
+        System.out.println();
+        System.out.println("---------TRAZ AQUI!--------");
+        System.out.print("Bem-Vindo!!\n\n");
+        System.out.println("Prima:");
+        System.out.println("1- Continuar o estado da aplicação");
+        System.out.println("2- Criar um novo estado da aplicação");
+        //System.out.println("Verificando estado da aplicação...");
+    }
     public static void  Menu () {
         System.out.println();
         System.out.println("---------TRAZ AQUI!--------");
@@ -15,5 +24,13 @@ public class Menu {
         System.out.println("3- Loja");
         System.out.println("4- Empresa");
         System.out.println("0- Voltar ao Menu Inicial");
+    }
+    public static void Historico(int conta1,int conta2,int conta3,int conta4,int conta5,int conta6){
+        System.out.printf("\nNúmero de Encomendas aceites: %d\n",conta1);
+        System.out.printf("Número de Utilizadores: %d\n",conta2);
+        System.out.printf("Número de Voluntários: %d\n",conta3);
+        System.out.printf("Número de Empresas Transportadoras: %d\n",conta4);
+        System.out.printf("Número de Lojas: %d\n",conta5);
+        System.out.printf("Número de Encomendas: %d\n\n",conta6);
     }
 }

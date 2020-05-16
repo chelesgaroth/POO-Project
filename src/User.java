@@ -5,8 +5,7 @@ import java.util.Objects;
 
 public class User  {
     private String userID;
-    private String first_name;
-    private String last_name;
+    private String name;
     private float x_user;
     private float y_user;
     private List<String> delivery_requests;
@@ -17,8 +16,7 @@ public class User  {
      */
     public User() {
         this.userID = "n/a";
-        this.first_name = "n/a";
-        this.last_name = "n/a";
+        this.name = "n/a";
         this.x_user = 0;
         this.y_user = 0;
         this.delivery_requests = new ArrayList<>();
@@ -30,8 +28,7 @@ public class User  {
      */
     public User(User user) {
         this.userID = user.getUserID();
-        this.first_name = user.getFirst_name();
-        this.last_name = user.getLast_name();
+        this.name = user.getUserName();
         this.x_user=user.getX_user();
         this.y_user=user.getY_user();
         this.delivery_requests = user.getDelivery_requests();
@@ -42,8 +39,7 @@ public class User  {
      * Construtor por parametro
      */
     public User(String first_name, String last_name, float x_user, float  y_user, List<String> delivery_requests, List<String> delivery_queue){
-        this.first_name=first_name;
-        this.last_name=last_name;
+        this.name=last_name;
         this.x_user=x_user;
         this.y_user=y_user;
         setDelivery_queue(delivery_queue);
@@ -86,18 +82,11 @@ public class User  {
         this.userID = userID;
     }
 
-    public String getFirst_name(){
-        return this.first_name;
+    public String getUserName(){
+        return this.name;
     }
-    public void setFirst_name(String first_name){
-        this.first_name= first_name;
-    }
-
-    public String getLast_name(){
-        return this.last_name;
-    }
-    public void setLast_name(String last_name){
-        this.last_name= last_name;
+    public void setUserName(String name){
+        this.name= name;
     }
 
     public float getX_user(){
@@ -150,48 +139,44 @@ public class User  {
         if (obj==this) return true;
         if (obj==null || obj.getClass()!=this.getClass()) return false;
         User u = (User) obj;
-        return  this.first_name.equals(u.getFirst_name())&& this.last_name.equals(u.getLast_name())&&
+        return  this.name.equals(u.getUserName())&&
                 this.x_user==u.getX_user() && this.y_user==u.getY_user() &&
                 this.delivery_queue.equals(u.getDelivery_queue())&& this.delivery_requests.equals(u.getDelivery_requests());
      }
 
     //HashCode
     public int hashCode() {
-        return Objects.hash(first_name, last_name, x_user, y_user, delivery_requests, delivery_queue);
+        return Objects.hash(name, x_user, y_user, delivery_requests, delivery_queue);
     }
 
 
     public String toString() {
         return "Utilizador:" +
                 userID +
-                ", " + first_name +
-                ", " + last_name +
-                ", " + x_user +
-                ", " + y_user +
-                ", " + delivery_requests +
-                ", " + delivery_queue;
+                "," + name +
+                "," + x_user +
+                "," + y_user +
+                "," + delivery_requests +
+                "," + delivery_queue;
     }
 
-    public static void insereUser(String linhaUser, Sistema s){
+    public static User insereUser(String linhaUser, Sistema s){
         User u = new User();
-        //System.out.println("O User é:"+linhaUser);
+
         String[] id= linhaUser.split (",");
         u.setUserID(id[0]);
-        //System.out.println("ID " +id[0]);
 
         float x= Float.parseFloat(id[2]);
         float y= Float.parseFloat(id[3]);
         u.setX_user(x);
         u.setY_user(y);
 
-
         String[] textoSeparado = id[1].split(" ");
-
-        u.setFirst_name(textoSeparado[0]);
-        u.setLast_name(textoSeparado[textoSeparado.length-1]);
-        System.out.println(u.toString());
+        String nameAux = textoSeparado[0] + " " + textoSeparado[textoSeparado.length-1];
+        u.setUserName(nameAux);
+        //System.out.println(u.toString());
         Sistema.insereUser(u,s);
-
+        return u;
         }
 
 }

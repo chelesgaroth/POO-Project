@@ -11,8 +11,7 @@ public class Volunteer {
     private String id_package;
     private String id_store_pickup;
     private List<String> package_list;
-    private String firstName;
-    private String lastName;
+    private String name;
 
 
     private float x_volunteer;
@@ -85,7 +84,7 @@ public class Volunteer {
         this.time_finish=time_finish;
     }
 
-    public static void insereVolunteer(String aux,Sistema s) {
+    public static Volunteer insereVolunteer(String aux,Sistema s) {
         //System.out.println("Voluntario e"+aux);
         Volunteer v = new Volunteer();
         String[] id= aux.split (",");
@@ -100,13 +99,13 @@ public class Volunteer {
         v.setY_volunteer(y);
         v.setRadius_volunteer(r);
 
+
         String[] textoSeparado = id[1].split(" ");
+        String nameAux = textoSeparado[0] + " " + textoSeparado[textoSeparado.length-1];
+        v.setName(nameAux);
 
-        v.setFirstName(textoSeparado[0]);
-
-        v.setLastName(textoSeparado[textoSeparado.length-1]);
-        //v.toString();
         Sistema.insereVol(v,s);
+        return v;
     }
 
     /**
@@ -152,20 +151,13 @@ public class Volunteer {
     public void setId_store_pickup(String id_store_pickup){
         this.id_store_pickup=id_store_pickup;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    public String getName() {
+        return this.name;
     }
 
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 
@@ -261,5 +253,14 @@ public class Volunteer {
                 this.getY_volunteer_home()==v.getY_volunteer_home() && this.radius_volunteer==v.getRadius_volunteer() &&
                 this.availability==(v.getAvailability()) && this.volunteer_rating==v.getVolunteer_rating() &&
                 this.time_start.equals(v.getTime_start()) && this.time_finish.equals(v.getTime_finish());
+    }
+
+    public String toString() {
+        return "Voluntario:" +
+                id_volunteer + "," +
+                name + "," +
+                x_volunteer + "," +
+                y_volunteer + "," +
+                radius_volunteer ;
     }
 }

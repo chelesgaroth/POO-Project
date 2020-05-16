@@ -177,7 +177,7 @@ public class Sistema {
         boolean res = s.existsLoja(l);
         if(res==false)  {
             s.listaLojas.add(l);
-            System.out.println("Loja inserida no Sistema\n\n");
+            //System.out.println("Loja inserida no Sistema\n\n");
         }
        else System.out.println("Loja já existente\n\n");
     }
@@ -188,7 +188,7 @@ public class Sistema {
         /** Verifica se o user ja existe antes de inserir */
         if (res == false) {
             s.listaUsers.add(u);
-            System.out.println("User inserido no Sistema\n\n");
+            //System.out.println("User inserido no Sistema\n\n");
         }
        else System.out.println("User já existente\n\n");
     }
@@ -198,7 +198,7 @@ public class Sistema {
         boolean res= s.existsEmpresa(e);
         if (res==false) {
             s.listaEmpr.add(e);
-            System.out.println("Empresa inserida no Sistema\n\n");
+            //System.out.println("Empresa inserida no Sistema\n\n");
         }
         else System.out.println("Empresa já existente\n\n");
     }
@@ -209,7 +209,7 @@ public class Sistema {
         boolean res = s.existsVolunatario(v);
         if (res==false) {
             s.listaVol.add(v);
-            System.out.println("Voluntario inserido no Sistema\n\n");
+            //System.out.println("Voluntario inserido no Sistema\n\n");
         }
         else System.out.println("Voluntario já existente\n\n");
     }

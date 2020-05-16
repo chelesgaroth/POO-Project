@@ -5,18 +5,20 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Empresa {
-private String idEmpresa;
-private String loja;
-private int aceitaEncomenda;
-private int aceitaMedicamento;
-private LocalDateTime tempo;
-private double preco;
-private double latitude;
-private double longitude;
-private double raio;
-private double taxaAdicional;
-private boolean chuva;
-private boolean transito;
+    private String idEmpresa;
+    private String nome;
+    private double latitude; //y
+    private double longitude; //x
+    private int nif;
+    private double raio;
+    private double preco; // preco por km
+
+    private int aceitaEncomenda;
+    private int aceitaMedicamento;
+    private LocalDateTime tempo;
+    private double taxaAdicional;
+    private boolean chuva;
+    private boolean transito;
 
 
     public Empresa () {
@@ -30,11 +32,12 @@ private boolean transito;
         this.taxaAdicional = 0.0;
         this.chuva = false;
         this.transito = false;
-        this.loja = null;
+        this.nome = null;
+        this.nif = 0;
 
     }
 
-    public Empresa (int aceitaEncomenda, int aceitaMedicamento, LocalDateTime tempo, double preco, double longitude,
+    public Empresa (int aceitaEncomenda,int nif, int aceitaMedicamento, LocalDateTime tempo, double preco, double longitude,
                     double latitude, double raio, double taxaAdicional, boolean chuva, boolean transito, String loja) {
         this.aceitaEncomenda = aceitaEncomenda;
         this.aceitaMedicamento = aceitaMedicamento;
@@ -46,7 +49,8 @@ private boolean transito;
         this.taxaAdicional = taxaAdicional;
         this.chuva = chuva;
         this.transito = transito;
-        this.loja = loja;
+        this.nome = loja;
+        this.nif = nif;
     }
 
     public Empresa (Empresa emp) {
@@ -60,7 +64,8 @@ private boolean transito;
         emp.transito = emp.getTransito();
         emp.chuva = emp.getChuva();
         emp.taxaAdicional = emp.getTaxaAdicional();
-        emp.loja = emp.getLoja();
+        emp.nome = emp.getNome();
+        emp.nif = emp.getNif();
     }
     public int getAceitaEncomenda() {
 
@@ -155,12 +160,20 @@ private boolean transito;
         this.transito = transito;
     }
 
-    public String getLoja() {
-        return loja;
+    public String getNome() {
+        return nome;
     }
 
-    public void setLoja(String loja) {
-        this.loja = loja;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getNif() {
+        return this.nif;
+    }
+
+    public void setNif(int nif) {
+        this.nif = nif;
     }
 
     public Empresa clone () {
@@ -185,34 +198,32 @@ private boolean transito;
                 Objects.equals(tempo, empresa.tempo);
     }
 
-
+    //Transportadora:<CodEmpresa>,<NomeEmpresa>,<GPS>,<NIF>,<raio>,<preco-por-km>
     public String toString() {
-        return "Empresa{" +
-                "aceitaEncomenda=" + aceitaEncomenda +
-                ", aceitaMedicamento=" + aceitaMedicamento +
-                ", tempo=" + tempo +
-                ", preco=" + preco +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", raio=" + raio +
-                ", taxaAdicional=" + taxaAdicional +
-                ", chuva=" + chuva +
-                ", transito=" + transito +
-                '}';
+        return "Transportadora:" +
+                idEmpresa + "," +
+                nome + "," +
+                longitude + "," +
+                latitude + "," +
+                nif + "," +
+                raio + "," +
+                preco;
     }
-    public static void insereTransportadora(String aux,Sistema s){
-     //   System.out.println("Transportadora e"+aux);
+    public static Empresa insereTransportadora(String aux,Sistema s){
+
         Empresa e = new Empresa();
         String[] id= aux.split (",");
+
         e.setIdEmpresa(id[0]);
-    //    System.out.println("ID " +id[0]);
-     //   System.out.println("Loja "+ id[1]);
-        e.setLoja(id[1]);
-        e.toString();
+        e.setNome(id[1]);
+        e.setLongitude(Double.parseDouble(id[2]));
+        e.setLatitude(Double.parseDouble(id[3]));
+        e.setNif(Integer.parseInt(id[4]));
+        e.setRaio(Double.parseDouble(id[5]));
+        e.setPreco(Double.parseDouble(id[6]));
+
         Sistema.insereEmpresa(e,s);
-
-
-
+        return e;
     }
 
 }
