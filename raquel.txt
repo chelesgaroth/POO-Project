@@ -1,0 +1,7 @@
+
+Utilizador:u60,Raquel Costa,3.43,23.4,[],[]
+Login:u60,1234
+Utilizador:u87,michael torres,3.4,3.2,[],[]
+Login:u87,0000
+Utilizador:u97,Pablo Escobar,2.34,232.2,[],[]
+Login:u97,sniff

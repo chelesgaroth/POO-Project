@@ -13,14 +13,14 @@ public class Register {
         //UserID ->  gera um userID random para o utilizador
         Random rand = new Random();
         int rand_int = rand.nextInt(100);
-        String id = String.valueOf(rand_int);
-        id = "u" + id + ",";
+        String id = String.valueOf(rand_int) ;
+        id = "u" + id ;
         //UserName
         System.out.println("Insira o seu primeiro nome:");
         String nome1 = ler.nextLine();
         System.out.println("Insira o seu último nome:");
         String nome2 = ler.nextLine();
-        String linha = id + nome1 + " " + nome2;
+        String linha = id + "," + nome1 + " " + nome2;
         //Coordenadas GPS
         System.out.println("Insira as suas coordenadas de GPS:");
         System.out.println("x:");
@@ -30,11 +30,28 @@ public class Register {
 
         linha = linha + "," + x + "," + y;
         User user = User.insereUser(linha,sistema);
+
+        //Criando conta na apliacação
+        Login conta = new Login();
+        System.out.printf("\nO seu UserID é: %s\n", id);
+        System.out.println("Insira uma password:");
+        String pass = ler.nextLine();
+        System.out.println("Confirme a sua password:");
+        String pass2 = ler.nextLine();
+        while(!pass.equals(pass2)){
+            System.out.println("Por favor insira de novo.Password incorreta.");
+            pass2 = ler.nextLine();
+        }
+        conta.setUserID(id);
+        conta.setPassword(pass);
+        Sistema.insereLogin(conta,sistema); // diz se a conta foi criada ou nao
         //Escrever no ficheiro
         try {
             FileWriter file = new FileWriter(strfile,true);
             file.write("\n");
             file.write(user.toString());
+            file.write("\n");
+            file.write(conta.toString());
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,6 +84,7 @@ public class Register {
         String r = ler.nextLine();
         linha = linha + "," + x + "," + y + "," + r;
         Volunteer vol = Volunteer.insereVolunteer(linha,sistema);
+
         //Escrever no ficheiro
         try {
             FileWriter file = new FileWriter(strfile,true);

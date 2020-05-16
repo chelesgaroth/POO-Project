@@ -7,14 +7,17 @@ public class Sistema {
     private HashSet<Empresa> listaEmpr;
     private HashSet<Volunteer> listaVol;
 
+    private HashSet<Login> listaLogs;
+
     public Sistema() {
         this.listaLojas = new HashSet<>();
         this.listaUsers = new HashSet<>();
         this.listaEmpr = new HashSet<>();
         this.listaVol = new HashSet<>();
+        this.listaLogs = new HashSet<>();
     }
 
-    public Sistema(HashSet<Loja> listaLojas, HashSet<User> listaUsers, HashSet<Empresa> listaEmpr, HashSet<Volunteer> listaVol) {
+    public Sistema(HashSet<Loja> listaLojas, HashSet<User> listaUsers, HashSet<Empresa> listaEmpr, HashSet<Volunteer> listaVol, HashSet<Login> listaLogs) {
         this.listaLojas = new HashSet<>();
         for (Loja loja : listaLojas) {
             this.listaLojas.add(loja.clone());
@@ -31,6 +34,10 @@ public class Sistema {
         for (Volunteer voluntario : listaVol) {
             this.listaVol.add(voluntario.clone());
         }
+        this.listaLogs = new HashSet<>();
+        for (Login log : listaLogs) {
+            this.listaLogs.add(log.clone());
+        }
     }
 
     public Sistema(Sistema sistema) {
@@ -38,6 +45,7 @@ public class Sistema {
         this.listaUsers = sistema.getListaUsers();
         this.listaEmpr = sistema.getListaEmpr();
         this.listaVol = sistema.getListaVol();
+        this.listaLogs = sistema.getListaLogs();
     }
 
     public HashSet<Loja> getListaLojas() {
@@ -72,6 +80,14 @@ public class Sistema {
         return vols;
     }
 
+    public HashSet<Login> getListaLogs() {
+        HashSet<Login> logs = new HashSet<>();
+        for (Login log : this.listaLogs) {
+            logs.add(log.clone());
+        }
+        return logs;
+    }
+
     public void setListaLojas(HashSet<Loja> listaLojas) {
         HashSet<Loja> lojas = new HashSet<>();
         for (Loja loja : listaLojas) {
@@ -104,6 +120,14 @@ public class Sistema {
         this.listaVol = vols;
     }
 
+    public void setListaLogs (HashSet<Login> listaLogs){
+        HashSet<Login> logs = new HashSet<>();
+        for (Login log : listaLogs) {
+            logs.add(log.clone());
+        }
+        this.listaLogs = logs;
+    }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -111,7 +135,8 @@ public class Sistema {
         return this.listaLojas.equals(sistema.getListaLojas()) &&
                 this.listaUsers.equals(sistema.getListaUsers()) &&
                 this.listaEmpr.equals(sistema.getListaEmpr()) &&
-                this.listaVol.equals(sistema.getListaVol());
+                this.listaVol.equals(sistema.getListaVol()) &&
+                this.listaLogs.equals(sistema.getListaLogs());
     }
 
     public String toString() {
@@ -119,7 +144,8 @@ public class Sistema {
         sb.append("Lista de Lojas: ").append(this.listaLojas).append(", ");
         sb.append("Lista de Clientes: ").append(this.listaUsers).append(", ");
         sb.append("Lista de Empresas: ").append(this.listaEmpr).append(", ");
-        sb.append("Lista de Voluntários: ").append(this.listaVol);
+        sb.append("Lista de Voluntários: ").append(this.listaVol).append(", ");
+        sb.append("Lista de Logins: ").append(this.listaLogs);
         return sb.toString();
     }
 
@@ -172,6 +198,17 @@ public class Sistema {
         return this.listaEmpr.contains(c);
     }
 
+    //Adiciona um Login ao sistema
+    public Sistema addLogin(Login l) {
+        this.listaLogs.add(l);
+        return this;
+    }
+
+    //Verifica se o Login já existe
+    public boolean existsLogin(Login c) {
+        return this.listaLogs.contains(c);
+    }
+
     public static void insereLoja(Loja l, Sistema s) {
         /** Esta função primeiro verifica se a loja ja existe e se for false insere com o set */
         boolean res = s.existsLoja(l);
@@ -207,10 +244,19 @@ public class Sistema {
         //verifica se existe antes de inserir
 
         boolean res = s.existsVolunatario(v);
-        if (res==false) {
+        if (!res) {
             s.listaVol.add(v);
             //System.out.println("Voluntario inserido no Sistema\n\n");
         }
         else System.out.println("Voluntario já existente\n\n");
+    }
+
+    public static void insereLogin (Login l , Sistema s){
+        boolean res = s.existsLogin(l);
+        if(!res){
+            s.addLogin(l);
+            System.out.println("Nova Conta criada com sucesso!\nObrigado!");
+        }
+        else System.out.println("Este usuário já tem registo.");
     }
 }

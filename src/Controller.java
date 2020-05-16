@@ -4,34 +4,53 @@ import java.util.Scanner;
 
 public class Controller {
     public static void main(String[] args) {
-        Sistema sistema = new Sistema ();
-        int opcao;
+        Sistema sistema = new Sistema();
+        int opcao,num;
         String strFile = " ";
-        Menu.Inicio();
         Scanner ler = new Scanner(System.in);
-        String aux = ler.nextLine();
-        int num =Integer.parseInt(aux);
-        if(num==2){
-            try {
-                System.out.println("Insira um nome para um ficheiro:");
-                strFile = ler.nextLine();
-                File f = new File(strFile);
-                if (f.createNewFile()) {
-                    System.out.print("\nNovo estado criado.\nPor favor registe-se.\n");
-                } else {
-                    System.out.println("Já foram feitos registos.\nFaça login ou registe-se.\n");
+        do {
+            Menu.Inicio();
+            String aux = ler.nextLine();
+            num = Integer.parseInt(aux);
+            switch (num) {
+                case 1: {
+                    try {
+                        System.out.println("Insira o nome do ficheiro:");
+                        strFile = ler.nextLine();
+                        File f = new File(strFile);
+                        if (!(f.createNewFile())) {
+                            Load.leitura(strFile, sistema);
+                            System.out.println("Estado da aplicação carregado!");
+                            num = 0;
+                        } else {
+                            System.out.print("Ficheiro inexistente.\n");
+                        }
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+                    break;
                 }
-            } catch (IOException e) {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
+                case 2: {
+                    try {
+                        System.out.println("Insira um nome para um ficheiro:");
+                        strFile = ler.nextLine();
+                        File f = new File(strFile);
+                        if (f.createNewFile()) {
+                            System.out.print("\nNovo estado criado.\nPor favor registe-se.\n");
+                            num = 0;
+                        } else System.out.println("Já foram feitos registos com este ficheiro.\n");
+
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+
+                }
             }
         }
-        else {
-            System.out.println("Insira o nome do ficheiro:");
-            strFile = ler.nextLine();
-            Load.leitura(strFile, sistema);
-            System.out.println("Estado da aplicação carregado!");
-        }
+        while (num != 0) ;
+
         do {
             //clearConsole();
             Menu.Menu();
