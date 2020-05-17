@@ -255,8 +255,18 @@ public class Sistema {
         boolean res = s.existsLogin(l);
         if(!res){
             s.addLogin(l);
-            System.out.println("Nova Conta criada com sucesso!\nObrigado!");
         }
         else System.out.println("Este usuário já tem registo.");
+    }
+
+    public String getNomeUser(String userID){
+        if(userID.charAt(0)=='u'){
+            for(User user : this.listaUsers){
+                if(user.getUserID().equals(userID)){
+                    return (user.getUserName());
+                }
+            }
+        }
+        return "nao encontrado";
     }
 }

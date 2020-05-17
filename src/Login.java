@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Login {
     private String userID;
     private String password;
@@ -42,12 +44,18 @@ public class Login {
         return new Login(this);
     }
 
-    public boolean equals (Object obj) {
-        if (obj==this) return true;
-        if (obj==null || obj.getClass()!=this.getClass()) return false;
-        Login c = (Login) obj;
-        return  this.userID.equals(c.getUserID())&&
-                this.password.equals(c.getPassword());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Login)) return false;
+        Login login = (Login) o;
+        return Objects.equals(getUserID(), login.getUserID()) &&
+                Objects.equals(getPassword(), login.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUserID(), getPassword());
     }
 
     public String toString() {
@@ -56,12 +64,14 @@ public class Login {
                 password;
     }
 
-    public static Login insereLogin(String linha){
+    public static Login insereLogin(String linha,Sistema s){
         Login l = new Login();
         String [] auxiliar = linha.split(",",2);
 
         l.setUserID(auxiliar[0]);
         l.setPassword(auxiliar[1]);
+        //System.out.println(l.toString());
+        Sistema.insereLogin(l,s);
         return l;
     }
 

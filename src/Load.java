@@ -81,7 +81,7 @@ public class Load {
                         }
                         case ("Login"): {
                             aux = linhaPartida[1];
-                            Login.insereLogin(aux);
+                            Login.insereLogin(aux,sistema);
                             conta7++;
                             break;
                         }

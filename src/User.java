@@ -177,6 +177,7 @@ public class User  {
         //System.out.println(u.toString());
         Sistema.insereUser(u,s);
         return u;
-        }
+    }
+
 
 }

@@ -20,6 +20,7 @@ public class Controller {
                         File f = new File(strFile);
                         if (!(f.createNewFile())) {
                             Load.leitura(strFile, sistema);
+                            //System.out.println(sistema.toString());
                             System.out.println("Estado da aplicação carregado!");
                             num = 0;
                         } else {
@@ -50,7 +51,7 @@ public class Controller {
             }
         }
         while (num != 0) ;
-
+        String id = " ";
         do {
             //clearConsole();
             Menu.Menu();
@@ -72,18 +73,34 @@ public class Controller {
                     break;
                 }
                 case 2:{
-                    /* Classe login
-                    * 1º) Quando estivermos no register o user escolher uma password.
-                    * 2º) Ligamos o userID à password na classe login atraves de um hashMap
-                    * 3º) No register chamamos a função que adiciona ao hashMap
-                    * 4º) No login , apenas temos de procurar no hashmap a password correspondente ao userID
-                    * 5º) Usamos equals e caso seja verdade tem acesso ao resto do programa
-                    * 6º) O resto do programa permite usar a aplicacao para fazer encomendas etc, consultar o historico...
-                     */
+                    Menu.MenuLogin(1);
+                    id = ler.nextLine();
+                    Menu.MenuLogin(2);
+                    String pass = ler.nextLine();
+                    Login login = new Login();
+                    login.setUserID(id);
+                    login.setPassword(pass);
+                    while(!sistema.existsLogin(login)){
+                        System.out.println("Password incorreta!! Ou ID inexistente.");
+                        System.out.println("Por favor insira novamente.");
+                        pass = ler.nextLine();
+                        login.setPassword(pass);
+                    }
+                    if(sistema.existsLogin(login)){
+                        System.out.printf("\nBEM-VINDO %s!! LOGIN BEM SUCEDIDO!!\n", sistema.getNomeUser(id));
+                        opcao = 0; //para sair do ciclo
+                    }
                 }
             }
         }
         while (opcao!=0);
+        if(id.charAt(0)=='u') AppUser.menu();
+        /* PSEUDO CODIGO - Estas funçoes podem estar numa nova classe
+        if ( id[1] == "u") funcao que tem o menu com as opcoes que o user pode tomar
+        if ( id[1] == "l") funcao que tem o menu com as opcoes que uma loja pode tomar
+        if ( id[1] == "e") funcao que tem o menu com as opcoes que uma empresa pode tomar
+        if ( id[1] == "v") funcao que tem o menu com as opcoes que um voluntario pode tomar
+        */
     }
 
 }

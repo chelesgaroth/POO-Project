@@ -33,6 +33,17 @@ public class Menu {
         System.out.printf("Número de Lojas: %d\n",conta5);
         System.out.printf("Número de Encomendas: %d\n",conta6);
         System.out.printf("Número de Logins (Contas feitas): %d\n\n",conta7);
-
+    }
+    public static void MenuLogin(int x){
+        if (x==1) {
+            System.out.println("-------------LOGIN--------------");
+            System.out.println("Por favor insira o seu ID:");
+        }
+        if(x==2)System.out.println("Por favor insira a sua password");
+    }
+    public static void AppUser(){
+        System.out.print("Mode: user ----------\n\n");
+        System.out.println("1- Fazer encomenda");
+        System.out.println("AINDA EM CONSTRUÇÃO......");
     }
 }
