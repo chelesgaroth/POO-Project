@@ -1,6 +1,8 @@
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.CharsetEncoder;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -31,31 +33,17 @@ public class Register {
         linha = linha + "," + x + "," + y;
         User user = User.insereUser(linha,sistema);
 
-        //Criando conta na apliacação
-        Login conta = new Login();
-        System.out.printf("\nO seu UserID é: %s\n", id);
-        System.out.println("Insira uma password:");
-        String pass = ler.nextLine();
-        System.out.println("Confirme a sua password:");
-        String pass2 = ler.nextLine();
-        while(!pass.equals(pass2)){
-            System.out.println("Por favor insira de novo.Password incorreta.");
-            pass2 = ler.nextLine();
-        }
-        conta.setUserID(id);
-        conta.setPassword(pass);
-        Sistema.insereLogin(conta,sistema); // diz se a conta foi criada ou nao
+
         //Escrever no ficheiro
         try {
             FileWriter file = new FileWriter(strfile,true);
             file.write("\n");
             file.write(user.toString());
-            file.write("\n");
-            file.write(conta.toString());
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        registarLogin (id,strfile,sistema);
     }
     public static void registoVoluntario (String strfile,Sistema sistema){
 
@@ -94,6 +82,7 @@ public class Register {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        registarLogin (id,strfile,sistema);
     }
     public static void registoLoja (String strfile,Sistema sistema){
         Scanner ler = new Scanner(System.in);
@@ -103,12 +92,20 @@ public class Register {
         Random rand = new Random();
         int rand_int = rand.nextInt(100);
         String id = String.valueOf(rand_int);
-        id = "l" + id + ",";
+        id = "l" + id ;
         //LojaName
+        System.out.println("Que tipo da loja?");
+        System.out.println("1- Supermecado");
+        System.out.println("2- Restaurante");
+        System.out.println("3- Loja de roupa");
+        System.out.println("4- Farmácia");
+        int tipo =  Integer.parseInt(ler.nextLine());
         System.out.println("Insira o nome da sua loja:");
         String nome = ler.nextLine();
-        String linha = id + nome;
+        String linha = id + "," + nome;
         Loja loja = Loja.insereLoja(linha,sistema);
+
+
         //Escrever no ficheiro
         try {
             FileWriter file = new FileWriter(strfile,true);
@@ -118,6 +115,9 @@ public class Register {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //Chamar função que faz o registo da conta
+        registarLogin (id,strfile,sistema);
     }
     public static void registoEmpresa (String strfile,Sistema sistema){
         Scanner ler = new Scanner(System.in);
@@ -160,6 +160,77 @@ public class Register {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        registarLogin(id,strfile,sistema);
     }
+   public static void registarLogin (String id,String strfile,Sistema sistema){
+       int opcao=1;
+       Scanner ler = new Scanner(System.in);
+       Login conta = new Login();   //cria login
+       System.out.printf("\nO seu ID é: %s\n", id);  //mostra o id
+       System.out.println("Insira uma password:");    //pede password
+       String pass = ler.nextLine();
+       System.out.println("Confirme a sua password:");   //pede confirmação
+       String pass2 = ler.nextLine();
 
+       while(!pass.equals(pass2)){
+           System.out.println("Por favor insira de novo.Password incorreta.");
+           pass2 = ler.nextLine();
+       }
+        opcao = qualidadePass(pass);
+       /** Caso o utilizador do programa pretende trocar de palavra passe recomeça a função */
+       if (opcao == 0) {
+           registarLogin(id,strfile,sistema);
+       }
+       /** Senão continua o que estava a fazer e atribui os valores que inseriu aos campos do login, escrevendo no ficheiro  */
+       else{
+       conta.setUserID(id);
+       conta.setPassword(pass);
+       Sistema.insereLogin(conta,sistema); // diz se a conta foi criada ou nao
+       //Escrever no ficheiro
+       try {
+           FileWriter file = new FileWriter(strfile,true);
+           file.write("\n");
+           file.write(conta.toString());
+           file.close();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }}
+
+   }
+    public static int qualidadePass (String password){
+        int opcao = 1;
+        Boolean digito = false;
+        Boolean maiuscula = false;
+
+        /**Ciclo que vai verificar se a palavra passe tem maiusculas e/ou números */
+        for (int i=0; i<password.length(); i++) {
+            char c = password.charAt(i);
+            if(Character.isDigit(c)) digito = true;
+            if (Character.isLetter(c)) {
+                if(Character.isUpperCase(c)) maiuscula = true;
+            } }
+
+        /**ifs que consoante exista ou não números presentes na password avalia se a palavra passe é segura ou não e caso
+        * esta seja fácil dá oportunidade ao utilizador do programa de alterar a mesma para incluir maiusculas ou numeros
+         * tornando assim o seu acesso ao programa mais seguro */
+        if (((digito==true) && (maiuscula==false))||((digito==false) && (maiuscula==true)))
+            System.out.println((char)27 + "[33mPalavra Passe Média" + (char)27 + "[0m");
+        if ((digito==true) && (maiuscula==true))  System.out.println((char)27 + "[32mPalavra Passe Dífícil" + (char)27 + "[0m");
+        if  ((digito==false) && (maiuscula==false)){
+            System.out.println((char)27 + "[31mPalavra Passe Fácil" + (char)27 + "[0m");
+            System.out.println((char)27 +"[31mDIGITE 0 - se prentende melhorar a segurança do seu login"+ (char)27 + "[0m");
+            Scanner ler = new Scanner(System.in);
+            String resultado = ler.nextLine();
+
+            if (resultado=="0"){
+                System.out.println("Por favor insira uma palavra passe com dígitos ou letras maíusculas");
+                opcao=0;
+            }
+            if (resultado.equals("")) {
+            opcao =1;}
+        /** Retorna a opção de trocar ou não de palavra passe para, desta forma, na função de registo ver se é necessaŕio recomeçar a
+         * escolha de palavra passe */
+        }
+        return opcao;}
 }
+
