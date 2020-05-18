@@ -272,7 +272,7 @@ public class Register {
         if ((digito==true) && (maiuscula==true))  System.out.println((char)27 + "[32mPalavra Passe Dífícil" + (char)27 + "[0m");
         if  ((digito==false) && (maiuscula==false)){
             System.out.println((char)27 + "[31mPalavra Passe Fácil" + (char)27 + "[0m");
-            System.out.println((char)27 +"[31mDIGITE 0 - se prentende melhorar a segurança do seu login"+ (char)27 + "[0m");
+            System.out.println((char)27 +"[31mDIGITE 0 - se prentende melhorar a segurança do seu login ou ENTER para continuar"+ (char)27 + "[0m");
             Scanner ler = new Scanner(System.in);
             String resultado = ler.nextLine();
 
