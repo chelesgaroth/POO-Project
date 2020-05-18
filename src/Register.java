@@ -92,17 +92,18 @@ public class Register {
         Random rand = new Random();
         int rand_int = rand.nextInt(100);
         String id = String.valueOf(rand_int);
-        id = "l" + id ;
+
+
         //LojaName
-        System.out.println("Que tipo da loja?");
-        System.out.println("1- Supermecado");
-        System.out.println("2- Restaurante");
-        System.out.println("3- Loja de roupa");
-        System.out.println("4- Farmácia");
+        Menu.tipoLoja();
         int tipo =  Integer.parseInt(ler.nextLine());
+        if (tipo==1)   id = "ls" + id ;
+        if (tipo==2)   id = "lc" + id;
+        if(tipo==3)    id = "lr" + id;
+        if(tipo==4)    id = "lf" + id;
         System.out.println("Insira o nome da sua loja:");
         String nome = ler.nextLine();
-        String linha = id + "," + nome;
+        String linha = id + "," + nome + "," + tipo;
         Loja loja = Loja.insereLoja(linha,sistema);
 
 
@@ -118,6 +119,59 @@ public class Register {
 
         //Chamar função que faz o registo da conta
         registarLogin (id,strfile,sistema);
+        Menu.prod(0);
+        int prod = ler.nextInt();
+        if (prod==1) {
+            registoStock(id,strfile);
+        }
+
+        System.out.println ("Registo do stock ficou com ");
+        Loja.printaStock(loja);
+
+    }
+
+
+    public static void registoStock (String lojaId, String strfile) {
+        System.out.println("Entrou no stock");
+        Produto produto = new Produto ();
+        produto.setLojaId(lojaId);
+
+        //Gerar id para o produto
+        Random rand = new Random ();
+        int rand_int = rand.nextInt (100);
+        String produtoId = String.valueOf(rand_int);
+        produtoId = "p" + produtoId;
+        produto.setProdId(produtoId);
+
+        //Set do nome
+        Menu.prod(1);
+        Scanner ler = new Scanner(System.in);
+        String nome = ler.nextLine();
+        produto.setNome(nome);
+
+        //Set da quantidade
+        Menu.prod(2);
+        int quantidade = ler.nextInt();
+        produto.setQuantidade(quantidade);
+
+        String linha = produtoId + "," + nome + "," + quantidade + "," + lojaId;
+
+
+        try {
+            FileWriter file = new FileWriter(strfile,true);
+            file.write("\n");
+            file.write(produto.toString());
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Menu.prod(3);
+        Scanner ler0 = new Scanner(System.in);
+        String continuar = ler0.next();
+        if (continuar.toUpperCase().intern() =="S") {
+            Register.registoStock(lojaId,strfile); }
+        if (continuar.equals("")) System.out.println("O registo do stock foi efetuado com sucesso");
+
     }
     public static void registoEmpresa (String strfile,Sistema sistema){
         Scanner ler = new Scanner(System.in);

@@ -13,7 +13,7 @@ public class Load {
         String[] linhaPartida;
         int i;
         String aux;
-        int conta1=0,conta2=0,conta3=0,conta4=0,conta5=0,conta6=0,conta7=0;
+        int conta1=0,conta2=0,conta3=0,conta4=0,conta5=0,conta6=0,conta7=0, conta8=0;
 
         for (i = 0; i < linhas.size(); i++) {
             //para cada linha do list
@@ -71,6 +71,13 @@ public class Load {
                             break;
                         }
 
+                        case ("Produto"):{
+                            aux= linhaPartida[1];
+                            Loja.insereProdutoLoja(aux,sistema);
+                            conta8++;
+                            break;
+                        }
+
                         case ("Encomenda"): {
                             //System.out.println("é uma encomenda");
                             //ENVIAR PARA ENCOMENDA
@@ -92,7 +99,7 @@ public class Load {
                 }
             }
         }
-        Menu.Historico(conta1,conta2,conta3,conta4,conta5,conta6,conta7);
+        Menu.Historico(conta1,conta2,conta3,conta4,conta5,conta6,conta7, conta8);
     }
 
     //Ler o ficheiro e passar para uma lista de String

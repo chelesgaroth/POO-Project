@@ -92,3 +92,13 @@ Login:u81,ola
 Login:u81,ola
 Voluntario:v47,ola ola,2.0,2.0,2.0
 Login:v47,ola
+Utilizador:u77,Ema Dias,2.0,1.0,[],[]
+Login:u77,2
+Loja:l6,Continente
+Login:l6,ola
+Utilizador:u6,Emaaa Diaaas,2.0,3.0,[],[]
+Login:u6,ola1
+Utilizador:u16,oi oi,1.0,2.0,[],[]
+Login:u16,o
+Loja:l97,Mercadona
+Login:l97,ola

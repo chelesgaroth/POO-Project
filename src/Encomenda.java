@@ -168,11 +168,14 @@ public class Encomenda {
 
     public static void insereEncomenda (String aux){
         Encomenda e = new Encomenda();
+        System.out.println("Encomenda "+ aux);
         String [] auxiliar = aux.split(",");
         e.setEncomendaID(auxiliar[0]);
         e.setUserID(auxiliar[1]);
         e.setLojaID(auxiliar[2]);
+        System.out.println("PESO "+ auxiliar[3]);
         double peso = Double.parseDouble(auxiliar[3]);
+
         e.setPesoTotal(peso);
         ArrayList<LinhaEncomenda> linhas = new ArrayList<>();
 

@@ -1,2 +1,7 @@
 
-Utilizador:u2,Ema Dias,3.23,1.0,[],[]
+Loja:lf51,Beatriz,4
+Login:lf51,beatrizstore
+Produto:p53,creme,200,lf51
+Produto:p11,Comprimido ,600,lf51
+Utilizador:u62,Ema Dias,1.0,2.0,[],[]
+Login:u62,ema

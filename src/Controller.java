@@ -94,7 +94,10 @@ public class Controller {
             }
         }
         while (opcao!=0);
-        if(id.charAt(0)=='u') AppUser.menu();
+        if(id.charAt(0)=='u'){
+            AppUser.menu(sistema);
+
+
         /* PSEUDO CODIGO - Estas funçoes podem estar numa nova classe
         if ( id[1] == "u") funcao que tem o menu com as opcoes que o user pode tomar
         if ( id[1] == "l") funcao que tem o menu com as opcoes que uma loja pode tomar
@@ -103,6 +106,6 @@ public class Controller {
         */
     }
 
-}
+} }
 
 
