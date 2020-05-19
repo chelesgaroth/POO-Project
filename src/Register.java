@@ -167,11 +167,12 @@ public class Register {
         }
         Menu.prod(3);
         Scanner ler0 = new Scanner(System.in);
-        String continuar = ler0.next();
+        String continuar = ler0.nextLine();
         if (continuar.toUpperCase().intern() =="S") {
-            Register.registoStock(lojaId,strfile); }
-        if (continuar.equals("")) System.out.println("O registo do stock foi efetuado com sucesso");
-
+            Register.registoStock(lojaId,strfile);
+        }
+        else if (continuar.equals("")) {
+           System.out.println("O registo do stock foi efetuado com sucesso"); }
     }
     public static void registoEmpresa (String strfile,Sistema sistema){
         Scanner ler = new Scanner(System.in);
@@ -275,8 +276,8 @@ public class Register {
             System.out.println((char)27 +"[31mDIGITE 0 - se prentende melhorar a segurança do seu login ou ENTER para continuar"+ (char)27 + "[0m");
             Scanner ler = new Scanner(System.in);
             String resultado = ler.nextLine();
-
-            if (resultado=="0"){
+            System.out.println("Resultado "+resultado);
+            if (resultado.equals("0")){
                 System.out.println("Por favor insira uma palavra passe com dígitos ou letras maíusculas");
                 opcao=0;
             }
