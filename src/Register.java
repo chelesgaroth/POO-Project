@@ -122,7 +122,7 @@ public class Register {
         Menu.prod(0);
         int prod = ler.nextInt();
         if (prod==1) {
-            registoStock(id,strfile);
+            registoStock(id,strfile,sistema);
         }
 
         System.out.println ("Registo do stock ficou com ");
@@ -131,7 +131,7 @@ public class Register {
     }
 
 
-    public static void registoStock (String lojaId, String strfile) {
+    public static void registoStock (String lojaId, String strfile,Sistema s) {
         System.out.println("Entrou no stock");
         Produto produto = new Produto ();
         produto.setLojaId(lojaId);
@@ -141,21 +141,21 @@ public class Register {
         int rand_int = rand.nextInt (100);
         String produtoId = String.valueOf(rand_int);
         produtoId = "p" + produtoId;
-        produto.setProdId(produtoId);
+      //  produto.setProdId(produtoId);
 
         //Set do nome
         Menu.prod(1);
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        produto.setNome(nome);
+//        produto.setNome(nome);
 
         //Set da quantidade
         Menu.prod(2);
         int quantidade = ler.nextInt();
-        produto.setQuantidade(quantidade);
+  //      produto.setQuantidade(quantidade);
 
         String linha = produtoId + "," + nome + "," + quantidade + "," + lojaId;
-
+        Loja.insereProdutoLoja(linha,s);
 
         try {
             FileWriter file = new FileWriter(strfile,true);
@@ -169,7 +169,7 @@ public class Register {
         Scanner ler0 = new Scanner(System.in);
         String continuar = ler0.nextLine();
         if (continuar.toUpperCase().intern() =="S") {
-            Register.registoStock(lojaId,strfile);
+            Register.registoStock(lojaId,strfile,s);
         }
         else if (continuar.equals("")) {
            System.out.println("O registo do stock foi efetuado com sucesso"); }

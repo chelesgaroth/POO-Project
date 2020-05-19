@@ -37,3 +37,18 @@ Loja:lc80,ol,2
 Login:lc80,a
 Voluntario:v87,ema dias,1.0,2.0,1.0
 Login:v87,ola1
+Loja:lf91,Martins,4
+Login:lf91,Ola
+Produto:p20,brufen,200,lf91
+Loja:lf22,Sousa,4
+Login:lf22,l
+Produto:p40,trifen,22,lf22
+Loja:lf99,rosa,4
+Login:lf99,r
+Produto:p86,oculos,40,lf99
+Loja:lf42,Maria,4
+Login:lf42,cremezito
+Produto:p75,termometro,2,lf42
+Loja:lf56,wells,4
+Login:lf56,b
+Produto:n/a,n/a,0,lf56

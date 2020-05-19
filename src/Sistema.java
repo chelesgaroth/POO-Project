@@ -410,7 +410,7 @@ public class Sistema {
         int i=1;
         for( Loja loja : s.farmacias ){
             System.out.println("Loja "+ i+"- "+ loja.getNome());
-            Loja.printaStock(loja);
+            loja.stock.forEach((Produto p) -> {System.out.println(p.toString());});
             i++;
         }
     }
