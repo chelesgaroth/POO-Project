@@ -24,9 +24,11 @@ public class AppUser {
             }
 
             if(tipo==4){
-                s.printaFarmacias(s);
+                Sistema.printaFarmacias(s);
             }
-
+            /** Ler a opção que ele introduz
+             * Preencher a estrutura com o produto que ele escolheu
+             *  */
 
 
 

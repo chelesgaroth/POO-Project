@@ -5,7 +5,6 @@ Produto:p53,creme,200,lf51
 Produto:p11,Comprimido ,600,lf51
 Utilizador:u62,Ema Dias,1.0,2.0,[],[]
 Login:u62,ema
-
 Loja:ls45,Mercadona,1
 Login:ls45,merc
 Produto:p8,Maças,453,ls45
@@ -52,3 +51,5 @@ Produto:p75,termometro,2,lf42
 Loja:lf56,wells,4
 Login:lf56,b
 Produto:n/a,n/a,0,lf56
+Loja:ls28,Pingo doce,1
+Login:ls28,p

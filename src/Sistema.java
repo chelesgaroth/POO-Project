@@ -281,9 +281,6 @@ public class Sistema {
         return false;
     }
 
-    public boolean existeLojaSupermecado() {
-        return false;
-    }
 
     //Adiciona um utilizador ao sistema
     public Sistema addEmpresa(Empresa c) {
@@ -308,27 +305,31 @@ public class Sistema {
     }
 
     public static void insereLoja(Loja l, Sistema s, int tipo) {
+
         boolean res;
         /** Esta função primeiro verifica se a loja ja existe e se for false insere com o set */
         res = s.existsLoja(l, tipo);
         if (res == false) {
             if (tipo == 1) {
-                s.supermecados.add(l);
-                System.out.println("Supermecado inserido no Sistema\n\n");
+            s.supermecados.add(l);
+    //        System.out.println("Supermecado inserido no Sistema  NOME: "+l.getNome());
             }
 
-            if (tipo == 2) {
-                s.restaurantes.add(l);
-                System.out.println("Restaurante inserido no Sistema\n\n");
+            else if (tipo == 2) {
+            s.restaurantes.add(l);
+      //      System.out.println("Restaurante inserido no Sistema NOME: "+l.getNome());
             }
-        if (tipo == 3) {
+
+            else if (tipo == 3) {
             s.roupas.add(l);
-            System.out.println("Loja de roupa inserida no Sistema\n\n");
-        }
-        if (tipo == 4) {
+        //    System.out.println("Loja de roupa inserida no Sistema NOME: "+l.getNome());
+             }
+
+            else if (tipo == 4) {
             s.farmacias.add(l);
-            System.out.println("Farmácia inserida no Sistema\n\n");
-        }
+          //  System.out.println("Farmácia inserida no Sistema NOME: "+l.getNome());
+             }
+
     } else System.out.println("Loja já existe");
 
 }
@@ -384,24 +385,36 @@ public class Sistema {
     }
 
    public static void printaSupermecados(Sistema s) {
-        System.out.println("Entrou na printa");
-    /**    for(Loja loja : s.supermecados){
-            System.out.println("Entrou no for");
-            System.out.println(loja);
-        }*/
+       int i=1;
+       for( Loja loja : s.supermecados){
+           System.out.println("LOJA "+i+" " + loja.getNome());
+           if(loja.stock.size()>1) {
+           System.out.println("\u001B[1mSTOCK DA LOJA");
+                for (Produto p: loja.stock){
+                    System.out.println("Produto "+ i +":"  + p.getNome());
+                }
+           }
+           else System.out.println("\u001B[1mLAMENTAMOS MAS , DE MOMENTO, A LOJA NÃO TER ARTIGOS DISPONÍVEIS");
+           i++;
+       }
+   }
 
-       s.supermecados.stream().forEach(sup -> System.out.println(sup));
-    }
 
     public static void printaRestaurantes (Sistema s) {
+        int i=1;
         for( Loja loja : s.restaurantes ){
-            System.out.println( loja );
+            System.out.println("LOJA "+i+loja.getNome());
+            loja.stock.forEach((Produto p) -> {System.out.println("Produto- "+ p.getNome());});
+            i++;
         }
     }
 
     public static void printaRoupas (Sistema s){
+        int i=1;
         for( Loja loja : s.roupas ){
-            System.out.println( loja );
+            System.out.println("LOJA "+i+loja.getNome());
+            loja.stock.forEach((Produto p) -> {System.out.println("Produto- "+ p.getNome());});
+            i++;
         }
 
     }
@@ -410,45 +423,55 @@ public class Sistema {
         int i=1;
         for( Loja loja : s.farmacias ){
             System.out.println("Loja "+ i+"- "+ loja.getNome());
-            loja.stock.forEach((Produto p) -> {System.out.println(p.toString());});
+            loja.stock.forEach((Produto p) -> {System.out.println("Produto- "+ p.getNome());});
             i++;
         }
     }
     public static Loja getLoja(String lojaId, Sistema s) {
         Loja res = new Loja();
         char c= lojaId.charAt(1);
+        System.out.println("Id da loja "+lojaId);
+       // System.out.println("Carater a procura "+c);
+        if(lojaId=="ls45") System.out.println("Mercandona");
         if(c=='r'){
+          //  System.out.println("Entrou nas roupas");
             for (Loja l : s.roupas) {
                 if (l.getCodLoja().equals(lojaId)) {
+                    System.out.println("Encontrou a loja: nome "+l.getNome());
                     res = l;
                 }
             }
         }
 
         if(c=='c'){
+          //  System.out.println("Entrou nos restaurantes");
             for (Loja l : s.restaurantes) {
                 if (l.getCodLoja().equals(lojaId)) {
+                    System.out.println("Encontrou a loja: nome "+l.getNome());
                     res = l;
                 }
             }
         }
 
         if(c=='f') {
+         //   System.out.println("entrou nas farmacias");
             for (Loja l : s.farmacias) {
                 if (l.getCodLoja().equals(lojaId)) {
+                    System.out.println("Encontrou a loja: nome "+l.getNome());
                     res = l;
                 }
             }
         }
         if(c=='s'){
-            for (Loja l : s.farmacias) {
+           // System.out.println("Entrou nos supermecados");
+            for (Loja l : s.supermecados) {
                 if (l.getCodLoja().equals(lojaId)) {
+                    System.out.println("Encontrou a loja: nome "+l.getNome());
                     res = l;
                 }
             }
         }
 
-        System.out.println(res.toString());
      return res;
 
     }

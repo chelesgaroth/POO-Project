@@ -93,7 +93,9 @@ public class Load {
                             break;
                         }
                         default: {
+                            System.out.println("Erro "+linhaPartida[0]);
                             System.out.println("erro");
+                            break;
                         }
                     }
                 }
@@ -112,7 +114,7 @@ public class Load {
             BufferedReader lerBuf = new BufferedReader(buf);
             String linha = lerBuf.readLine();
             while (linha != null) {
-                //      System.out.println(linha);
+
                 linha = lerBuf.readLine();
                 res.add(linha);
                 i++;

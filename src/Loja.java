@@ -193,35 +193,36 @@ public class Loja {
         Loja l = new Loja();
         String [] auxiliar = aux.split(",",3);
 
-        System.out.println("Linha "+aux);
+       // System.out.println("Linha "+aux);
         l.setCodLoja(auxiliar[0]);
         l.setNome(auxiliar[1]);
-
         int tipo = Integer.parseInt(auxiliar[2]);
         l.setTipo(tipo);
         Sistema.insereLoja(l,s,tipo);
         return l;
 
-
     }
 
 
     public static Loja insereProdutoLoja(String aux,Sistema s) {
-       // System.out.println("Entrou na insere produto");
-
-
-        Produto p = new Produto();
+       Produto p = new Produto();
         String [] auxiliar = aux.split(",");
+        //System.out.println("Linha "+aux);
         String idLoja = auxiliar[3];
 
+        //    System.out.println("Vai procurar a loja de id "+idLoja);
            Loja l = Sistema.getLoja(idLoja, s);
 
-        p.setProdId(auxiliar[0]);
+         p.setProdId(auxiliar[0]);
         p.setNome(auxiliar[1]);
         int quantidade = Integer.parseInt(auxiliar[2]);
         p.setQuantidade(quantidade);
         p.setLojaId(idLoja);
+
          l.stock.add(p);
+
+
+         //System.out.println("PRODUTO "+ p.getNome() + " LOJA "+ l.getNome());
         // System.out.println("Saí do insere produto");
         return l;
     }

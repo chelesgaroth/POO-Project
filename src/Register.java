@@ -141,18 +141,18 @@ public class Register {
         int rand_int = rand.nextInt (100);
         String produtoId = String.valueOf(rand_int);
         produtoId = "p" + produtoId;
-      //  produto.setProdId(produtoId);
+        produto.setProdId(produtoId);
 
         //Set do nome
         Menu.prod(1);
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-//        produto.setNome(nome);
+        produto.setNome(nome);
 
         //Set da quantidade
         Menu.prod(2);
         int quantidade = ler.nextInt();
-  //      produto.setQuantidade(quantidade);
+        produto.setQuantidade(quantidade);
 
         String linha = produtoId + "," + nome + "," + quantidade + "," + lojaId;
         Loja.insereProdutoLoja(linha,s);

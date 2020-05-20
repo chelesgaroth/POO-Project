@@ -5,13 +5,25 @@ import java.util.Scanner;
 public class Controller {
     public static void main(String[] args) {
         Sistema sistema = new Sistema();
-        int opcao,num;
+        int opcao=-1,num=-1;
         String strFile = " ";
         Scanner ler = new Scanner(System.in);
+        char c='\u0000';
         do {
             Menu.Inicio();
             String aux = ler.nextLine();
-            num = Integer.parseInt(aux);
+
+            if(aux.equals("")) {
+                System.out.println((char) 27 + "[31mOpção inválida. Por favor, tente novamente!" + (char) 27 + "[0m");
+            }
+            else {
+                c = aux.charAt(0);
+                if (Character.isLetter(c))
+                    System.out.println((char) 27 + "[31mOpção inválida. Por favor, tente novamente!" + (char) 27 + "[0m");
+                else num = Integer.parseInt(aux);
+            }
+
+
             switch (num) {
                 case 1: {
                     try {
@@ -56,7 +68,16 @@ public class Controller {
             //clearConsole();
             Menu.Menu();
             String buf = ler.nextLine();
-            opcao =Integer.parseInt(buf);
+            if(buf.equals("")) {
+                System.out.println((char) 27 + "[31mOpção inválida. Por favor, tente novamente!" + (char) 27 + "[0m");
+            }
+            else {
+                c = buf.charAt(0);
+                if (Character.isLetter(c))
+                    System.out.println((char) 27 + "[31mOpção inválida. Por favor, tente novamente!" + (char) 27 + "[0m");
+                else opcao = Integer.parseInt(buf);
+            }
+
             switch (opcao) {
                 case 0: {
                     System.out.println("Obrigada! Até à próxima!");
