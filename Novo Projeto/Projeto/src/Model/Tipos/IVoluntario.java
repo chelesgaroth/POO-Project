@@ -13,5 +13,7 @@ public interface IVoluntario {
     void setY_volunteer(float y_volunteer);
     void setRadius_volunteer(float radius_volunteer);
 
+    Voluntario clone();
+
     void criaVoluntario(String linha);
 }

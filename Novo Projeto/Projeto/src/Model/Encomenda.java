@@ -189,7 +189,7 @@ public class Encomenda implements IEncomenda{
             linhas.add(linha);
         }
         this.prods = linhas;
-        System.out.print(this.toString());   //ESTE PRINT É PARA VERMOS OS PRODUTOS DA ENCOMENDA É IMPORTANTE
+        //System.out.print(this.toString());   //ESTE PRINT É PARA VERMOS OS PRODUTOS DA ENCOMENDA É IMPORTANTE
 
     }
 }

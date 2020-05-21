@@ -5,4 +5,5 @@ public interface IAppView {
     void registo ();
     void mode(int x, String nome);
     void printMensagem(String s);
+    void login(int x);
 }

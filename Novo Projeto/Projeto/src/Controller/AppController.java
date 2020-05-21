@@ -33,8 +33,8 @@ public class AppController implements IAppController {
         view.printMensagem("Insira um ficheiro de leitura: ");
         file = ler.nextLine();
         lerFiles.leitura(file,sistema);
+        String email,pass;
         do {
-            ler = new Scanner(System.in);
             view.inicio();
             //view.mode();
             opcao = ler.nextInt();
@@ -43,6 +43,26 @@ public class AppController implements IAppController {
                 case 1:{ //registo
                 }
                 case 2:{ //login
+                    view.login(0);
+                    email = ler.nextLine(); //ver o que se passa aqui
+                    view.login(1);
+                    email = ler.nextLine();
+                    view.login(2);
+                    pass = ler.nextLine();
+                    ILogin login = new Login();
+                    login.setEmail(email);
+                    login.setPassword(pass);
+                    while(!sistema.existsLogin(login)){
+                        view.login(3);
+                        view.login(1);
+                        email = ler.nextLine();
+                        view.login(2);
+                        pass = ler.nextLine();
+                        login.setEmail(email);
+                        login.setPassword(pass);
+                    }
+                    view.printMensagem("Login concluído!!");
+                    break;
                 }
             }
         } while(opcao!=0);

@@ -152,9 +152,7 @@ public class User implements IUser  {
                 userID +
                 "," + name +
                 "," + x_user +
-                "," + y_user +
-                "," + delivery_requests +
-                "," + delivery_queue;
+                "," + y_user;
     }
 
 

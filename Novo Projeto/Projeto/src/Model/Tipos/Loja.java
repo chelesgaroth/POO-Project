@@ -230,7 +230,7 @@ public class Loja implements ILoja {
     public String toString() {
         return "Loja:" +
                 codLoja + "," +
-                nome + "," +tipo;
+                nome;
     }
 
     public void criaLoja(String aux){

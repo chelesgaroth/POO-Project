@@ -14,5 +14,10 @@ public class MainMVC {
         controller.setAppView(view);
 
         controller.runController();
+        //fazer varias funcoes no controller?
+        //uma que nos lê o ficheiro
+        //outra que faz registo ou login
+        //e outra que nos apresenta a app de acordo com o tipo de quem esta a usar a app??
+        //assim podemos voltar atras nos menus
     }
 }

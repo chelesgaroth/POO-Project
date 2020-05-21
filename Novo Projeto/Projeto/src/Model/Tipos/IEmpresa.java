@@ -17,5 +17,7 @@ public interface IEmpresa {
     void setRaio(double raio);
     void setPreco(double preco);
 
+    Empresa clone ();
+
     void criaEmpresa(String aux);
 }

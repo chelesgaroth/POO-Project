@@ -51,4 +51,11 @@ public class AppView implements IAppView {
     public void printMensagem(String s){
         System.out.printf("\n%s\n",s);
     }
+
+    public void login(int x){
+        if(x==0) System.out.println("-----------LOGIN!----------");
+        if(x==1) System.out.println("Insira o seu email:");
+        if(x==3) System.out.println("Password ou email incorreto. Tente novamente.");
+        if(x==2) System.out.println("Insira a sua password:");
+    }
 }

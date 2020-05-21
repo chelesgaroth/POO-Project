@@ -211,7 +211,7 @@ public class Voluntario implements IVoluntario{
     }
     */
 
-    protected Voluntario clone(){
+    public Voluntario clone(){
         return new Voluntario(this);
     }
 
