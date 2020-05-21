@@ -1,4 +1,4 @@
-package Model.Modes;
+package Model.Tipos;
 
 import Model.Encomenda;
 
@@ -6,42 +6,58 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Loja {
-
-    private int existeEncomenda;
-    private int pessoasFila;
+public class Loja implements ILoja {
+    //Variáveis do ficheiro Logs.txt
     private String nome;
     private String codLoja;
-    private LocalDateTime tempo;
     private double latitude;
     private double longitude;
+
+    //Variáveis para a App
+    private int existeEncomenda;
+    private int pessoasFila;
+    private LocalDateTime tempo;
     private int tipo;
     private double tempoPessoa; //tempo medio a atender uma pessoa
     ArrayList<Encomenda> encs; //encomendas validadas que a loja tem de preparar
+
     //HashSet<Produto> stock;
 
     public Loja () {
-        this.existeEncomenda = 0;
-        this.pessoasFila = 0;
-        this.tempo = LocalDateTime.now();
+        //Variáveis do ficheiro Logs.txt
+        this.nome = null;
+        this.codLoja = null;
         this.latitude = 0.0;
         this.longitude = 0.0;
+
+        //Variáveis da App
+        this.tempo = LocalDateTime.now();
         this.tempoPessoa  = 0.0;
         this.encs= new ArrayList<>();
+        this.existeEncomenda = 0;
+        this.pessoasFila = 0;
         //this.stock = new HashSet<>();
     }
 
-    public Loja (int existeEncomenda, int pessoasFila, LocalDateTime tempo, double latitude, double longitude, double tempoPessoa,ArrayList <Encomenda> encs){
-       this.existeEncomenda = existeEncomenda;
-       this.pessoasFila = pessoasFila;
-       this.tempo = tempo;
-       this.latitude = latitude;
-       this.longitude = longitude;
-       this.tempoPessoa = tempoPessoa;
-       this.encs = new ArrayList<>();
-       for(Encomenda e : encs) {
+    public Loja (String nome, String codLoja, int existeEncomenda, int pessoasFila, LocalDateTime tempo, double latitude, double longitude,
+                 double tempoPessoa,ArrayList <Encomenda> encs){
+
+        //Variáveis do ficheiro Logs.txt
+        this.nome = nome;
+        this.codLoja = codLoja;
+        this.latitude = latitude;
+        this.longitude = longitude;
+
+
+        //Variáveis da App
+        this.existeEncomenda = existeEncomenda;
+        this.pessoasFila = pessoasFila;
+        this.tempo = tempo;
+        this.tempoPessoa = tempoPessoa;
+        this.encs = new ArrayList<>();
+        for(Encomenda e : encs) {
             this.encs.add(e.clone());
-       }
+        }
        /*this.stock = new HashSet<>();
         for (Produto p: stock){
             this.stock.add(p.clone());
@@ -50,14 +66,21 @@ public class Loja {
     }
 
     public Loja (Loja l){
-     l.existeEncomenda = l.getExisteEncomenda();
-     l.pessoasFila = l.getPessoasFila();
-     l.tempo = l.getTempo();
-     l.latitude = l.getLatitude();
-     l.longitude = l.getLongitude();
-     l.encs = l.getEncs();
-     //l.stock = l.getStock();
+
+        //Variáveis do ficheiro Logs.txt
+        l.nome = l.getNome();
+        l.codLoja = l.getCodLoja();
+        l.latitude = l.getLatitude();
+        l.longitude = l.getLongitude();
+
+        //Variáveis da App
+        l.existeEncomenda = l.getExisteEncomenda();
+        l.pessoasFila = l.getPessoasFila();
+        l.tempo = l.getTempo();
+        l.encs = l.getEncs();
+        //l.stock = l.getStock();
     }
+
 
     /*public HashSet<Produto> getStock() {
         HashSet<Produto> stock = new HashSet<>() ;
@@ -75,76 +98,66 @@ public class Loja {
         this.stock = stock;
     }*/
 
-    public int getExisteEncomenda() {
-        return this.existeEncomenda;
-    }
 
-    public void setExisteEncomenda(int existeEncomenda) {
-        this.existeEncomenda = existeEncomenda;
-    }
 
-    public int getPessoasFila() {
-        return this.pessoasFila;
-    }
+    //Getters and Setters
 
-    public void setPessoasFila(int pessoasFila) {
-        this.pessoasFila = pessoasFila;
-    }
+    //Getters das variáveis do ficheiro Logs.txt
 
-    public LocalDateTime getTempo() {
-        return this.tempo;
+    public String getNome() {
+        return nome;
     }
+    public String getCodLoja() {
 
-    public void setTempo(LocalDateTime tempo) {
-        this.tempo = tempo;
+        return codLoja;
+    }
+    public double getLongitude() {
+        return longitude;
     }
 
     public double getLatitude() {
         return this.latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
 
-    public double getLongitude() {
-        return longitude;
+    //Setters das variáveis do ficheiro Logs.txt
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public double getTempoPessoa() {
-        return tempoPessoa;
-    }
-
-    public void setTempoPessoa(double tempoPessoa) {
-        this.tempoPessoa = tempoPessoa;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCodLoja() {
-        return codLoja;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public void setCodLoja(String codLoja) {
         this.codLoja = codLoja;
     }
 
-    public int getTipo() {
-        return tipo;
+
+    //Getters das variáveis da App
+    public int getExisteEncomenda() {
+        return this.existeEncomenda;
     }
 
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
+    public int getPessoasFila() {
+        return this.pessoasFila;
+    }
+
+    public LocalDateTime getTempo() {
+        return this.tempo;
+    }
+
+    public double getTempoPessoa() {
+        return tempoPessoa;
+    }
+
+    public int getTipo() {
+        return tipo;
     }
 
     public ArrayList<Encomenda> getEncs() {
@@ -155,6 +168,28 @@ public class Loja {
         return this.encs;
     }
 
+    //Setters das Variávies da App
+    public void setExisteEncomenda(int existeEncomenda) {
+        this.existeEncomenda = existeEncomenda;
+    }
+
+    public void setPessoasFila(int pessoasFila) {
+        this.pessoasFila = pessoasFila;
+    }
+
+    public void setTempo(LocalDateTime tempo) {
+        this.tempo = tempo;
+    }
+
+
+    public void setTempoPessoa(double tempoPessoa) {
+        this.tempoPessoa = tempoPessoa;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
     public void setEncs(ArrayList<Encomenda> encs) {
         ArrayList<Encomenda> encos = new ArrayList<> ();
         for (Encomenda e: encos){
@@ -163,11 +198,13 @@ public class Loja {
         this.encs = encos;
     }
 
+
+    //Método Clone
     public Loja clone(){
         return new Loja (this);
     }
 
-
+    //Equals para as variáveis do ficheiro Logs.txt
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -182,9 +219,13 @@ public class Loja {
                 Objects.equals(codLoja, loja.codLoja) &&
                 Objects.equals(tempo, loja.tempo) &&
                 Objects.equals(encs, loja.encs);
-                //Objects.equals(stock, loja.stock);
+        //Objects.equals(stock, loja.stock);
     }
 
+    //HashCode para as variáveis do ficheiro Logs.txt
+    public int hashCode() {
+        return Objects.hash(nome, codLoja, latitude, longitude);
+    }
 
     public String toString() {
         return "Loja:" +
@@ -192,41 +233,34 @@ public class Loja {
                 nome + "," +tipo;
     }
 
-    /*
-    public static Loja insereLoja(String aux, Sistema s){
-        Loja l = new Loja();
+    public void criaLoja(String aux){
         String [] auxiliar = aux.split(",",3);
 
-       // System.out.println("Linha "+aux);
-        l.setCodLoja(auxiliar[0]);
-        l.setNome(auxiliar[1]);
-        int tipo = Integer.parseInt(auxiliar[2]);
-        l.setTipo(tipo);
-        Sistema.insereLoja(l,s,tipo);
-        return l;
-
+        this.codLoja = (auxiliar[0]);
+        this.nome = (auxiliar[1]);
     }
 
+    /*
 
     public static Loja insereProdutoLoja(String aux, Sistema s) {
-       Produto p = new Produto();
+        Produto p = new Produto();
         String [] auxiliar = aux.split(",");
         //System.out.println("Linha "+aux);
         String idLoja = auxiliar[3];
 
         //    System.out.println("Vai procurar a loja de id "+idLoja);
-           Loja l = Sistema.getLoja(idLoja, s);
+        Loja l = Sistema.getLoja(idLoja, s);
 
-         p.setProdId(auxiliar[0]);
+        p.setProdId(auxiliar[0]);
         p.setNome(auxiliar[1]);
         int quantidade = Integer.parseInt(auxiliar[2]);
         p.setQuantidade(quantidade);
         p.setLojaId(idLoja);
 
-         l.stock.add(p);
+        l.stock.add(p);
 
 
-         //System.out.println("PRODUTO "+ p.getNome() + " LOJA "+ l.getNome());
+        //System.out.println("PRODUTO "+ p.getNome() + " LOJA "+ l.getNome());
         // System.out.println("Saí do insere produto");
         return l;
     }

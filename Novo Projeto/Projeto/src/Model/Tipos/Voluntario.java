@@ -1,4 +1,4 @@
-package Model.Modes;
+package Model.Tipos;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -237,29 +237,23 @@ public class Voluntario implements IVoluntario{
                 radius_volunteer ;
     }
 
-     /*
-    public static Volunteer insereVolunteer(String aux, Sistema s) {
-        //System.out.println("Voluntario e"+aux);
-        Volunteer v = new Volunteer();
-        String[] id= aux.split (",");
-        v.setId_volunteer(id[0]);
-        //System.out.println("ID " +id[0]);
+
+    public void criaVoluntario(String linha) {
+
+        String[] id= linha.split (",");
+        this.id_volunteer = (id[0]);
 
         float x= Float.parseFloat(id[2]);
         float y= Float.parseFloat(id[3]);
         float r = Float.parseFloat(id[4]);
 
-        v.setX_volunteer(x);
-        v.setY_volunteer(y);
-        v.setRadius_volunteer(r);
-
+        this.x_volunteer = x;
+        this.y_volunteer = y;
+        this.radius_volunteer = r;
 
         String[] textoSeparado = id[1].split(" ");
         String nameAux = textoSeparado[0] + " " + textoSeparado[textoSeparado.length-1];
-        v.setName(nameAux);
-
-        Sistema.insereVol(v,s);
-        return v;
+        this.name = nameAux;
     }
-    */
+
 }

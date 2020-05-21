@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Objects;
 
-public class LinhaEncomenda {
+public class LinhaEncomenda implements ILinhaEncomenda{
     private String codProduto;
     private String descricao;
     private float quantidade;
@@ -85,16 +85,12 @@ public class LinhaEncomenda {
         return new LinhaEncomenda(this);
     }
 
-    public static LinhaEncomenda insereLinhaEncomenda (String aux1, String aux2, String aux3, String aux4){
-        LinhaEncomenda l= new LinhaEncomenda();
-        l.setCodProduto(aux1);
-        l.setDescricao(aux2);
-        float qtd = Float.parseFloat(aux3);
-        l.setQuantidade(qtd);
-        float preco = Float.parseFloat(aux4);
-        l.setValor(preco);
+    public void insereLinhaEncomenda (String aux1, String aux2, String aux3, String aux4){
+        this.codProduto = aux1;
+        this.descricao = aux2;
+        this.quantidade = Float.parseFloat(aux3);
+        this.valor = Float.parseFloat(aux4);
         //System.out.print(l.toString());
-        return l;
     }
 }
 

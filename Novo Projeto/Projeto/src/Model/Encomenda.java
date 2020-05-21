@@ -3,13 +3,15 @@ package Model;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Encomenda {
+public class Encomenda implements IEncomenda{
+    //Variaveis do logs.txt
     private String encomendaID;
     private String userID;
     private String lojaID;
     private double pesoTotal;
-    //private LinhaEncomenda linhaE;
     private ArrayList<LinhaEncomenda> prods;
+
+    //Variaveis extra
     private boolean medicamentos;
     private boolean congelados;
     private LocalTime horaEntrega; // se é null entao tem ser entregue o mais rapido possivel
@@ -20,11 +22,11 @@ public class Encomenda {
         this.lojaID = "n/a";
         this.pesoTotal = 0.0;
         this.prods = new ArrayList<>();
+
         this.medicamentos = false;
         this.congelados = false;
         this.horaEntrega = LocalTime.now();
         this.validacao = false;
-        //this.linhaE = null;
     }
 
     public Encomenda (String userID, String lojaID, int pesoTotal, ArrayList<LinhaEncomenda> prods, boolean medicamentos,
@@ -36,11 +38,11 @@ public class Encomenda {
         for(LinhaEncomenda enc : prods){
             this.prods.add(enc.clone());
         }
+
         this.medicamentos = medicamentos;
         this.congelados = congelados;
         this.horaEntrega = horaEntrega;
         this.validacao = validacao;
-        //this.linhaE = linhaE;
     }
 
     public Encomenda (Encomenda enco){
@@ -48,18 +50,16 @@ public class Encomenda {
         this.lojaID = enco.getLojaID();
         this.pesoTotal = enco.getPesoTotal();
         this.prods = enco.getProds();
+
         this.medicamentos = enco.getMedicamentos();
         this.congelados = enco.getCongelados();
         this.horaEntrega = enco.getHoraEntrega();
         this.validacao = enco.getValidacao();
     }
 
+    //Variaveis do logs.txt
     public String getEncomendaID() {
         return encomendaID;
-    }
-
-    public void setEncomendaID(String encomendaID) {
-        this.encomendaID = encomendaID;
     }
 
     public String getUserID() {
@@ -82,22 +82,9 @@ public class Encomenda {
         return newprods;
     }
 
-    public boolean getMedicamentos(){
-        return this.medicamentos;
+    public void setEncomendaID(String encomendaID) {
+        this.encomendaID = encomendaID;
     }
-
-    public boolean getCongelados(){
-        return this.congelados;
-    }
-
-    public LocalTime getHoraEntrega() {
-        return this.horaEntrega;
-    }
-
-    public boolean getValidacao(){
-        return this.validacao;
-    }
-
 
     public void setUserID(String userID) {
         this.userID = userID;
@@ -117,6 +104,23 @@ public class Encomenda {
             newProds.add(linha.clone());
         }
         this.prods = newProds;
+    }
+
+    //EXTRAS
+    public boolean getMedicamentos(){
+        return this.medicamentos;
+    }
+
+    public boolean getCongelados(){
+        return this.congelados;
+    }
+
+    public LocalTime getHoraEntrega() {
+        return this.horaEntrega;
+    }
+
+    public boolean getValidacao(){
+        return this.validacao;
     }
 
     public void setMedicamentos(boolean medicamentos) {
@@ -141,13 +145,13 @@ public class Encomenda {
         if (o == null || getClass() != o.getClass()) return false;
         Encomenda encomenda = (Encomenda) o;
         return this.pesoTotal == encomenda.pesoTotal &&
-                this.medicamentos == encomenda.medicamentos &&
-                this.congelados == encomenda.congelados &&
-                this.validacao == encomenda.validacao &&
+                //this.medicamentos == encomenda.medicamentos &&
+                //this.congelados == encomenda.congelados &&
+               // this.validacao == encomenda.validacao &&
                 this.userID.equals(encomenda.getUserID()) &&
                 this.lojaID.equals(encomenda.getLojaID()) &&
-                this.prods.equals(encomenda.getProds()) &&
-                this.horaEntrega.equals(encomenda.getHoraEntrega());
+                this.prods.equals(encomenda.getProds()) ;
+                //this.horaEntrega.equals(encomenda.getHoraEntrega());
     }
 
     public String toString() {
@@ -155,11 +159,12 @@ public class Encomenda {
         sb.append("\nUsername: ").append(this.userID).append(", ");
         sb.append("\nLoja: ").append(this.lojaID).append(", ");
         sb.append("\nPeso Total: ").append(this.pesoTotal).append(", ");
-        sb.append("\nProdutos encomendados: ").append(this.prods).append(", ");
-        sb.append("\nAlgum dos produtos é um medicamento?: ").append(this.medicamentos).append(", ");
-        sb.append("\nAlgum dos produtos é um congelado?").append(this.congelados).append(", ");
-        sb.append("\nA que horas o utilizador quer a encomenda?").append(this.horaEntrega).append(", ");
-        sb.append("\nA encomenda foi validada?").append(this.validacao).append("\n\n");
+        sb.append("\nProdutos encomendados: ").append(this.prods);
+        sb.append("\nFim\n");
+        //sb.append("\nAlgum dos produtos é um medicamento?: ").append(this.medicamentos).append(", ");
+        //sb.append("\nAlgum dos produtos é um congelado?").append(this.congelados).append(", ");
+        //sb.append("\nA que horas o utilizador quer a encomenda?").append(this.horaEntrega).append(", ");
+        //sb.append("\nA encomenda foi validada?").append(this.validacao).append("\n\n");
         return sb.toString();
     }
 
@@ -167,28 +172,24 @@ public class Encomenda {
         return new Encomenda(this);
     }
 
-    /*
-    public static void insereEncomenda (String aux){
-        Encomenda e = new Encomenda();
-        System.out.println("Encomenda "+ aux);
-        String [] auxiliar = aux.split(",");
-        e.setEncomendaID(auxiliar[0]);
-        e.setUserID(auxiliar[1]);
-        e.setLojaID(auxiliar[2]);
-        System.out.println("PESO "+ auxiliar[3]);
-        double peso = Double.parseDouble(auxiliar[3]);
 
-        e.setPesoTotal(peso);
+    public void criaEncomenda (String aux){
+        String [] auxiliar = aux.split(",");
+
+        this.encomendaID = (auxiliar[0]);
+        this.userID = (auxiliar[1]);
+        this.lojaID = (auxiliar[2]);
+        this.pesoTotal = Double.parseDouble(auxiliar[3]);
+
         ArrayList<LinhaEncomenda> linhas = new ArrayList<>();
 
         for(int i=4;auxiliar.length>i;i=i+4){
-            LinhaEncomenda linha = LinhaEncomenda.insereLinhaEncomenda(auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
+            LinhaEncomenda linha = new LinhaEncomenda();
+            linha.insereLinhaEncomenda(auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
             linhas.add(linha);
         }
-        e.setProds(linhas);
-        //System.out.print(e.toString());   ESTE PRINT É PARA VERMOS OS PRODUTOS DA ENCOMENDA É IMPORTANTE
+        this.prods = linhas;
+        System.out.print(this.toString());   //ESTE PRINT É PARA VERMOS OS PRODUTOS DA ENCOMENDA É IMPORTANTE
 
     }
-
-     */
 }

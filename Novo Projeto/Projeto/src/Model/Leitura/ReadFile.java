@@ -1,9 +1,9 @@
-package Model;
+package Model.Leitura;
 
-import Model.Modes.Empresa;
-import Model.Modes.Loja;
-import Model.Modes.User;
-import Model.Modes.Voluntario;
+import Model.Encomenda;
+import Model.IEncomenda;
+import Model.ISistema;
+import Model.Tipos.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,8 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadFile implements IReadFile {
+    IUser user;
+    IVoluntario voluntario;
+    IEmpresa empresa;
+    ILoja loja ;
+    IEncomenda enco;
 
-    public void leitura(String f,ISistema sistema){
+    public ReadFile(){
+        this.user = new User();
+        this.voluntario = new Voluntario();
+        this.empresa = new Empresa();
+        this.loja = new Loja();
+        this.enco = new Encomenda();
+    }
+
+    public void leitura(String f, ISistema sistema){
         List<String> linhas = new ArrayList<>();
         if (f!=null) {                  //Verificar que o input não é nulo
             linhas = read(f);           //ler ficheiro e colocar em list
@@ -31,60 +44,61 @@ public class ReadFile implements IReadFile {
                     switch(linhaPartida[0]) {
 
                         case ("Utilizador"): {
-                            //System.out.println("é um utilizador");
-                            //ENVIAR PARA OS UTILIZADORES
+                            //System.out.println("É um utilizador");
                             aux = linhaPartida[1];
-                            User.insereUser(aux,sistema);
+                            user.criaUser(aux);
                             conta2++;
                             break;
                         }
 
                         case ("Voluntario"): {
-                            //System.out.println("é um voluntario");
-                            //ENVIAR PARA VOLUNTARIO
+                            //System.out.println("É um voluntario");
                             aux = linhaPartida[1];
-                            Voluntario.insereVolunteer(aux,sistema);
+                            voluntario.criaVoluntario(aux);
                             conta3++;
                             break;
                         }
 
                         case ("Transportadora"): {
-
-                            //System.out.println("é uma transportadora");
-                            //ENVIAR PARA TRANSPORTADORA
+                            //System.out.println("É uma transportadora");
                             aux = linhaPartida[1];
-                            Empresa.insereTransportadora(aux,sistema);
+                            empresa.criaEmpresa(aux);
                             conta4++;
                             break;
                         }
 
                         case ("Loja"): {
-                            //System.out.println("é uma loja");
-                            //ENVIAR PARA LOJA
+                            //System.out.println("É uma loja");
                             aux = linhaPartida[1];
-                            Loja.insereLoja(aux,sistema);
+                            loja.criaLoja(aux);
                             conta5++;
                             break;
                         }
 
                         case ("Encomenda"): {
-                            //System.out.println("é uma encomenda");
-                            //ENVIAR PARA ENCOMENDA
+                            //System.out.println("É uma encomenda");
                             aux = linhaPartida[1];
-                            Encomenda.insereEncomenda(aux);
+                            enco.criaEncomenda(aux);
                             conta6++;
                             break;
                         }
                         default: {
                             System.out.println("Erro "+linhaPartida[0]);
-                            System.out.println("erro");
                             break;
                         }
                     }
                 }
             }
         }
-        menu.Historico(conta1,conta2,conta3,conta4,conta5,conta6,conta7, conta8);
+        //menu.Historico(conta1,conta2,conta3,conta4,conta5,conta6,conta7, conta8);
+        System.out.printf("\nNúmero de Encomendas aceites: %d\n",conta1);
+        System.out.printf("Número de Utilizadores: %d\n",conta2);
+        System.out.printf("Número de Voluntários: %d\n",conta3);
+        System.out.printf("Número de Empresas Transportadoras: %d\n",conta4);
+        System.out.printf("Número de Lojas: %d\n",conta5);
+        System.out.printf("Número de Encomendas: %d\n",conta6);
+        System.out.printf("Número de Logins (Contas feitas): %d\n",conta7);
+        System.out.printf("Número de Produtos: %d\n\n",conta8);
     }
     public static List<String> read (String f){
         int i=0;

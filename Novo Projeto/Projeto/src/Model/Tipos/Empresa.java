@@ -1,9 +1,9 @@
-package Model.Modes;
+package Model.Tipos;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Empresa {
+public class Empresa implements IEmpresa{
     //Variaveis do logs.txt
     private String idEmpresa;
     private String nome;
@@ -75,133 +75,116 @@ public class Empresa {
         emp.nif = emp.getNif();
     }
 
+    //Getters e Setters
 
+    //Variaveis do logs.txt
     public String getIdEmpresa() {
         return this.idEmpresa;
     }
-    public int getAceitaEncomenda() {
-
-        return this.aceitaEncomenda;
+    public String getNome() {
+        return nome;
+    }
+    public int getNif() {
+        return this.nif;
     }
     public double getPreco() {
         return preco;
     }
-
-    public void setAceitaEncomenda(int aceitaEncomenda) {
-
-        this.aceitaEncomenda = aceitaEncomenda;
+    public double getLatitude() {
+        return this.latitude;
     }
-
-    public LocalDateTime getTempo() {
-
-        return this.tempo;
+    public double getLongitude() {
+        return this.longitude;
     }
-
-     public void setTempo(LocalDateTime tempo) {
-        this.tempo = tempo;
+    public double getRaio() {
+        return this.raio;
     }
-     public void setPreco(double preco) {
-        this.preco = preco;
-     }
 
     public void setIdEmpresa(String idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public void setNif(int nif) {
+        this.nif = nif;
+    }
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+    public void setRaio(double raio) {
+        this.raio = raio;
+    }
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
 
+    //Variaveis para a App
     public int getAceitaMedicamento() {
-          return this.aceitaMedicamento;
-      }
+        return this.aceitaMedicamento;
+    }
+    public int getAceitaEncomenda() {
+        return this.aceitaEncomenda;
+    }
+    public LocalDateTime getTempo() {
+        return this.tempo;
+    }
+    public boolean getTransito() {
+        return this.transito;
+    }
+    public boolean getChuva() {
 
-      public void setAceitaMedicamento(int aceitaMedicamento) {
-          this.aceitaMedicamento = aceitaMedicamento;
-      }
-
-      public double getLatitude() {
-          return this.latitude;
-      }
-
-      public void setLatitude(double latitude) {
-          this.latitude = latitude;
-      }
-
-      public double getLongitude() {
-          return this.longitude;
-      }
-
-      public void setLongitude(double longitude) {
-          this.longitude = longitude;
-      }
-
-      public double getRaio() {
-          return this.raio;
-      }
-
-      public void setRaio(double raio) {
-          this.raio = raio;
-      }
-
+        return this.chuva;
+    }
     public double getTaxaAdicional() {
         return this.taxaAdicional;
+    }
+
+
+    public void setAceitaMedicamento(int aceitaMedicamento) {
+        this.aceitaMedicamento = aceitaMedicamento;
+    }
+    public void setAceitaEncomenda(int aceitaEncomenda) {
+
+        this.aceitaEncomenda = aceitaEncomenda;
+    }
+    public void setTempo(LocalDateTime tempo) {
+        this.tempo = tempo;
     }
 
     public void setTaxaAdicional(double taxaAdicional) {
         this.taxaAdicional = taxaAdicional;
     }
 
-    public boolean getChuva() {
-
-        return this.chuva;
-    }
-
     public void setChuva(boolean chuva) {
         this.chuva = chuva;
     }
-
-    public boolean getTransito() {
-        return this.transito;
-    }
-
     public void setTransito(boolean transito) {
         this.transito = transito;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getNif() {
-        return this.nif;
-    }
-
-    public void setNif(int nif) {
-        this.nif = nif;
-    }
 
     public Empresa clone () {
         return new Empresa(this);
       }
 
 
-
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Empresa)) return false;
         Empresa empresa = (Empresa) o;
-        return aceitaEncomenda == empresa.aceitaEncomenda &&
-                aceitaMedicamento == empresa.aceitaMedicamento &&
-                Double.compare(empresa.preco, preco) == 0 &&
-                Double.compare(empresa.latitude, latitude) == 0 &&
-                Double.compare(empresa.longitude, longitude) == 0 &&
-                Double.compare(empresa.raio, raio) == 0 &&
-                Double.compare(empresa.taxaAdicional, taxaAdicional) == 0 &&
-                chuva == empresa.chuva &&
-                transito == empresa.transito &&
-                Objects.equals(tempo, empresa.tempo);
+        return Double.compare(empresa.getLatitude(), getLatitude()) == 0 &&
+                Double.compare(empresa.getLongitude(), getLongitude()) == 0 &&
+                getNif() == empresa.getNif() &&
+                Double.compare(empresa.getRaio(), getRaio()) == 0 &&
+                Double.compare(empresa.getPreco(), getPreco()) == 0 &&
+                Objects.equals(getIdEmpresa(), empresa.getIdEmpresa()) &&
+                Objects.equals(getNome(), empresa.getNome());
     }
+
 
     //Transportadora:<CodEmpresa>,<NomeEmpresa>,<GPS>,<NIF>,<raio>,<preco-por-km>
     public String toString() {
@@ -215,24 +198,16 @@ public class Empresa {
                 preco;
     }
 
-    /*
-    public static Empresa insereTransportadora(String aux, Sistema s){
 
-        Empresa e = new Empresa();
+    public void criaEmpresa(String aux){
         String[] id= aux.split (",");
 
-        e.setIdEmpresa(id[0]);
-        e.setNome(id[1]);
-        e.setLongitude(Double.parseDouble(id[2]));
-        e.setLatitude(Double.parseDouble(id[3]));
-        e.setNif(Integer.parseInt(id[4]));
-        e.setRaio(Double.parseDouble(id[5]));
-        e.setPreco(Double.parseDouble(id[6]));
-
-        Sistema.insereEmpresa(e,s);
-        return e;
+        this.idEmpresa = (id[0]);
+        this.nome = (id[1]);
+        this.longitude = (Double.parseDouble(id[2]));
+        this.latitude = (Double.parseDouble(id[3]));
+        this.nif = (Integer.parseInt(id[4]));
+        this.raio = (Double.parseDouble(id[5]));
+        this.preco = (Double.parseDouble(id[6]));
     }
-    */
-
-
 }

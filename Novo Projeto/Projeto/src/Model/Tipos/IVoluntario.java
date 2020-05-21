@@ -1,4 +1,4 @@
-package Model.Modes;
+package Model.Tipos;
 
 public interface IVoluntario {
     String getId_volunteer();
@@ -12,4 +12,6 @@ public interface IVoluntario {
     void setX_volunteer(float x_volunteer);
     void setY_volunteer(float y_volunteer);
     void setRadius_volunteer(float radius_volunteer);
+
+    void criaVoluntario(String linha);
 }

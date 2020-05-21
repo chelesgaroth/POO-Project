@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.*;
+import Model.Leitura.IReadFile;
+import Model.Leitura.ReadFile;
 import View.*;
 
 import java.util.Scanner;
@@ -27,13 +29,13 @@ public class AppController implements IAppController {
     }
 
     public void runController() {
-        view.inicio();
         Scanner ler = new Scanner(System.in);
         view.printMensagem("Insira um ficheiro de leitura: ");
         file = ler.nextLine();
-
+        lerFiles.leitura(file,sistema);
         do {
             ler = new Scanner(System.in);
+            view.inicio();
             //view.mode();
             opcao = ler.nextInt();
 
