@@ -62,9 +62,13 @@ public class ReadFile implements IReadFile {
                         case ("Voluntario"): {
                             //System.out.println("É um voluntario");
                             IVoluntario voluntario = new Voluntario();
+                            ILogin login = new Login();
                             aux = linhaPartida[1];
                             voluntario.criaVoluntario(aux);
                             sistema.addVoluntario(voluntario);
+                            id = voluntario.getId_volunteer();
+                            login.setLogin(id);
+                            sistema.addLogin(login,id);
                             conta3++;
                             break;
                         }
@@ -72,9 +76,13 @@ public class ReadFile implements IReadFile {
                         case ("Transportadora"): {
                             //System.out.println("É uma transportadora");
                             IEmpresa empresa = new Empresa();
+                            ILogin login = new Login();
                             aux = linhaPartida[1];
                             empresa.criaEmpresa(aux);
                             sistema.addEmpresa(empresa);
+                            id = empresa.getIdEmpresa();
+                            login.setLogin(id);
+                            sistema.addLogin(login,id);
                             conta4++;
                             break;
                         }
@@ -82,9 +90,13 @@ public class ReadFile implements IReadFile {
                         case ("Loja"): {
                             //System.out.println("É uma loja");
                             ILoja loja = new Loja();
+                            ILogin login = new Login();
                             aux = linhaPartida[1];
                             loja.criaLoja(aux);
                             sistema.addLoja(loja);
+                            id = loja.getCodLoja();
+                            login.setLogin(id);
+                            sistema.addLogin(login,id);
                             conta5++;
                             break;
                         }

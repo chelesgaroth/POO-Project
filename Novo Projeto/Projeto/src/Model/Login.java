@@ -57,7 +57,7 @@ public class Login implements ILogin {
 
     public void setLogin(String id){
         String pass;
-        String email = id + "@trazAqui.com"; // o email é "u??.user@trazAqui.com"
+        String email = id + "@trazAqui.com"; // o email é "u??.user@trazAqui.com" u ou l ou t ou v
         /*Random rand = new Random();
         int rand_int = rand.nextInt(100);*/
         pass = id + "_" + "0000" ; // a password é "u??_0000"
