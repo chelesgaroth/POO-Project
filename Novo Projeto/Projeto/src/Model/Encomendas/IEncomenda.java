@@ -1,4 +1,6 @@
-package Model;
+package Model.Encomendas;
+
+import Model.Catalogos.ICatalogoProds;
 
 import java.util.ArrayList;
 
@@ -14,5 +16,5 @@ public interface IEncomenda {
     void setPesoTotal(double pesoTotal);
     void setProds(ArrayList<LinhaEncomenda> prods);
 
-    void criaEncomenda (String aux);
+    void criaEncomenda (String aux, ICatalogoProds catalogoProds);
 }

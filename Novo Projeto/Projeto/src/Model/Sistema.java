@@ -1,16 +1,21 @@
 package Model;
 
+import Model.Catalogos.CatalogoProds;
+import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.ILinhaEncomenda;
+import Model.Logins.ILogin;
 import Model.Tipos.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class Sistema implements ISistema {
     private HashSet<ILoja> listaLojas; // Register dos 4 tipos
     private HashSet<IUser> listaUsers;
     private HashSet<IEmpresa> listaEmpr;
     private HashSet<IVoluntario> listaVol;
-    private HashMap<String,ILogin> logins; // UserID + (Email + Password)
+    private HashMap<String, ILogin> logins; // UserID + (Email + Password)
+
+    private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
 
     public Sistema() {
         this.listaLojas = new HashSet<>();
@@ -18,6 +23,8 @@ public class Sistema implements ISistema {
         this.listaEmpr = new HashSet<>();
         this.listaVol = new HashSet<>();
         this.logins = new HashMap<>();
+
+        this.catalogoProds = new CatalogoProds();
     }
 
 
@@ -27,6 +34,8 @@ public class Sistema implements ISistema {
         this.listaEmpr = sistema.getListaEmpr();
         this.listaVol = sistema.getListaVol();
         this.logins = sistema.getLogins();
+
+        this.catalogoProds = sistema.getCatalogoProds();
     }
 
     public HashSet<ILoja> getListaLojas() {
@@ -63,6 +72,10 @@ public class Sistema implements ISistema {
 
     public HashMap<String,ILogin> getLogins(){
         return this.logins;
+    }
+
+    public ICatalogoProds getCatalogoProds() {
+        return this.catalogoProds;
     }
 
     public void setListaLojas(HashSet<ILoja> listaLojas) {
@@ -163,4 +176,16 @@ public class Sistema implements ISistema {
         return this.logins.containsValue(log);
     }
 
+    //CATALOGO DE PRODUTOS
+    public void setCatalogo(ICatalogoProds cat){
+        this.catalogoProds = cat;
+    }
+
+    //DEFINIR O STOCK DE CADA LOJA
+    public void StockLoja(){
+        ICatalogoProds aux = this.catalogoProds;
+        for(ILoja loja : this.listaLojas){
+            loja.setStock(aux);
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package Model;
+package Model.Encomendas;
 
 public interface ILinhaEncomenda {
     String getCodProduto();

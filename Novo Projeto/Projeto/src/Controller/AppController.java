@@ -3,6 +3,8 @@ package Controller;
 import Model.*;
 import Model.Leitura.IReadFile;
 import Model.Leitura.ReadFile;
+import Model.Logins.ILogin;
+import Model.Logins.Login;
 import View.*;
 
 import java.util.Scanner;
@@ -10,12 +12,15 @@ import java.util.Scanner;
 public class AppController implements IAppController {
     private ISistema sistema;
     private IAppView view;
+    private INavegador nav;
     private IReadFile lerFiles;
     private String file;
     private int opcao;
 
+
     public AppController(){
         this.file = " ";
+        this.nav = new Navegador();
         this.lerFiles = new ReadFile();
         this.opcao = 0;
     }
@@ -33,7 +38,19 @@ public class AppController implements IAppController {
         view.printMensagem("Insira um ficheiro de leitura: ");
         file = ler.nextLine();
         lerFiles.leitura(file,sistema);
+    }
+
+    /*Esta função faz login ou regista na aplicação.
+     * Faz return do char correspondente ao modo.
+     * Caso seja 'l' -> Loja;
+     * Caso seja 'u' -> user;
+     * Caso seja 't' -> empresa;
+     * Caso seja 'v' -> voluntário.
+     */
+    public char signUp (){
+        Scanner ler = new Scanner(System.in);
         String email,pass;
+        char mode = ' ';
         do {
             view.inicio();
             //view.mode();
@@ -61,10 +78,63 @@ public class AppController implements IAppController {
                         login.setEmail(email);
                         login.setPassword(pass);
                     }
-                    view.printMensagem("Login concluído!!");
+                    mode = email.charAt(0);
+                    view.printMensagem("Login concluído!!\n");
+                    opcao = 0;
                     break;
                 }
             }
         } while(opcao!=0);
+        return mode;
     }
+
+
+    public void userMode() {
+        do {
+            Scanner ler = new Scanner(System.in);
+            view.userMode();
+            opcao = ler.nextInt();
+            switch (opcao) {
+                case 1: { //Encomendar algo
+                    catalogoStock();
+                }
+                case 2: break;
+                default: break;
+            }
+        }while (opcao!=0);
+        view.printMensagem("Obrigada!Volte Sempre!");
+    }
+
+    public void catalogoStock(){
+        Scanner ler;
+        String x = " ";
+        int num = 0;
+        nav.divide(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS");
+        do {
+            nav.menu();
+            ler = new Scanner(System.in);
+            x = ler.nextLine();
+            switch (x) {
+                case "P":
+                    nav.proxima(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS");
+                    break;
+                case "A":
+                    nav.anterior(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS");
+                    break;
+                case "N":
+                    view.printMensagem("Insira o nº da Página:");
+                    ler = new Scanner(System.in);
+                    num = ler.nextInt();
+                    nav.escolha(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS", num);
+                    break;
+                case "T":
+                    nav.total(sistema.getCatalogoProds());
+                    break;
+                default:
+                    if(!(x.equals("M"))) view.printMensagem("Por favor insira uma opção válida!");
+                    break;
+            }
+        }while(!(x.equals("M")));
+    }
+
 }

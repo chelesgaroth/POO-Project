@@ -1,5 +1,7 @@
 import Controller.*;
 import Model.*;
+import Model.ModosMVC.User.Controller.IUserController;
+import Model.ModosMVC.User.Controller.UserController;
 import View.*;
 
 public class MainMVC {
@@ -13,7 +15,11 @@ public class MainMVC {
         controller.setSistema(sistema);
         controller.setAppView(view);
 
+
         controller.runController();
+        if(controller.signUp() == 'u'){
+            controller.userMode(); //ou chama o controller da appUser
+        }
         //fazer varias funcoes no controller?
         //uma que nos lê o ficheiro
         //outra que faz registo ou login

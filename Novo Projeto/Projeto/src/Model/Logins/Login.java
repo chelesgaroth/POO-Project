@@ -1,8 +1,7 @@
-package Model;
+package Model.Logins;
 
 
 import java.util.Objects;
-import java.util.Random;
 
 public class Login implements ILogin {
     String email;

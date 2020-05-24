@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Catalogos.ICatalogoProds;
+import Model.Logins.ILogin;
 import Model.Tipos.IEmpresa;
 import Model.Tipos.ILoja;
 import Model.Tipos.IVoluntario;
@@ -20,5 +22,10 @@ public interface ISistema {
 
     void addLogin(ILogin log, String userID);
     boolean existsLogin(ILogin log);
+
+    void setCatalogo(ICatalogoProds cat);
+    void StockLoja();
+
+    ICatalogoProds getCatalogoProds();
 
 }

@@ -1,6 +1,8 @@
 package Model.Tipos;
 
 
+import Model.Catalogos.ICatalogoProds;
+
 public interface ILoja {
     String getNome();
     String getCodLoja();
@@ -10,6 +12,9 @@ public interface ILoja {
     void setLongitude(double longitude);
     void setLatitude(double latitude);
     void setCodLoja(String codLoja);
+
+    ICatalogoProds getStock();
+    void setStock(ICatalogoProds stock);
 
     Loja clone();
     boolean equals(Object o);

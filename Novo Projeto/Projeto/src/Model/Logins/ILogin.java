@@ -1,4 +1,4 @@
-package Model;
+package Model.Logins;
 
 public interface ILogin {
     void setLogin(String id);

@@ -1,5 +1,8 @@
 package View;
 
+import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.ILinhaEncomenda;
+
 public class AppView implements IAppView {
 
     public void inicio () {
@@ -57,5 +60,13 @@ public class AppView implements IAppView {
         if(x==1) System.out.println("Insira o seu email:");
         if(x==3) System.out.println("Password ou email incorreto. Tente novamente.");
         if(x==2) System.out.println("Insira a sua password:");
+    }
+
+    public void userMode(){
+        System.out.println("-----------USER MODE----------");
+        System.out.println("1- Fazer uma encomenda");
+        System.out.println("...");
+        System.out.println("...");
+        System.out.println("0- Sair da aplicação");
     }
 }

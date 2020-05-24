@@ -1,6 +1,12 @@
 package Model.Leitura;
 
 import Model.*;
+import Model.Catalogos.CatalogoProds;
+import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.Encomenda;
+import Model.Encomendas.IEncomenda;
+import Model.Logins.ILogin;
+import Model.Logins.Login;
 import Model.Tipos.*;
 
 import java.io.BufferedReader;
@@ -8,7 +14,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ReadFile implements IReadFile {
     IUser user;
@@ -17,6 +22,7 @@ public class ReadFile implements IReadFile {
     ILoja loja ;
     IEncomenda enco;
     ILogin login;
+    ICatalogoProds catalogoProds;
 
     public ReadFile(){
         this.user = new User();
@@ -25,6 +31,7 @@ public class ReadFile implements IReadFile {
         this.loja = new Loja();
         this.enco = new Encomenda();
         this.login = new Login();
+        this.catalogoProds = new CatalogoProds();
     }
 
     public void leitura(String f, ISistema sistema){
@@ -105,7 +112,8 @@ public class ReadFile implements IReadFile {
                             //System.out.println("É uma encomenda");
                             IEncomenda enco = new Encomenda();
                             aux = linhaPartida[1];
-                            enco.criaEncomenda(aux);
+                            enco.criaEncomenda(aux,catalogoProds);
+                            sistema.setCatalogo(catalogoProds);
                             conta6++;
                             break;
                         }
@@ -123,14 +131,20 @@ public class ReadFile implements IReadFile {
                 }
             }
         }
+        //Outras funções para definir o inicio do programa
+        sistema.StockLoja();
+
+        //        ------------------TESTES----------------------
         System.out.println(sistema.toString());
-        //menu.Historico(conta1,conta2,conta3,conta4,conta5,conta6,conta7, conta8);
         System.out.printf("\nNúmero de Encomendas aceites: %d\n",conta1);
         System.out.printf("Número de Utilizadores: %d\n",conta2);
         System.out.printf("Número de Voluntários: %d\n",conta3);
         System.out.printf("Número de Empresas Transportadoras: %d\n",conta4);
         System.out.printf("Número de Lojas: %d\n",conta5);
         System.out.printf("Número de Encomendas: %d\n",conta6);
+        System.out.printf("Número de Produtos: %d\n",catalogoProds.totalProds());
+        //System.out.println(catalogoProds.toString());
+
     }
     public static List<String> read (String f){
         int i;

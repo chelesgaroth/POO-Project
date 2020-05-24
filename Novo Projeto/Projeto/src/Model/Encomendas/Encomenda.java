@@ -1,4 +1,6 @@
-package Model;
+package Model.Encomendas;
+
+import Model.Catalogos.ICatalogoProds;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -173,7 +175,7 @@ public class Encomenda implements IEncomenda{
     }
 
 
-    public void criaEncomenda (String aux){
+    public void criaEncomenda (String aux, ICatalogoProds catalogoProds){
         String [] auxiliar = aux.split(",");
 
         this.encomendaID = (auxiliar[0]);
@@ -186,6 +188,7 @@ public class Encomenda implements IEncomenda{
         for(int i=4;auxiliar.length>i;i=i+4){
             LinhaEncomenda linha = new LinhaEncomenda();
             linha.insereLinhaEncomenda(auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
+            catalogoProds.insereProd(linha);
             linhas.add(linha);
         }
         this.prods = linhas;

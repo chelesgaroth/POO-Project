@@ -1,6 +1,9 @@
 package Model.Tipos;
 
-import Model.Encomenda;
+import Model.Catalogos.CatalogoProds;
+import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.Encomenda;
+import Model.Encomendas.ILinhaEncomenda;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ public class Loja implements ILoja {
     private double tempoPessoa; //tempo medio a atender uma pessoa
     ArrayList<Encomenda> encs; //encomendas validadas que a loja tem de preparar
 
-    //HashSet<Produto> stock;
+    private ICatalogoProds stock; //Stock da loja
 
     public Loja () {
         //Variáveis do ficheiro Logs.txt
@@ -36,11 +39,12 @@ public class Loja implements ILoja {
         this.encs= new ArrayList<>();
         this.existeEncomenda = 0;
         this.pessoasFila = 0;
-        //this.stock = new HashSet<>();
+
+        this.stock = new CatalogoProds();
     }
 
     public Loja (String nome, String codLoja, int existeEncomenda, int pessoasFila, LocalDateTime tempo, double latitude, double longitude,
-                 double tempoPessoa,ArrayList <Encomenda> encs){
+                 double tempoPessoa,ArrayList <Encomenda> encs, ICatalogoProds stock){
 
         //Variáveis do ficheiro Logs.txt
         this.nome = nome;
@@ -58,10 +62,8 @@ public class Loja implements ILoja {
         for(Encomenda e : encs) {
             this.encs.add(e.clone());
         }
-       /*this.stock = new HashSet<>();
-        for (Produto p: stock){
-            this.stock.add(p.clone());
-        }*/
+
+        this.stock = stock;
 
     }
 
@@ -78,7 +80,8 @@ public class Loja implements ILoja {
         l.pessoasFila = l.getPessoasFila();
         l.tempo = l.getTempo();
         l.encs = l.getEncs();
-        //l.stock = l.getStock();
+
+        l.stock = l.getStock();
     }
 
 
@@ -168,6 +171,10 @@ public class Loja implements ILoja {
         return this.encs;
     }
 
+    public ICatalogoProds getStock() {
+        return stock;
+    }
+
     //Setters das Variávies da App
     public void setExisteEncomenda(int existeEncomenda) {
         this.existeEncomenda = existeEncomenda;
@@ -198,6 +205,9 @@ public class Loja implements ILoja {
         this.encs = encos;
     }
 
+    public void setStock(ICatalogoProds stock) {
+        this.stock = stock;
+    }
 
     //Método Clone
     public Loja clone(){
@@ -230,7 +240,8 @@ public class Loja implements ILoja {
     public String toString() {
         return "Loja:" +
                 codLoja + "," +
-                nome;
+                nome + "\n" +
+                stock;
     }
 
     public void criaLoja(String aux){
@@ -239,6 +250,7 @@ public class Loja implements ILoja {
         this.codLoja = (auxiliar[0]);
         this.nome = (auxiliar[1]);
     }
+
 
     /*
 

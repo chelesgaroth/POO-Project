@@ -1,4 +1,4 @@
-package Model;
+package Model.Encomendas;
 
 import java.util.Objects;
 
@@ -74,11 +74,10 @@ public class LinhaEncomenda implements ILinhaEncomenda{
     }
 
     public String toString() {
-        return "\nPRODUTO" + "\ncodProduto='" + codProduto + '\'' +
-                "\ndescricao='" + descricao + '\'' +
-                "\nquantidade=" + quantidade +
-                "\nvalor=" + valor  +
-                "\n";
+        return "Código do Produto: " + codProduto +
+                "\nDescrição: " + descricao +
+                "\nQuantidade: " + quantidade +
+                "\nPreço: " + valor +"\n";
     }
 
     public LinhaEncomenda clone(){
