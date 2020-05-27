@@ -99,7 +99,7 @@ public class ReadFile implements IReadFile {
                             ILoja loja = new Loja();
                             ILogin login = new Login();
                             aux = linhaPartida[1];
-                            loja.criaLoja(aux);
+                            loja=loja.criaLoja(aux);
                             sistema.addLoja(loja);
                             id = loja.getCodLoja();
                             login.setLogin(id);

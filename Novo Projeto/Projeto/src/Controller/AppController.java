@@ -5,8 +5,12 @@ import Model.Leitura.IReadFile;
 import Model.Leitura.ReadFile;
 import Model.Logins.ILogin;
 import Model.Logins.Login;
+import Model.Tipos.ILoja;
 import View.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class AppController implements IAppController {
@@ -91,6 +95,7 @@ public class AppController implements IAppController {
 
     public void userMode() {
         do {
+            sistema.printaLojas();
             Scanner ler = new Scanner(System.in);
             view.userMode();
             opcao = ler.nextInt();
@@ -109,30 +114,111 @@ public class AppController implements IAppController {
         Scanner ler;
         String x = " ";
         int num = 0;
-        nav.divide(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS");
+        nav.divide(sistema.getCatalogoProds(),null,"\nCATALOGO DE PRODUTOS",0);
+        nav.menu();
         do {
-            nav.menu();
+
             ler = new Scanner(System.in);
             x = ler.nextLine();
             switch (x) {
-                case "P":
-                    nav.proxima(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS");
+                case "P": {
+                    nav.proxima(sistema.getCatalogoProds(), null,"\nCATALOGO DE PRODUTOS",0);
+                    nav.menu();
                     break;
-                case "A":
-                    nav.anterior(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS");
+                }
+                case "A": {
+                    nav.anterior(sistema.getCatalogoProds(),null, "\nCATALOGO DE PRODUTOS",0);
+                    nav.menu();
                     break;
-                case "N":
+                }
+                case "N": {
                     view.printMensagem("Insira o nº da Página:");
                     ler = new Scanner(System.in);
                     num = ler.nextInt();
-                    nav.escolha(sistema.getCatalogoProds(),"\nCATALOGO DE PRODUTOS", num);
+                    nav.escolha(sistema.getCatalogoProds(), null,"\nCATALOGO DE PRODUTOS", 0, num);
+                    nav.menu();
                     break;
-                case "T":
-                    nav.total(sistema.getCatalogoProds());
+                }
+                case "T": {
+                    nav.total(sistema.getCatalogoProds(),null,0);
+                    nav.menu();
                     break;
-                default:
-                    if(!(x.equals("M"))) view.printMensagem("Por favor insira uma opção válida!");
+                }
+                case "E":{
+                    escolheProdLoja(0);
                     break;
+                }
+                default: {
+                    if (!(x.equals("M"))) view.printMensagem("Por favor insira uma opção válida!");
+                    nav.menu();
+                    break;
+                }
+            }
+        }while(!(x.equals("M")));
+    }
+
+    public List<String> escolheProdLoja(int opcao) {
+        List<String> res= new ArrayList<>();
+        Scanner ler = new Scanner(System.in);
+        if(opcao==0){
+        System.out.println("Insira o código do produto");
+        String prod = ler.nextLine();
+        res.add(prod); }
+        catalogoLoja(sistema.getListaLojas());
+
+
+        if (opcao==1) {
+            System.out.println("Insira o código da loja");
+            ler= new Scanner(System.in);
+            String loja = ler.nextLine();
+            res.add(loja);
+        }
+        return res;
+    }
+
+    public void catalogoLoja(HashSet<ILoja> lojas){
+        Scanner ler = new Scanner(System.in);
+        String x = " ";
+        int num = 0;
+        nav.divide(null,lojas,"\nCATALOGO DE LOJAS", 1);
+        nav.menu();
+        do {
+
+            ler = new Scanner(System.in);
+            x = ler.nextLine();
+            switch (x) {
+                case "P": {
+                    nav.proxima(sistema.getCatalogoProds(), null,"\nCATALOGO DE PRODUTOS",0);
+                    nav.menu();
+                    break;
+                }
+                case "A": {
+                    nav.anterior(sistema.getCatalogoProds(),null, "\nCATALOGO DE PRODUTOS",0);
+                    nav.menu();
+                    break;
+                }
+                case "N": {
+                    view.printMensagem("Insira o nº da Página:");
+                    ler = new Scanner(System.in);
+                    num = ler.nextInt();
+                    nav.escolha(sistema.getCatalogoProds(), null,"\nCATALOGO DE PRODUTOS", 0, num);
+                    nav.menu();
+                    break;
+                }
+                case "T": {
+                    nav.total(null,sistema.getListaLojas(),1);
+                    nav.menu();
+                    break;
+                }
+                case "E":{
+                    escolheProdLoja(1);
+                    break;
+                }
+                default: {
+                    if (!(x.equals("M"))) view.printMensagem("Por favor insira uma opção válida!");
+                    nav.menu();
+                    break;
+                }
             }
         }while(!(x.equals("M")));
     }

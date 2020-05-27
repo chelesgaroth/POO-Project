@@ -244,11 +244,12 @@ public class Loja implements ILoja {
                 stock;
     }
 
-    public void criaLoja(String aux){
+    public Loja criaLoja(String aux){
         String [] auxiliar = aux.split(",",3);
-
-        this.codLoja = (auxiliar[0]);
-        this.nome = (auxiliar[1]);
+        Loja l = new Loja();
+        l.setCodLoja(auxiliar[0]);
+        l.setNome (auxiliar[1]);
+      return l;
     }
 
 

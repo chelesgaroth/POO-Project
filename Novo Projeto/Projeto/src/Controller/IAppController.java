@@ -1,7 +1,11 @@
 package Controller;
 
 import Model.ISistema;
+import Model.Tipos.ILoja;
 import View.IAppView;
+
+import java.util.HashSet;
+import java.util.List;
 
 public interface IAppController {
     void setSistema(ISistema sistema);
@@ -9,4 +13,6 @@ public interface IAppController {
     void runController();
     char signUp ();
     void userMode();
+    List<String> escolheProdLoja(int opcao);
+    void catalogoLoja(HashSet<ILoja> lojas);
 }

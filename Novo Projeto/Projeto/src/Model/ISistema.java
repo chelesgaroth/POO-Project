@@ -7,6 +7,8 @@ import Model.Tipos.ILoja;
 import Model.Tipos.IVoluntario;
 import Model.Tipos.IUser;
 
+import java.util.HashSet;
+
 public interface ISistema {
     void addUser(IUser c);
     boolean existsUser(IUser c);
@@ -27,5 +29,8 @@ public interface ISistema {
     void StockLoja();
 
     ICatalogoProds getCatalogoProds();
+    HashSet<ILoja> getListaLojas();
+    void printaLojas();
+    void setListaLojas(HashSet<ILoja> listaLojas);
 
 }

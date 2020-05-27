@@ -21,5 +21,5 @@ public interface ILoja {
     int hashCode();
     String toString();
 
-    void criaLoja(String aux);
+    Loja criaLoja(String aux);
 }

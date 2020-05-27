@@ -42,6 +42,7 @@ public class Sistema implements ISistema {
         HashSet<ILoja> lojas = new HashSet<>();
         for (ILoja loja : this.listaLojas) {
             lojas.add(loja.clone());
+            System.out.println("Loja do get "+loja);
         }
         return lojas;
     }
@@ -153,6 +154,7 @@ public class Sistema implements ISistema {
 
     //LOJA
     public void addLoja(ILoja c) {
+        System.out.println("Adicionar a loja " + c.toString());
         this.listaLojas.add(c);
     }
     public boolean existsLoja(ILoja c) {
@@ -187,5 +189,11 @@ public class Sistema implements ISistema {
         for(ILoja loja : this.listaLojas){
             loja.setStock(aux);
         }
+    }
+
+    public void printaLojas(){
+        HashSet<ILoja> lojas = getListaLojas();
+        for(ILoja l:lojas)
+            System.out.println("Loja do sistema "+l);
     }
 }
