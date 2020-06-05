@@ -16,7 +16,6 @@ public class Loja extends Tipo implements ILoja {
     private int pessoasFila;
     private LocalDateTime tempo;
     private double tempoPessoa; //tempo medio a atender uma pessoa
-    ArrayList<Encomenda> encs; //encomendas validadas que a loja tem de preparar
     private ICatalogoProds stock; //Stock da loja
 
     public Loja () {
@@ -24,7 +23,6 @@ public class Loja extends Tipo implements ILoja {
         //Variáveis da App
         this.tempo = LocalDateTime.now();
         this.tempoPessoa  = 0.0;
-        this.encs= new ArrayList<>();
         this.pessoasFila = 0;
         this.stock = new CatalogoProds();
     }
@@ -36,10 +34,6 @@ public class Loja extends Tipo implements ILoja {
         this.pessoasFila = pessoasFila;
         this.tempo = tempo;
         this.tempoPessoa = tempoPessoa;
-        this.encs = new ArrayList<>();
-        for(Encomenda e : encs) {
-            this.encs.add(e.clone());
-        }
         this.stock = stock;
     }
 
@@ -48,7 +42,6 @@ public class Loja extends Tipo implements ILoja {
         l.pessoasFila = l.getPessoasFila();
         l.tempo = l.getTempo();
         l.tempoPessoa = l.getTempoPessoa();
-        l.encs = l.getEncs();
         l.stock = l.getStock();
     }
 
@@ -64,13 +57,6 @@ public class Loja extends Tipo implements ILoja {
         return tempoPessoa;
     }
 
-    public ArrayList<Encomenda> getEncs() {
-        ArrayList<Encomenda> encs = new ArrayList<>() ;
-        for (Encomenda e: this.encs){
-            encs.add(e.clone());
-        }
-        return this.encs;
-    }
 
     public ICatalogoProds getStock() {
         return stock;
@@ -88,9 +74,6 @@ public class Loja extends Tipo implements ILoja {
         this.tempoPessoa = tempoPessoa;
     }
 
-    public void setEncs(ArrayList<Encomenda> encs) {
-        this.encs = encs;
-    }
 
     public void setStock(ICatalogoProds stock) {
         this.stock = stock;
@@ -110,13 +93,12 @@ public class Loja extends Tipo implements ILoja {
                 pessoasFila == loja.pessoasFila &&
                 Double.compare(loja.tempoPessoa, tempoPessoa) == 0 &&
                 Objects.equals(tempo, loja.tempo) &&
-                Objects.equals(encs, loja.encs) &&
                 this.stock.equals(loja.stock);
     }
 
     //HashCode para as variáveis do ficheiro Logs.txt
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getPessoasFila(), getTempo(), getTempoPessoa(), getEncs(), getStock());
+        return Objects.hash(super.hashCode(), getPessoasFila(), getTempo(), getTempoPessoa(), getStock());
     }
 
     public String toString() {

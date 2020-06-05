@@ -1,7 +1,7 @@
 import Controller.*;
 import Model.*;
-import Model.ModosMVC.User.Controller.IUserController;
-import Model.ModosMVC.User.Controller.UserController;
+import Model.ModosMVC.User.IUserController;
+import Model.ModosMVC.User.UserController;
 import View.*;
 
 public class MainMVC {
@@ -11,14 +11,16 @@ public class MainMVC {
         IAppView view = new AppView();
         ISistema sistema = new Sistema();
         IAppController controller = new AppController();
-
+        IUserController userController = new UserController();
         controller.setSistema(sistema);
         controller.setAppView(view);
+        userController.setSistema(sistema);
+        userController.setAppView(view);
 
 
         controller.runController();
         if(controller.signUp() == 'u'){
-            controller.userMode(); //ou chama o controller da appUser
+            userController.userMode(); //ou chama o controller da appUser
         }
         //fazer varias funcoes no controller?
         //uma que nos lê o ficheiro

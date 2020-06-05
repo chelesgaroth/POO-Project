@@ -2,6 +2,7 @@ package Model;
 
 import Model.Catalogos.CatalogoProds;
 import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.Encomenda;
 import Model.Encomendas.ILinhaEncomenda;
 import Model.Logins.ILogin;
 import Model.Tipos.*;
@@ -14,7 +15,7 @@ public class Sistema implements ISistema {
     private HashSet<Empresa> listaEmpr;
     private HashSet<Voluntario> listaVol;
     private HashMap<String, ILogin> logins; // UserID + (Email + Password)
-
+    ArrayList<Encomenda> encs; //encomendas validadas que a loja tem de preparar
     private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
 
     public Sistema() {
@@ -23,7 +24,7 @@ public class Sistema implements ISistema {
         this.listaEmpr = new HashSet<>();
         this.listaVol = new HashSet<>();
         this.logins = new HashMap<>();
-
+        this.encs = new ArrayList<>();
         this.catalogoProds = new CatalogoProds();
     }
 
@@ -34,8 +35,20 @@ public class Sistema implements ISistema {
         this.listaEmpr = sistema.getListaEmpr();
         this.listaVol = sistema.getListaVol();
         this.logins = sistema.getLogins();
-
+        this.encs = sistema.getEncs();
         this.catalogoProds = sistema.getCatalogoProds();
+    }
+
+    public ArrayList<Encomenda> getEncs() {
+        ArrayList<Encomenda> encs = new ArrayList<>() ;
+        for (Encomenda e: this.encs){
+            encs.add(e.clone());
+        }
+        return encs;
+    }
+
+    public void setEncs(ArrayList<Encomenda> encs) {
+        this.encs = encs;
     }
 
     public HashSet<Loja> getListaLojas() {

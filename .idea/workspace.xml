@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c40bf09d-bd55-4de4-a938-6034d74eea03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/MyException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exceptions/Exception.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Leitura/ReadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Leitura/ReadFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Empresa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/IEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/IEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMVC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMVC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ModosMVC/User/IUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/IUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ModosMVC/User/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Sistema.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tipos/ILoja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/ILoja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/ITipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/ITipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/IVoluntario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/IVoluntario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Loja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Tipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Voluntario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Voluntario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/INavegador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/INavegador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Navegador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Navegador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -46,7 +49,6 @@
   <component name="ProjectId" id="1bzghu6ZkLyNrCcvk5odf08dKiD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -59,7 +61,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -124,6 +126,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="588" y="149" width="847" height="677" key="#Project_Structure" timestamp="1591379021185">
       <screen x="67" y="27" width="1853" height="923" />
@@ -149,34 +154,43 @@
       <screen x="67" y="27" width="1853" height="923" />
     </state>
     <state x="593" y="341" width="779" height="293" key="FileDocumentManager.FileCacheConflict/67.27.1853.923@67.27.1853.923" timestamp="1591378803127" />
-    <state width="1807" height="742" key="GridCell.Tab.0.bottom" timestamp="1591378821316">
-      <screen x="67" y="27" width="1853" height="923" />
+    <state width="1237" height="441" key="GridCell.Tab.0.bottom" timestamp="1591392102118">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="441" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1591392102118" />
     <state width="1807" height="834" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758073" />
     <state width="1807" height="742" key="GridCell.Tab.0.bottom/67.27.1853.923@67.27.1853.923" timestamp="1591378821316" />
-    <state width="1807" height="742" key="GridCell.Tab.0.center" timestamp="1591378821315">
-      <screen x="67" y="27" width="1853" height="923" />
+    <state width="1237" height="441" key="GridCell.Tab.0.center" timestamp="1591392102118">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="441" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1591392102118" />
     <state width="1807" height="834" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758072" />
     <state width="1807" height="742" key="GridCell.Tab.0.center/67.27.1853.923@67.27.1853.923" timestamp="1591378821315" />
-    <state width="1807" height="742" key="GridCell.Tab.0.left" timestamp="1591378821314">
-      <screen x="67" y="27" width="1853" height="923" />
+    <state width="1237" height="441" key="GridCell.Tab.0.left" timestamp="1591392102117">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="441" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1591392102117" />
     <state width="1807" height="834" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758071" />
     <state width="1807" height="742" key="GridCell.Tab.0.left/67.27.1853.923@67.27.1853.923" timestamp="1591378821314" />
-    <state width="1807" height="742" key="GridCell.Tab.0.right" timestamp="1591378821315">
-      <screen x="67" y="27" width="1853" height="923" />
+    <state width="1237" height="441" key="GridCell.Tab.0.right" timestamp="1591392102118">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="441" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1591392102118" />
     <state width="1807" height="834" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758072" />
     <state width="1807" height="742" key="GridCell.Tab.0.right/67.27.1853.923@67.27.1853.923" timestamp="1591378821315" />
-    <state x="476" y="65" width="1024" height="845" key="SettingsEditor" timestamp="1591379026775">
-      <screen x="67" y="27" width="1853" height="923" />
+    <state x="283" y="0" width="914" height="680" key="SettingsEditor" timestamp="1591391323246">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="283" y="0" width="914" height="680" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1591391323246" />
     <state x="476" y="65" width="1024" height="845" key="SettingsEditor/67.27.1853.923@67.27.1853.923" timestamp="1591379026775" />
     <state x="649" y="315" key="com.intellij.ide.util.TipDialog" timestamp="1589970692155">
       <screen x="67" y="27" width="1853" height="923" />
     </state>
     <state x="649" y="315" key="com.intellij.ide.util.TipDialog/67.27.1853.923@67.27.1853.923" timestamp="1589970692155" />
+    <state x="352" y="129" key="git4idea.merge.GitPullDialog" timestamp="1591391285648">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="352" y="129" key="git4idea.merge.GitPullDialog/0.0.1280.680@0.0.1280.680" timestamp="1591391285648" />
     <state x="302" y="79" width="1372" height="871" key="new project wizard" timestamp="1589991655878">
       <screen x="67" y="27" width="1853" height="923" />
     </state>
