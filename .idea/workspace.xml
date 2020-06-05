@@ -2,152 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c40bf09d-bd55-4de4-a938-6034d74eea03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Logs.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/AppController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/IAppController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/Exception.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainMVC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/CatalogoProds.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/ICatalogoProds.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/IProduto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/Produto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/Encomenda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/IEncomenda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/ILinhaEncomenda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/LinhaEncomenda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ISistema.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Leitura/IReadFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Leitura/ReadFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Logins/ILogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Logins/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Empresa/AppEmpresa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Empresa/IAppEmpresa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Loja/AppLoja.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Loja/IAppLoja.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/AppUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/IAppUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/IUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Voluntario/AppVoluntario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Voluntario/IAppVoluntario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Sistema.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Empresa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/IEmpresa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/ILoja.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/ITipo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/IUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/IVoluntario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Loja.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Tipo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Voluntario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/AppView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/IAppView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/INavegador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Navegador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/POO-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto-POO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/Logs.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/Projeto-POO.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Controller/AppController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Controller/IAppController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Exceptions/Exception.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/META-INF/Projeto-POO.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/MainMVC.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/CatalogoProds.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/ICatalogoProds.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/IProduto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/Produto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/Encomenda.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/IEncomenda.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/ILinhaEncomenda.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/LinhaEncomenda.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ISistema.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Leitura/IReadFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Leitura/ReadFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Logins/ILogin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Logins/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Empresa/Model/AppEmpresa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Empresa/Model/IAppEmpresa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Loja/Model/AppLoja.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Loja/Model/IAppLoja.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/AppUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/Controller/IUserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/Controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/Model/IAppUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Voluntario/Model/AppVoluntario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Voluntario/Model/IAppVoluntario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Sistema.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Empresa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/IEmpresa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/ILoja.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/ITipo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/IUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/IVoluntario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Loja.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Tipo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Voluntario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/AppView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/IAppView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/INavegador.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/Navegador.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Controller/AppController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Controller/IAppController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Exceptions/Exception.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/MainMVC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/CatalogoProds.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/ICatalogoProds.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/IProduto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/Produto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/Encomenda.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/IEncomenda.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/ILinhaEncomenda.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/LinhaEncomenda.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ISistema.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Leitura/IReadFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Leitura/ReadFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Logins/ILogin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Logins/Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Empresa/AppEmpresa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Empresa/IAppEmpresa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Loja/AppLoja.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Loja/IAppLoja.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/AppUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/IAppUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/IUserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Voluntario/AppVoluntario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Voluntario/IAppVoluntario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Sistema.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Empresa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/IEmpresa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/ILoja.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/ITipo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/IUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/IVoluntario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Loja.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Tipo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Voluntario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/AppView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/IAppView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/INavegador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/Navegador.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/MyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/Exception.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Leitura/ReadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Leitura/ReadFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Empresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Empresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/IEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/IEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/ILoja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/ILoja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/ITipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/ITipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/IVoluntario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/IVoluntario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Loja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Tipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tipos/Voluntario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tipos/Voluntario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">

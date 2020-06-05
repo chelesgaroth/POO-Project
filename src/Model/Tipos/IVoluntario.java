@@ -1,19 +1,25 @@
 package Model.Tipos;
 
-public interface IVoluntario {
-    String getId_volunteer();
-    String getName();
-    float getX_volunteer();
-    float getY_volunteer();
-    float getRadius_volunteer();
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-    void setId_volunteer(String id_volunteer);
-    void setName(String name);
-    void setX_volunteer(float x_volunteer);
-    void setY_volunteer(float y_volunteer);
+public interface IVoluntario {
+
+    float getRadius_volunteer();
     void setRadius_volunteer(float radius_volunteer);
 
-    Voluntario clone();
+    List<String> getPackage_list();
+    void setPackage_list(List<String> package_list);
+    boolean getAvailability();
+    void setAvailability(boolean availability);
+    float getVolunteer_rating();
+    void setVolunteer_rating(float volunteer_rating);
+    LocalDateTime getTime_start();
+    void setTime_start(LocalDateTime time_start);
+    LocalDateTime getTime_finish();
+    void setTime_finish(LocalDateTime time_finish);
 
-    void criaVoluntario(String linha);
+
+
 }

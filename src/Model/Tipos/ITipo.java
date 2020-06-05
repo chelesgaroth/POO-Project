@@ -10,5 +10,4 @@ public interface ITipo {
     void setX(float x);
     void setY(float y);
 
-    void criaTipo(String linha);
 }

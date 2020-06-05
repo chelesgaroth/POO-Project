@@ -2,16 +2,21 @@ package Model.Tipos;
 
 
 import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.Encomenda;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public interface ILoja {
-    String getNome();
-    String getCodLoja();
-    double getLongitude();
-    double getLatitude();
-    void setNome(String nome);
-    void setLongitude(double longitude);
-    void setLatitude(double latitude);
-    void setCodLoja(String codLoja);
+
+    int getPessoasFila();
+    LocalDateTime getTempo();
+    double getTempoPessoa();
+    ArrayList<Encomenda> getEncs();
+    void setPessoasFila(int pessoasFila);
+    void setTempo(LocalDateTime tempo);
+    void setTempoPessoa(double tempoPessoa);
+    void setEncs(ArrayList<Encomenda> encs);
 
     ICatalogoProds getStock();
     void setStock(ICatalogoProds stock);
@@ -20,6 +25,4 @@ public interface ILoja {
     boolean equals(Object o);
     int hashCode();
     String toString();
-
-    Loja criaLoja(String aux);
 }

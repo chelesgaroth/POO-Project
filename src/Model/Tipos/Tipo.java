@@ -87,18 +87,4 @@ public abstract class Tipo implements  ITipo{
                 '}';
     }
 
-    public void criaTipo(String linha){
-        String[] id= linha.split (",");
-        this.id = (id[0]);
-
-        float x= Float.parseFloat(id[2]);
-        float y= Float.parseFloat(id[3]);
-
-        this.x = x;
-        this.y = y;
-
-        String[] textoSeparado = id[1].split(" ");
-        String nameAux = textoSeparado[0] + " " + textoSeparado[textoSeparado.length-1];
-        this.nome = nameAux;
-    }
 }

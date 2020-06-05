@@ -1,5 +1,6 @@
 package Model.Leitura;
 
+import Exceptions.MyException;
 import Model.*;
 import Model.Catalogos.CatalogoProds;
 import Model.Catalogos.ICatalogoProds;
@@ -10,6 +11,7 @@ import Model.Logins.Login;
 import Model.Tipos.*;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class ReadFile implements IReadFile {
     ILogin login;
     ICatalogoProds catalogoProds;
 
+
     public ReadFile(){
         this.user = new User();
         this.voluntario = new Voluntario();
@@ -32,6 +35,7 @@ public class ReadFile implements IReadFile {
         this.enco = new Encomenda();
         this.login = new Login();
         this.catalogoProds = new CatalogoProds();
+
     }
 
     public void leitura(String f, ISistema sistema){
@@ -42,7 +46,7 @@ public class ReadFile implements IReadFile {
         String[] linhaPartida;
         int i;
         String aux;
-        String id;
+        String id="";
         int conta1=0,conta2=0,conta3=0,conta4=0,conta5=0,conta6=0;
 
         for (i = 0; i < linhas.size(); i++) {
@@ -50,67 +54,55 @@ public class ReadFile implements IReadFile {
                 linhaPartida = linhas.get(i).split(":", 2);
                 if (linhaPartida[0]!=null) {
 
+                    ILogin login = new Login();
                     switch(linhaPartida[0]) {
 
                         case ("Utilizador"): {
-                            //System.out.println("É um utilizador");
                             ITipo user = new User();
-                            ILogin login = new Login();
                             aux = linhaPartida[1];
-                            user.criaTipo(aux);
+                            parseTipo(aux,user);
                             sistema.addTipo(user);
                             id = user.getId();
 
-                            login.setLogin(id);
-                            sistema.addLogin(login,id);
+
                             conta2++;
                             break;
                         }
 
                         case ("Voluntario"): {
-                            //System.out.println("É um voluntario");
-                            IVoluntario voluntario = new Voluntario();
-                            ILogin login = new Login();
+                            ITipo voluntario = new Voluntario();
                             aux = linhaPartida[1];
-                            voluntario.criaVoluntario(aux);
-                            //sistema.addVoluntario(voluntario);
-                            id = voluntario.getId_volunteer();
-                            login.setLogin(id);
-                            sistema.addLogin(login,id);
+                            parseTipo(aux,voluntario);
+                            sistema.addTipo(voluntario);
+                            id = voluntario.getId();
+
                             conta3++;
                             break;
                         }
 
                         case ("Transportadora"): {
-                            //System.out.println("É uma transportadora");
-                            IEmpresa empresa = new Empresa();
-                            ILogin login = new Login();
+                            ITipo empresa = new Empresa();
                             aux = linhaPartida[1];
-                            empresa.criaEmpresa(aux);
-                            //sistema.addEmpresa(empresa);
-                            id = empresa.getIdEmpresa();
-                            login.setLogin(id);
-                            sistema.addLogin(login,id);
+                            parseTipo(aux,empresa);
+                            sistema.addTipo(empresa);
+                            id = empresa.getId();
+
                             conta4++;
                             break;
                         }
 
                         case ("Loja"): {
-                            //System.out.println("É uma loja");
-                            ILoja loja = new Loja();
-                            ILogin login = new Login();
+                            ITipo loja = new Loja();
                             aux = linhaPartida[1];
-                            loja=loja.criaLoja(aux);
-                            //sistema.addLoja(loja);
-                            id = loja.getCodLoja();
-                            login.setLogin(id);
-                            sistema.addLogin(login,id);
+                            parseTipo(aux,loja);
+                            sistema.addTipo(loja);
+                            id = loja.getId();
+
                             conta5++;
                             break;
                         }
 
                         case ("Encomenda"): {
-                            //System.out.println("É uma encomenda");
                             IEncomenda enco = new Encomenda();
                             aux = linhaPartida[1];
                             enco.criaEncomenda(aux,catalogoProds);
@@ -128,7 +120,10 @@ public class ReadFile implements IReadFile {
                             System.out.println("Não foi registado -> "+linhaPartida[0]);
                             break;
                         }
+
                     }
+                    login.setLogin(id);
+                    sistema.addLogin(login,id);
                 }
             }
         }
@@ -147,6 +142,37 @@ public class ReadFile implements IReadFile {
         //System.out.println(sistema.getListaLojas().toString());
 
     }
+
+    public static void parseTipo(String linha, ITipo tipo){
+        if(tipo instanceof Loja){
+            String[] id = linha.split(",");
+            tipo.setId(id[0]);
+            tipo.setNome(id[1]);
+        }
+        else {
+            String[] id = linha.split(",");
+            tipo.setId(id[0]);
+
+            tipo.setX(Float.parseFloat(id[2]));
+            tipo.setY(Float.parseFloat(id[3]));
+
+            String[] textoSeparado = id[1].split(" ");
+            String nameAux = textoSeparado[0] + " " + textoSeparado[textoSeparado.length - 1];
+            tipo.setNome(nameAux);
+
+            if (tipo instanceof Voluntario) {
+                float r = Float.parseFloat(id[4]);
+                Voluntario x = (Voluntario) tipo;
+                x.setRadius_volunteer(r);
+            }
+            if (tipo instanceof Empresa) {
+                Empresa e = (Empresa) tipo;
+                e.setNif(Integer.parseInt(id[4]));
+                e.setRaio(Double.parseDouble(id[5]));
+                e.setPreco(Double.parseDouble(id[6]));
+            }
+        }
+    }
     public static List<String> read (String f){
         int i;
         List<String> res = new ArrayList<>();
@@ -161,8 +187,11 @@ public class ReadFile implements IReadFile {
                 res.add(linha);
                 i++;
             }
-        } catch (IOException e) {
-            System.err.print("Erro na abertura do arquivo : %s\n");
+            throw new MyException();
+
+        } catch (MyException | IOException ex ){
+
+            System.out.println(ex.getMessage());
         }
         return res;
     }
