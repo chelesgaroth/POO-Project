@@ -9,5 +9,6 @@ public interface ITipo {
     void setNome(String nome);
     void setX(float x);
     void setY(float y);
+
     void criaTipo(String linha);
 }

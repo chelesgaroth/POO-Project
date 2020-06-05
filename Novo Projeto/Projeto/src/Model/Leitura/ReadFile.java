@@ -73,7 +73,7 @@ public class ReadFile implements IReadFile {
                             ILogin login = new Login();
                             aux = linhaPartida[1];
                             voluntario.criaVoluntario(aux);
-                            sistema.addVoluntario(voluntario);
+                            //sistema.addVoluntario(voluntario);
                             id = voluntario.getId_volunteer();
                             login.setLogin(id);
                             sistema.addLogin(login,id);
@@ -87,7 +87,7 @@ public class ReadFile implements IReadFile {
                             ILogin login = new Login();
                             aux = linhaPartida[1];
                             empresa.criaEmpresa(aux);
-                            sistema.addEmpresa(empresa);
+                            //sistema.addEmpresa(empresa);
                             id = empresa.getIdEmpresa();
                             login.setLogin(id);
                             sistema.addLogin(login,id);
@@ -101,7 +101,7 @@ public class ReadFile implements IReadFile {
                             ILogin login = new Login();
                             aux = linhaPartida[1];
                             loja=loja.criaLoja(aux);
-                            sistema.addLoja(loja);
+                            //sistema.addLoja(loja);
                             id = loja.getCodLoja();
                             login.setLogin(id);
                             sistema.addLogin(login,id);

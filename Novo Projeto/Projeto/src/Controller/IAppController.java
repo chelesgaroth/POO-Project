@@ -13,6 +13,6 @@ public interface IAppController {
     void runController();
     char signUp ();
     void userMode();
-    List<String> escolheProdLoja(int opcao);
-    void catalogoLoja(HashSet<ILoja> lojas);
+    //List<String> escolheProdLoja(int opcao);
+    //void catalogoLoja(HashSet<ILoja> lojas);
 }

@@ -6,6 +6,7 @@ import Model.Leitura.ReadFile;
 import Model.Logins.ILogin;
 import Model.Logins.Login;
 import Model.Tipos.ILoja;
+import Model.Tipos.Loja;
 import View.*;
 
 import java.util.ArrayList;
@@ -145,7 +146,7 @@ public class AppController implements IAppController {
                     break;
                 }
                 case "E":{
-                    escolheProdLoja(0);
+                    //escolheProdLoja(0);
 
                     break;
                 }
@@ -158,6 +159,7 @@ public class AppController implements IAppController {
         }while(!(x.equals("M")));
     }
 
+    /*
     public List<String> escolheProdLoja(int opcao) {
         List<String> res= new ArrayList<>();
         Scanner ler = new Scanner(System.in);
@@ -173,7 +175,7 @@ public class AppController implements IAppController {
         if (opcao==1) {
             System.out.println(sistema.getListaLojas().size());
             System.out.println(sistema.getListaVol());
-            HashSet<ILoja> lojas = sistema.getListaLojas();
+            HashSet<Loja> lojas = sistema.getListaLojas();
             catalogoLoja(lojas);
             System.out.println("Insira o código da loja");
             ler= new Scanner(System.in);
@@ -228,6 +230,6 @@ public class AppController implements IAppController {
                 }
             }
         }while(!(x.equals("M")));
-    }
+    }*/
 
 }

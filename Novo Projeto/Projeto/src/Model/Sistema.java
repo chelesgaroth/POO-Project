@@ -9,10 +9,10 @@ import Model.Tipos.*;
 import java.util.*;
 
 public class Sistema implements ISistema {
-    private HashSet<ILoja> listaLojas; // Register dos 4 tipos
+    private HashSet<Loja> listaLojas; // Register dos 4 tipos
     private HashSet<User> listaUsers;
-    private HashSet<IEmpresa> listaEmpr;
-    private HashSet<IVoluntario> listaVol;
+    private HashSet<Empresa> listaEmpr;
+    private HashSet<Voluntario> listaVol;
     private HashMap<String, ILogin> logins; // UserID + (Email + Password)
 
     private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
@@ -38,11 +38,11 @@ public class Sistema implements ISistema {
         this.catalogoProds = sistema.getCatalogoProds();
     }
 
-    public HashSet<ILoja> getListaLojas() {
-       /*HashSet<ILoja> lojas = new HashSet<>();
-        for (ILoja loja : this.listaLojas) {
+    public HashSet<Loja> getListaLojas() {
+       HashSet<Loja> lojas = new HashSet<>();
+        for (Loja loja : this.listaLojas) {
             lojas.add(loja.clone());
-        }*/
+        }
         return this.listaLojas;
     }
 
@@ -54,17 +54,17 @@ public class Sistema implements ISistema {
         return users;
     }
 
-    public HashSet<IEmpresa> getListaEmpr() {
-        HashSet<IEmpresa> empresas = new HashSet<>();
-        for (IEmpresa empresa : this.listaEmpr) {
+    public HashSet<Empresa> getListaEmpr() {
+        HashSet<Empresa> empresas = new HashSet<>();
+        for (Empresa empresa : this.listaEmpr) {
             empresas.add(empresa.clone());
         }
         return empresas;
     }
 
-    public HashSet<IVoluntario> getListaVol() {
-        HashSet<IVoluntario> vols = new HashSet<>();
-        for (IVoluntario vol : this.listaVol) {
+    public HashSet<Voluntario> getListaVol() {
+        HashSet<Voluntario> vols = new HashSet<>();
+        for (Voluntario vol : this.listaVol) {
             vols.add(vol.clone());
         }
         return vols;
@@ -78,9 +78,9 @@ public class Sistema implements ISistema {
         return this.catalogoProds;
     }
 
-    public void setListaLojas(HashSet<ILoja> listaLojas) {
-        HashSet<ILoja> lojas = new HashSet<>();
-        for (ILoja loja : listaLojas) {
+    public void setListaLojas(HashSet<Loja> listaLojas) {
+        HashSet<Loja> lojas = new HashSet<>();
+        for (Loja loja : listaLojas) {
             lojas.add(loja.clone());
         }
         this.listaLojas = lojas;
@@ -94,17 +94,17 @@ public class Sistema implements ISistema {
         this.listaUsers = users;
     }
 
-    public void setListaEmpr(HashSet<IEmpresa> listaEmpr) {
-        HashSet<IEmpresa> empresas = new HashSet<>();
-        for (IEmpresa empresa : listaEmpr) {
+    public void setListaEmpr(HashSet<Empresa> listaEmpr) {
+        HashSet<Empresa> empresas = new HashSet<>();
+        for (Empresa empresa : listaEmpr) {
             empresas.add(empresa.clone());
         }
         this.listaEmpr = empresas;
     }
 
-    public void setListaVol(HashSet<IVoluntario> listaVol) {
-        HashSet<IVoluntario> vols = new HashSet<>();
-        for (IVoluntario vol : listaVol) {
+    public void setListaVol(HashSet<Voluntario> listaVol) {
+        HashSet<Voluntario> vols = new HashSet<>();
+        for (Voluntario vol : listaVol) {
             vols.add(vol.clone());
         }
         this.listaVol = vols;
@@ -140,38 +140,38 @@ public class Sistema implements ISistema {
             User u = (User) t;
             this.listaUsers.add(u);
         }
+        if(t instanceof Loja) {
+            Loja l = (Loja) t;
+            this.listaLojas.add(l);
+        }
+        if(t instanceof Voluntario) {
+            Voluntario v = (Voluntario) t;
+            this.listaVol.add(v);
+        }
+        if(t instanceof Empresa) {
+            Empresa e = (Empresa) t;
+            this.listaEmpr.add(e);
+        }
+
 
     }
     //UTILIZADOR
-    public void addUser(User c) {
-        this.listaUsers.add(c);
-    }
     public boolean existsUser(User c) {
         return this.listaUsers.contains(c);
     }
 
     //VOLUNTARIO
-    public void addVoluntario(IVoluntario c) {
-        this.listaVol.add(c);
-    }
-    public boolean existsVoluntario(IVoluntario c) {
+    public boolean existsVoluntario(Voluntario c) {
         return this.listaVol.contains(c);
     }
 
     //LOJA
-    public void addLoja(ILoja c) {
-        System.out.println("Adicionar a loja " + c.toString());
-        this.listaLojas.add(c);
-    }
-    public boolean existsLoja(ILoja c) {
+    public boolean existsLoja(Loja c) {
         return this.listaLojas.contains(c);
     }
 
     //EMPRESA
-    public void addEmpresa(IEmpresa c) {
-        this.listaEmpr.add(c);
-    }
-    public boolean existsEmpresa(IEmpresa c) {
+    public boolean existsEmpresa(Empresa c) {
         return this.listaEmpr.contains(c);
     }
 

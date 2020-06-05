@@ -4,32 +4,34 @@ import Model.Catalogos.ICatalogoProds;
 import Model.Logins.ILogin;
 import Model.Tipos.*;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public interface ISistema {
-    void addUser(User c);
+    HashSet<Loja> getListaLojas();
+    HashSet<User> getListaUsers();
+    HashSet<Empresa> getListaEmpr();
+    HashSet<Voluntario> getListaVol();
+    HashMap<String,ILogin> getLogins();
+    ICatalogoProds getCatalogoProds();
+
+    void setListaLojas(HashSet<Loja> listaLojas);
+    void setListaUsers(HashSet<User> listaUsers);
+    void setListaEmpr(HashSet<Empresa> listaEmpr);
+    void setListaVol(HashSet<Voluntario> listaVol);
+    void setCatalogo(ICatalogoProds cat);
+
+    void addTipo(ITipo t);
+
     boolean existsUser(User c);
-
-    void addVoluntario(IVoluntario c);
-    boolean existsVoluntario(IVoluntario c);
-
-    void addLoja(ILoja c);
-    boolean existsLoja(ILoja c);
-
-    void addEmpresa(IEmpresa c);
-    boolean existsEmpresa(IEmpresa c);
+    boolean existsVoluntario(Voluntario c);
+    boolean existsLoja(Loja c);
+    boolean existsEmpresa(Empresa c);
 
     void addLogin(ILogin log, String userID);
     boolean existsLogin(ILogin log);
 
-    void setCatalogo(ICatalogoProds cat);
     void StockLoja();
 
-    ICatalogoProds getCatalogoProds();
-    HashSet<ILoja> getListaLojas();
-    HashSet<IVoluntario> getListaVol();
-    void setListaLojas(HashSet<ILoja> listaLojas);
-
-    void addTipo(ITipo t);
 
 }
