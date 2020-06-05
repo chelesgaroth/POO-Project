@@ -2,16 +2,13 @@ package Model;
 
 import Model.Catalogos.ICatalogoProds;
 import Model.Logins.ILogin;
-import Model.Tipos.IEmpresa;
-import Model.Tipos.ILoja;
-import Model.Tipos.IVoluntario;
-import Model.Tipos.IUser;
+import Model.Tipos.*;
 
 import java.util.HashSet;
 
 public interface ISistema {
-    void addUser(IUser c);
-    boolean existsUser(IUser c);
+    void addUser(User c);
+    boolean existsUser(User c);
 
     void addVoluntario(IVoluntario c);
     boolean existsVoluntario(IVoluntario c);
@@ -30,7 +27,9 @@ public interface ISistema {
 
     ICatalogoProds getCatalogoProds();
     HashSet<ILoja> getListaLojas();
-    void printaLojas();
+    HashSet<IVoluntario> getListaVol();
     void setListaLojas(HashSet<ILoja> listaLojas);
+
+    void addTipo(ITipo t);
 
 }

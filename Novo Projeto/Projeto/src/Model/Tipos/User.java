@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class User implements IUser  {
-    //Variáveis dos Logs.txt
-    private String userID;
-    private String name;
-    private float x_user;
-    private float y_user;
+public class User extends Tipo implements IUser {
 
     //Variávieis para as Apps
     private List<String> delivery_requests;
@@ -19,12 +14,7 @@ public class User implements IUser  {
      * Construtor por omissão
      */
     public User() {
-        //Variáveis do Logs.txt
-        this.userID = "n/a";
-        this.name = "n/a";
-        this.x_user = 0;
-        this.y_user = 0;
-
+        super();
         //Variáveis para as Apps
         this.delivery_requests = new ArrayList<>();
         this.delivery_queue = new ArrayList<>();
@@ -34,12 +24,7 @@ public class User implements IUser  {
      * Construtor por cópia
      */
     public User(User user) {
-        //Variáveis do Logs.txt
-        this.userID = user.getUserID();
-        this.name = user.getUserName();
-        this.x_user=user.getX_user();
-        this.y_user=user.getY_user();
-
+        super(user);
         //Variáveis para as Apps
         this.delivery_requests = user.getDelivery_requests();
         this.delivery_queue = user.getDelivery_queue();
@@ -48,38 +33,11 @@ public class User implements IUser  {
     /**
      * Construtor por parametro
      */
-    public User(String first_name, String last_name, float x_user, float  y_user, List<String> delivery_requests, List<String> delivery_queue){
-        //Variávies do Logs.txt
-        this.name=last_name;
-        this.x_user=x_user;
-        this.y_user=y_user;
-
+    public User(String id, String nome, float x, float y, List<String> delivery_requests, List<String> delivery_queue){
+        super(id,nome,x,y);
         //Variáveis para as Apps
         setDelivery_queue(delivery_queue);
         setDelivery_requests(delivery_requests);
-    }
-
- /*
-    public void request_delivery(){}
-    public void confirm_delivery_company(){}
-    public void check_deliveries(){}
-    public void rate(){ }
-*/
-
-    //Getter and Setters
-
-    //Getters das Variáveis do ficheiro Logs.txt
-    public String getUserID() {
-        return userID;
-    }
-    public String getUserName(){
-        return this.name;
-    }
-    public float getX_user(){
-        return this.x_user;
-    }
-    public float getY_user(){
-        return this.y_user;
     }
 
     //Getters das variávies para as Apps
@@ -96,20 +54,6 @@ public class User implements IUser  {
             res.add(s) ;
         }
         return res;
-    }
-
-    //Setters das variáveis do ficheiro Logs.txt
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-    public void setUserName(String name){
-        this.name= name;
-    }
-    public void setX_user(float x_user){
-        this.x_user=x_user;
-    }
-    public void setY_user(float y_user){
-        this.y_user=y_user;
     }
 
     //Setters das variáveis das Apps
@@ -131,43 +75,27 @@ public class User implements IUser  {
         return new User(this);
     }
 
-    //Equals e Hashcode com as variáveis do Logs.txt
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
+        if (!super.equals(o)) return false;
         User user = (User) o;
-        return Float.compare(user.x_user, x_user) == 0 &&
-                Float.compare(user.y_user, y_user) == 0 &&
-                Objects.equals(userID, user.userID) &&
-                Objects.equals(name, user.name);
+        return Objects.equals(getDelivery_requests(), user.getDelivery_requests()) &&
+                Objects.equals(getDelivery_queue(), user.getDelivery_queue());
     }
 
-
+    @Override
     public int hashCode() {
-        return Objects.hash(userID, name, x_user, y_user);
+        return Objects.hash(super.hashCode(), getDelivery_requests(), getDelivery_queue());
     }
 
+    @Override
     public String toString() {
-        return "Utilizador:" +
-                userID +
-                "," + name +
-                "," + x_user +
-                "," + y_user;
+        return "User{" +
+                "delivery_requests=" + delivery_requests +
+                ", delivery_queue=" + delivery_queue +
+                '}';
     }
 
-
-    public void criaUser(String linhaUser){
-        String[] id= linhaUser.split (",");
-        this.userID = (id[0]);
-
-        float x= Float.parseFloat(id[2]);
-        float y= Float.parseFloat(id[3]);
-
-        this.x_user = x;
-        this.y_user = y;
-
-        String[] textoSeparado = id[1].split(" ");
-        String nameAux = textoSeparado[0] + " " + textoSeparado[textoSeparado.length-1];
-        this.name = nameAux;
-    }
 }

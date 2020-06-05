@@ -1,14 +1,15 @@
 package Model.Encomendas;
 
+import Model.Catalogos.IProduto;
+import Model.Catalogos.Produto;
+
 public interface ILinhaEncomenda {
-    String getCodProduto();
-    void setCodProduto(String codProduto);
-    String getDescricao();
-    void setDescricao(String descricao);
+    IProduto getProduto();
+    void setProduto(Produto prod);
     float getQuantidade();
     void setQuantidade(float quantidade);
     float getValor();
     void setValor(float valor);
 
-    void insereLinhaEncomenda (String aux1, String aux2, String aux3, String aux4);
+    void insereLinhaEncomenda (IProduto prod, String aux3, String aux4);
 }

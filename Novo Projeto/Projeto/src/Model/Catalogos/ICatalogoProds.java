@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public interface ICatalogoProds {
-    HashMap<Integer,ILinhaEncomenda> getCatProds();
+    HashMap<String,IProduto> getCatProds();
     String toString();
-    void insereProd(ILinhaEncomenda produto);
+    void insereProd(IProduto produto);
     int totalProds();
 }

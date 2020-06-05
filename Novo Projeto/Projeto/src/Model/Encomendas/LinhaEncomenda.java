@@ -1,50 +1,40 @@
 package Model.Encomendas;
 
+import Model.Catalogos.IProduto;
+import Model.Catalogos.Produto;
+
 import java.util.Objects;
 
 public class LinhaEncomenda implements ILinhaEncomenda{
-    private String codProduto;
-    private String descricao;
+    private IProduto produto;
     private float quantidade;
     private float valor;
 
 
     public LinhaEncomenda() {
-        this.codProduto = "n/a";
-        this.descricao = "n/a";
+        this.produto = new Produto();
         this.quantidade = 0;
         this.valor = 0;
 
     }
 
-    public LinhaEncomenda(String codProduto, String descricao, Float quantidade, Float valor) {
-        this.codProduto = codProduto;
-        this.descricao = descricao;
+    public LinhaEncomenda(IProduto produto, Float quantidade, Float valor) {
+        this.produto = produto;
         this.quantidade = quantidade;
         this.valor = valor;
     }
 
     public LinhaEncomenda(LinhaEncomenda linha){
-        this.codProduto = linha.getCodProduto();
-        this.descricao = linha.getDescricao();
+        this.produto = linha.getProduto();
         this.quantidade = linha.getQuantidade();
         this.valor = linha.getValor();
     }
 
-    public String getCodProduto() {
-        return this.codProduto;
+    public IProduto getProduto(){
+        return this.produto;
     }
-
-    public void setCodProduto(String codProduto) {
-        this.codProduto = codProduto;
-    }
-
-    public String getDescricao() {
-        return this.descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setProduto(Produto prod){
+        this.produto = prod;
     }
 
     public float getQuantidade() {
@@ -69,13 +59,11 @@ public class LinhaEncomenda implements ILinhaEncomenda{
         LinhaEncomenda that = (LinhaEncomenda) o;
         return Float.compare(that.quantidade, quantidade) == 0 &&
                 Float.compare(that.valor, valor) == 0 &&
-                Objects.equals(codProduto, that.codProduto) &&
-                Objects.equals(descricao, that.descricao);
+                Objects.equals(produto,that.produto);
     }
 
     public String toString() {
-        return "Código do Produto: " + codProduto +
-                "\nDescrição: " + descricao +
+        return "Produto:" + produto +
                 "\nQuantidade: " + quantidade +
                 "\nPreço: " + valor +"\n";
     }
@@ -84,9 +72,8 @@ public class LinhaEncomenda implements ILinhaEncomenda{
         return new LinhaEncomenda(this);
     }
 
-    public void insereLinhaEncomenda (String aux1, String aux2, String aux3, String aux4){
-        this.codProduto = aux1;
-        this.descricao = aux2;
+    public void insereLinhaEncomenda (IProduto prod, String aux3, String aux4){
+        this.produto = prod;
         this.quantidade = Float.parseFloat(aux3);
         this.valor = Float.parseFloat(aux4);
         //System.out.print(l.toString());

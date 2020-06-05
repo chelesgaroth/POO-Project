@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 
 public class CatalogoProds implements ICatalogoProds {
-    private HashMap<Integer,ILinhaEncomenda> catalogo;
+    private HashMap<String,IProduto> catalogo;
 
     public CatalogoProds(){
         this.catalogo = new HashMap<>();
@@ -17,7 +17,7 @@ public class CatalogoProds implements ICatalogoProds {
         this.catalogo = p.getCatProds();
     }
 
-    public HashMap<Integer,ILinhaEncomenda> getCatProds() {
+    public HashMap<String,IProduto> getCatProds() {
         return this.catalogo;
     }
 
@@ -39,8 +39,8 @@ public class CatalogoProds implements ICatalogoProds {
                 catalogo;
     }
 
-    public void insereProd(ILinhaEncomenda produto){
-        this.catalogo.put(this.catalogo.size(),produto);
+    public void insereProd(IProduto produto){
+        this.catalogo.put(produto.getCodProduto(),produto);
     }
 
     public int totalProds(){ return (this.catalogo.size()); }

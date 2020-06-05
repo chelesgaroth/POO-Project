@@ -7,7 +7,6 @@ import Model.Tipos.Loja;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 public class Navegador implements INavegador {
@@ -27,6 +26,7 @@ public class Navegador implements INavegador {
         List<ILoja> aList = new ArrayList<>();
         if (opcao == 1) {
             for (ILoja x : lojas){
+                System.out.print(x.toString());
                aList.add(x);
             }
         }

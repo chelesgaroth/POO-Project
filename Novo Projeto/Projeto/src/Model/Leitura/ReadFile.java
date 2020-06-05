@@ -54,12 +54,13 @@ public class ReadFile implements IReadFile {
 
                         case ("Utilizador"): {
                             //System.out.println("É um utilizador");
-                            IUser user = new User();
+                            ITipo user = new User();
                             ILogin login = new Login();
                             aux = linhaPartida[1];
-                            user.criaUser(aux);
-                            sistema.addUser(user);
-                            id = user.getUserID();
+                            user.criaTipo(aux);
+                            sistema.addTipo(user);
+                            id = user.getId();
+
                             login.setLogin(id);
                             sistema.addLogin(login,id);
                             conta2++;
@@ -143,7 +144,7 @@ public class ReadFile implements IReadFile {
         System.out.printf("Número de Lojas: %d\n",conta5);
         System.out.printf("Número de Encomendas: %d\n",conta6);
         System.out.printf("Número de Produtos: %d\n",catalogoProds.totalProds());
-        //System.out.println(catalogoProds.toString());
+        //System.out.println(sistema.getListaLojas().toString());
 
     }
     public static List<String> read (String f){

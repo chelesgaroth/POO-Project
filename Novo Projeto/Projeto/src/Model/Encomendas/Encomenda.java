@@ -1,6 +1,8 @@
 package Model.Encomendas;
 
 import Model.Catalogos.ICatalogoProds;
+import Model.Catalogos.IProduto;
+import Model.Catalogos.Produto;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -184,11 +186,15 @@ public class Encomenda implements IEncomenda{
         this.pesoTotal = Double.parseDouble(auxiliar[3]);
 
         ArrayList<LinhaEncomenda> linhas = new ArrayList<>();
+        float precoUni;
 
         for(int i=4;auxiliar.length>i;i=i+4){
+            IProduto produto = new Produto();
             LinhaEncomenda linha = new LinhaEncomenda();
-            linha.insereLinhaEncomenda(auxiliar[i],auxiliar[i+1],auxiliar[i+2],auxiliar[i+3]);
-            catalogoProds.insereProd(linha);
+            precoUni = (Float.parseFloat(auxiliar[i+3]))/(Float.parseFloat(auxiliar[i+2]));
+            produto.criaProduto(auxiliar[i],auxiliar[i+1],precoUni);
+            linha.insereLinhaEncomenda(produto,auxiliar[i+2],auxiliar[i+3]);
+            catalogoProds.insereProd(produto);
             linhas.add(linha);
         }
         this.prods = linhas;

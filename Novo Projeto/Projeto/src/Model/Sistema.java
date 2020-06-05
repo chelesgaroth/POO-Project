@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Sistema implements ISistema {
     private HashSet<ILoja> listaLojas; // Register dos 4 tipos
-    private HashSet<IUser> listaUsers;
+    private HashSet<User> listaUsers;
     private HashSet<IEmpresa> listaEmpr;
     private HashSet<IVoluntario> listaVol;
     private HashMap<String, ILogin> logins; // UserID + (Email + Password)
@@ -39,17 +39,16 @@ public class Sistema implements ISistema {
     }
 
     public HashSet<ILoja> getListaLojas() {
-        HashSet<ILoja> lojas = new HashSet<>();
+       /*HashSet<ILoja> lojas = new HashSet<>();
         for (ILoja loja : this.listaLojas) {
             lojas.add(loja.clone());
-            System.out.println("Loja do get "+loja);
-        }
-        return lojas;
+        }*/
+        return this.listaLojas;
     }
 
-    public HashSet<IUser> getListaUsers() {
-        HashSet<IUser> users = new HashSet<>();
-        for (IUser user : this.listaUsers) {
+    public HashSet<User> getListaUsers() {
+        HashSet<User> users = new HashSet<>();
+        for (User user : this.listaUsers) {
             users.add(user.clone());
         }
         return users;
@@ -87,9 +86,9 @@ public class Sistema implements ISistema {
         this.listaLojas = lojas;
     }
 
-    public void setListaUsers(HashSet<IUser> listaUsers) {
-        HashSet<IUser> users = new HashSet<>();
-        for (IUser user : listaUsers) {
+    public void setListaUsers(HashSet<User> listaUsers) {
+        HashSet<User> users = new HashSet<>();
+        for (User user : listaUsers) {
             users.add(user.clone());
         }
         this.listaUsers = users;
@@ -136,11 +135,18 @@ public class Sistema implements ISistema {
         return new Sistema(this);
     }
 
+    public void addTipo(ITipo t){
+        if(t instanceof User) {
+            User u = (User) t;
+            this.listaUsers.add(u);
+        }
+
+    }
     //UTILIZADOR
-    public void addUser(IUser c) {
+    public void addUser(User c) {
         this.listaUsers.add(c);
     }
-    public boolean existsUser(IUser c) {
+    public boolean existsUser(User c) {
         return this.listaUsers.contains(c);
     }
 
@@ -189,11 +195,5 @@ public class Sistema implements ISistema {
         for(ILoja loja : this.listaLojas){
             loja.setStock(aux);
         }
-    }
-
-    public void printaLojas(){
-        HashSet<ILoja> lojas = getListaLojas();
-        for(ILoja l:lojas)
-            System.out.println("Loja do sistema "+l);
     }
 }

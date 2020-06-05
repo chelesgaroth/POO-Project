@@ -95,13 +95,14 @@ public class AppController implements IAppController {
 
     public void userMode() {
         do {
-            sistema.printaLojas();
+            //sistema.printaLojas();
             Scanner ler = new Scanner(System.in);
             view.userMode();
             opcao = ler.nextInt();
             switch (opcao) {
                 case 1: { //Encomendar algo
-                    catalogoStock();
+                    //catalogoStock();
+                    break;
                 }
                 case 2: break;
                 default: break;
@@ -117,7 +118,6 @@ public class AppController implements IAppController {
         nav.divide(sistema.getCatalogoProds(),null,"\nCATALOGO DE PRODUTOS",0);
         nav.menu();
         do {
-
             ler = new Scanner(System.in);
             x = ler.nextLine();
             switch (x) {
@@ -146,6 +146,7 @@ public class AppController implements IAppController {
                 }
                 case "E":{
                     escolheProdLoja(0);
+
                     break;
                 }
                 default: {
@@ -163,11 +164,17 @@ public class AppController implements IAppController {
         if(opcao==0){
         System.out.println("Insira o código do produto");
         String prod = ler.nextLine();
-        res.add(prod); }
-        catalogoLoja(sistema.getListaLojas());
+        res.add(prod);
+        escolheProdLoja(1);
+        }
+
 
 
         if (opcao==1) {
+            System.out.println(sistema.getListaLojas().size());
+            System.out.println(sistema.getListaVol());
+            HashSet<ILoja> lojas = sistema.getListaLojas();
+            catalogoLoja(lojas);
             System.out.println("Insira o código da loja");
             ler= new Scanner(System.in);
             String loja = ler.nextLine();

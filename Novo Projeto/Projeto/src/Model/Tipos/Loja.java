@@ -211,7 +211,7 @@ public class Loja implements ILoja {
 
     //Método Clone
     public Loja clone(){
-        return new Loja (this);
+        return new Loja(this);
     }
 
     //Equals para as variáveis do ficheiro Logs.txt
@@ -240,8 +240,8 @@ public class Loja implements ILoja {
     public String toString() {
         return "Loja:" +
                 codLoja + "," +
-                nome + "\n" +
-                stock;
+                nome + "\n" ;//+
+                //stock;
     }
 
     public Loja criaLoja(String aux){
