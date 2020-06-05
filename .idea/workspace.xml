@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c40bf09d-bd55-4de4-a938-6034d74eea03" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Logs.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AppController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/IAppController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/Exception.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MainMVC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/CatalogoProds.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/ICatalogoProds.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/IProduto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Catalogos/Produto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/Encomenda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/IEncomenda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/ILinhaEncomenda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Encomendas/LinhaEncomenda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ISistema.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Leitura/IReadFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Leitura/ReadFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Logins/ILogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Logins/Login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Empresa/AppEmpresa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Empresa/IAppEmpresa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Loja/AppLoja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Loja/IAppLoja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/AppUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/IAppUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/IUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/User/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Voluntario/AppVoluntario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ModosMVC/Voluntario/IAppVoluntario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Sistema.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Empresa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/IEmpresa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/ILoja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/ITipo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/IUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/IVoluntario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Loja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Tipo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Tipos/Voluntario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/AppView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/IAppView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/INavegador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Navegador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/POO-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto-POO.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/Logs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/Projeto-POO.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Controller/AppController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Controller/IAppController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Exceptions/Exception.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/META-INF/Projeto-POO.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/MainMVC.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/CatalogoProds.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/ICatalogoProds.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/IProduto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Catalogos/Produto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/Encomenda.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/IEncomenda.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/ILinhaEncomenda.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Encomendas/LinhaEncomenda.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ISistema.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Leitura/IReadFile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Leitura/ReadFile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Logins/ILogin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Logins/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Empresa/Model/AppEmpresa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Empresa/Model/IAppEmpresa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Loja/Model/AppLoja.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Loja/Model/IAppLoja.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/AppUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/Controller/IUserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/Controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/User/Model/IAppUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Voluntario/Model/AppVoluntario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/ModosMVC/Voluntario/Model/IAppVoluntario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Sistema.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Empresa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/IEmpresa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/ILoja.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/ITipo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/IUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/IVoluntario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Loja.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Tipo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/Model/Tipos/Voluntario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/AppView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/IAppView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/INavegador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/out/production/Projeto-POO/View/Navegador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Controller/AppController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Controller/IAppController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Exceptions/Exception.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/MainMVC.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/CatalogoProds.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/ICatalogoProds.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/IProduto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Catalogos/Produto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/Encomenda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/IEncomenda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/ILinhaEncomenda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Encomendas/LinhaEncomenda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ISistema.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Leitura/IReadFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Leitura/ReadFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Logins/ILogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Logins/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Empresa/AppEmpresa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Empresa/IAppEmpresa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Loja/AppLoja.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Loja/IAppLoja.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/AppUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/IAppUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/IUserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/User/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Voluntario/AppVoluntario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/ModosMVC/Voluntario/IAppVoluntario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Sistema.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Empresa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/IEmpresa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/ILoja.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/ITipo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/IUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/IVoluntario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Loja.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Tipo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/Model/Tipos/Voluntario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/AppView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/IAppView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/INavegador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Novo Projeto/Projeto/src/View/Navegador.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1bzghu6ZkLyNrCcvk5odf08dKiD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="Application.MainMVC">
+    <configuration name="Controller" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Controller" />
+      <module name="POO-Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainMVC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainMVC" />
+      <module name="POO-Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Controller" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Controller" />
+      <item itemvalue="Application.MainMVC" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainMVC" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c40bf09d-bd55-4de4-a938-6034d74eea03" name="Default Changelist" comment="" />
+      <created>1589640458234</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589640458234</updated>
+      <workItem from="1589640460539" duration="3939000" />
+      <workItem from="1589661448201" duration="1198000" />
+      <workItem from="1589679324364" duration="608000" />
+      <workItem from="1589716993124" duration="10656000" />
+      <workItem from="1589835418683" duration="1399000" />
+      <workItem from="1589988172674" duration="6682000" />
+      <workItem from="1590063148458" duration="599000" />
+      <workItem from="1590067832530" duration="3921000" />
+      <workItem from="1590086024687" duration="5777000" />
+      <workItem from="1590104088423" duration="1269000" />
+      <workItem from="1590160554875" duration="681000" />
+      <workItem from="1590270533009" duration="19000" />
+      <workItem from="1591378320306" duration="700000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="588" y="149" width="847" height="677" key="#Project_Structure" timestamp="1591379021185">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="588" y="149" width="847" height="677" key="#Project_Structure/67.27.1853.923@67.27.1853.923" timestamp="1591379021185" />
+    <state x="451" y="145" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591379059011">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="451" y="145" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.923@67.27.1853.923" timestamp="1591379059011" />
+    <state x="725" y="273" width="525" height="428" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1591378688646">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="725" y="273" width="525" height="428" key="#com.intellij.ide.util.TreeClassChooserDialog/67.27.1853.923@67.27.1853.923" timestamp="1591378688646" />
+    <state x="746" y="374" width="494" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1590002319003">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="746" y="374" width="494" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1853.923@67.27.1853.923" timestamp="1590002319003" />
+    <state x="776" y="245" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591379056711">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="776" y="245" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.923@67.27.1853.923" timestamp="1591379056711" />
+    <state x="593" y="341" width="779" height="293" key="FileDocumentManager.FileCacheConflict" timestamp="1591378803127">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="593" y="341" width="779" height="293" key="FileDocumentManager.FileCacheConflict/67.27.1853.923@67.27.1853.923" timestamp="1591378803127" />
+    <state width="1807" height="742" key="GridCell.Tab.0.bottom" timestamp="1591378821316">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state width="1807" height="834" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758073" />
+    <state width="1807" height="742" key="GridCell.Tab.0.bottom/67.27.1853.923@67.27.1853.923" timestamp="1591378821316" />
+    <state width="1807" height="742" key="GridCell.Tab.0.center" timestamp="1591378821315">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state width="1807" height="834" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758072" />
+    <state width="1807" height="742" key="GridCell.Tab.0.center/67.27.1853.923@67.27.1853.923" timestamp="1591378821315" />
+    <state width="1807" height="742" key="GridCell.Tab.0.left" timestamp="1591378821314">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state width="1807" height="834" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758071" />
+    <state width="1807" height="742" key="GridCell.Tab.0.left/67.27.1853.923@67.27.1853.923" timestamp="1591378821314" />
+    <state width="1807" height="742" key="GridCell.Tab.0.right" timestamp="1591378821315">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state width="1807" height="834" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1589732758072" />
+    <state width="1807" height="742" key="GridCell.Tab.0.right/67.27.1853.923@67.27.1853.923" timestamp="1591378821315" />
+    <state x="476" y="65" width="1024" height="845" key="SettingsEditor" timestamp="1591379026775">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="476" y="65" width="1024" height="845" key="SettingsEditor/67.27.1853.923@67.27.1853.923" timestamp="1591379026775" />
+    <state x="649" y="315" key="com.intellij.ide.util.TipDialog" timestamp="1589970692155">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="649" y="315" key="com.intellij.ide.util.TipDialog/67.27.1853.923@67.27.1853.923" timestamp="1589970692155" />
+    <state x="302" y="79" width="1372" height="871" key="new project wizard" timestamp="1589991655878">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="302" y="79" width="1372" height="871" key="new project wizard/67.27.1853.923@67.27.1853.923" timestamp="1589991655878" />
+    <state x="656" y="225" key="search.everywhere.popup" timestamp="1591378390351">
+      <screen x="67" y="27" width="1853" height="923" />
+    </state>
+    <state x="656" y="225" key="search.everywhere.popup/67.27.1853.923@67.27.1853.923" timestamp="1591378390351" />
+  </component>
+</project>
