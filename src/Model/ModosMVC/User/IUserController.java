@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IUserController {
     void setSistema(ISistema sistema);
-    void setAppView(IAppView view);
+    void setAppView(IUserView view);
     void userMode();
-    void catalogo(int opcao);
-    List<String> escolheProdLoja(int opcao);
+    void catalogo(int opcao,List<String>res);
+    List<String> escolheProdLoja(int opcao,List<String>encomenda);
 }

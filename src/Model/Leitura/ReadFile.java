@@ -1,6 +1,5 @@
 package Model.Leitura;
 
-import Exceptions.MyException;
 import Model.*;
 import Model.Catalogos.CatalogoProds;
 import Model.Catalogos.ICatalogoProds;
@@ -11,7 +10,6 @@ import Model.Logins.Login;
 import Model.Tipos.*;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -113,11 +111,13 @@ public class ReadFile implements IReadFile {
 
                         case ("Aceite"):{
                             aux = linhaPartida[1];
+                            sistema.addEncomenda(aux);
                             conta1++;
+                            break;
                         }
 
                         default: {
-                            System.out.println("Não foi registado -> "+linhaPartida[0]);
+                            System.out.println("Não foi registado -> " + linhaPartida[0]);
                             break;
                         }
 
@@ -176,22 +176,19 @@ public class ReadFile implements IReadFile {
     public static List<String> read (String f){
         int i;
         List<String> res = new ArrayList<>();
+        i = 0;
         try {
-            i = 0;
             FileReader buf = new FileReader(f);
             BufferedReader lerBuf = new BufferedReader(buf);
             String linha = lerBuf.readLine();
             while (linha != null) {
-
                 linha = lerBuf.readLine();
                 res.add(linha);
                 i++;
             }
-            throw new MyException();
-
-        } catch (MyException | IOException ex ){
-
-            System.out.println(ex.getMessage());
+        }
+        catch (IOException e){
+            e.getMessage();
         }
         return res;
     }

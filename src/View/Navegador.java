@@ -17,7 +17,7 @@ public class Navegador implements INavegador {
     private int inseridos; //nº de strings já inseridas
 
     public Navegador(){
-        this.tamPag = 2;
+        this.tamPag = 20;
         this.nTPag = 0;
         this.pagina = 1;
         this.inseridos = 0;
@@ -39,23 +39,35 @@ public class Navegador implements INavegador {
                 aList.add(x);
             }
         }
+        System.out.print("\033[H\033[2J"); //limpa ecra
         System.out.flush(); //limpa ecra
 
         int i;
         if(opcao==0) {
-            this.nTPag = cat.totalProds() / 2;
-            if((this.pagina <= this.nTPag) && (this.inseridos <= cat.totalProds())){
+            if((prods.size()%20)!=0)this.nTPag = (prods.size() / 20) +1;
+            else this.nTPag = (prods.size() / 20);
+
+            if((this.pagina <= this.nTPag) && (this.inseridos <= prods.size())){
                 System.out.println(mensagem);
-                for(i = this.inseridos; (i< (this.tamPag + this.inseridos)) && (i <cat.totalProds()); i++ ){
-                    System.out.print("\n********Produto*********\n");
-                    System.out.print(prods.get(i).toString());
-                    if(i==(this.inseridos+1)) break;
+                System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+                System.out.print("Código    Nome                 Preço                  ");
+                System.out.print("      Código    Nome                     Preço\n");
+                System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+                for(i = this.inseridos; (i< (this.tamPag + this.inseridos)) && (i <prods.size()); i++ ){
+                    System.out.printf("%-10s" ,prods.get(i).getCodProduto());
+                    System.out.printf("%-20s" , prods.get(i).getNome());
+                    System.out.printf("%-30s", prods.get(i).getPreco());
+                    int j=i+10;
+                    System.out.printf("%-10s",prods.get(j).getCodProduto());
+                    System.out.printf("%-25s",prods.get(j).getNome());
+                    System.out.printf("%-20s",prods.get(j).getPreco());
+                    System.out.println();
+                    if(i==(this.inseridos+9)) break;
                 }
-                //this.inseridos+=20;
                 if(i>=cat.totalProds()) System.out.println("Fim dos resultados.");
                 System.out.printf("\nPágina <%d/%d> \n\n",this.pagina ,this.nTPag);
-                //this.pagina++;
-            } }
+            }
+        }
         if (opcao==1){
             if((this.pagina <= this.nTPag) && (this.inseridos <= lojas.size())){
                 System.out.println(mensagem);
@@ -64,22 +76,22 @@ public class Navegador implements INavegador {
                     System.out.println(aList.get(i).toString());
                     if(i==(this.inseridos+1)) break;
                 }
-                //this.inseridos+=20;
                 if(i>=aList.size()) System.out.println("Fim dos resultados.");
                 System.out.printf("\nPágina <%d/%d> \n\n",this.pagina ,this.nTPag);
 
             }
-        }}
+        }
+    }
 
     public void proxima(ICatalogoProds cat, HashSet<Loja> lojas, String mensagem, int opcao){
         this.pagina += 1;
-        this.inseridos += 2;
+        this.inseridos += 20;
         divide(cat,lojas,mensagem,opcao);
     }
 
     public void anterior(ICatalogoProds cat, HashSet<Loja> lojas, String mensagem, int opcao){
         this.pagina -= 1;
-        this.inseridos -= 2;
+        this.inseridos -= 20;
         if((this.pagina >= 0) && (this.inseridos >=0)){
             divide(cat,lojas,mensagem,opcao);
         }

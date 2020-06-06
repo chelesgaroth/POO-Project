@@ -1,5 +1,5 @@
 package Model.ModosMVC.User;
 
-public class AppUser implements Model.ModosMVC.User.Model.IAppUser {
+public class AppUser implements IAppUser {
 
 }

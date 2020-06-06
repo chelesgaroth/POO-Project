@@ -14,7 +14,9 @@ public interface ISistema {
     HashSet<Voluntario> getListaVol();
     HashMap<String,ILogin> getLogins();
     ICatalogoProds getCatalogoProds();
+    ILogin getQuem();
 
+    void setQuem(ILogin quem);
     void setListaLojas(HashSet<Loja> listaLojas);
     void setListaUsers(HashSet<User> listaUsers);
     void setListaEmpr(HashSet<Empresa> listaEmpr);
@@ -30,8 +32,9 @@ public interface ISistema {
 
     void addLogin(ILogin log, String userID);
     boolean existsLogin(ILogin log);
-
     void StockLoja();
+
+    void addEncomenda(String id);
 
 
 }

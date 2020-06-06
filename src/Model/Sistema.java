@@ -5,20 +5,30 @@ import Model.Catalogos.ICatalogoProds;
 import Model.Encomendas.Encomenda;
 import Model.Encomendas.ILinhaEncomenda;
 import Model.Logins.ILogin;
+import Model.Logins.Login;
+import Model.ModosMVC.*;
+import Model.ModosMVC.Loja.AppLoja;
+import Model.ModosMVC.Loja.IAppLoja;
+import Model.ModosMVC.User.AppUser;
+import Model.ModosMVC.User.IAppUser;
 import Model.Tipos.*;
 
 import java.util.*;
 
 public class Sistema implements ISistema {
+
     private HashSet<Loja> listaLojas; // Register dos 4 tipos
     private HashSet<User> listaUsers;
     private HashSet<Empresa> listaEmpr;
     private HashSet<Voluntario> listaVol;
     private HashMap<String, ILogin> logins; // UserID + (Email + Password)
-    ArrayList<Encomenda> encs; //encomendas validadas que a loja tem de preparar
+    ArrayList<String> encs; //encomendas validadas que as lojas tem de preparar
     private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
+    private ILogin quem; //quem é que está com o login aberto
+
 
     public Sistema() {
+
         this.listaLojas = new HashSet<>();
         this.listaUsers = new HashSet<>();
         this.listaEmpr = new HashSet<>();
@@ -26,10 +36,14 @@ public class Sistema implements ISistema {
         this.logins = new HashMap<>();
         this.encs = new ArrayList<>();
         this.catalogoProds = new CatalogoProds();
+        this.quem = new Login();
     }
 
 
     public Sistema(Sistema sistema) {
+        //
+        //
+
         this.listaLojas = sistema.getListaLojas();
         this.listaUsers = sistema.getListaUsers();
         this.listaEmpr = sistema.getListaEmpr();
@@ -37,17 +51,22 @@ public class Sistema implements ISistema {
         this.logins = sistema.getLogins();
         this.encs = sistema.getEncs();
         this.catalogoProds = sistema.getCatalogoProds();
+        this.quem = sistema.getQuem();
     }
 
-    public ArrayList<Encomenda> getEncs() {
-        ArrayList<Encomenda> encs = new ArrayList<>() ;
-        for (Encomenda e: this.encs){
-            encs.add(e.clone());
-        }
-        return encs;
+    public ILogin getQuem() {
+        return quem;
     }
 
-    public void setEncs(ArrayList<Encomenda> encs) {
+    public void setQuem(ILogin quem) {
+        this.quem = quem;
+    }
+
+    public ArrayList<String> getEncs() {
+        return this.encs;
+    }
+
+    public void setEncs(ArrayList<String> encs) {
         this.encs = encs;
     }
 
@@ -141,6 +160,7 @@ public class Sistema implements ISistema {
         sb.append("\nLista de Empresas: ").append(this.listaEmpr).append(", ");
         sb.append("\nLista de Voluntários: ").append(this.listaVol);
         sb.append("\nLista de Logins: ").append(this.logins);
+        sb.append("\nEncomendas aceites: ").append(this.encs);
         return sb.toString();
     }
 
@@ -208,5 +228,10 @@ public class Sistema implements ISistema {
         for(ILoja loja : this.listaLojas){
             loja.setStock(aux);
         }
+    }
+
+    //Adicionar encomendas validadas
+    public void addEncomenda(String id){
+        this.encs.add(id);
     }
 }

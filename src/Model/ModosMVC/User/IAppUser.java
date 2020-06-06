@@ -1,4 +1,4 @@
-package Model.ModosMVC.User.Model;
+package Model.ModosMVC.User;
 
 public interface IAppUser {
 }

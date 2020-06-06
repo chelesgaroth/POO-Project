@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class Loja extends Tipo implements ILoja {
 
-    private int pessoasFila;
+    private int pessoasFila; //sistema.encs.size()
     private LocalDateTime tempo;
     private double tempoPessoa; //tempo medio a atender uma pessoa
     private ICatalogoProds stock; //Stock da loja

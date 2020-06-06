@@ -24,7 +24,7 @@ public class AppView implements IAppView {
         System.out.println("0- Voltar ao Menu Inicial");
     }
 
-    public void mode(int x, String nome){
+    /*public void mode(int x, String nome){
         System.out.println("---------TRAZ AQUI!--------");
 
         if(x==1){ //User
@@ -38,7 +38,7 @@ public class AppView implements IAppView {
         ou transportador;
         * classificar o voluntário ou a empresa de transportes mediante o grau de satisfação com
         o serviço;
-        */
+
         }
         if(x==2){ //Loja
             System.out.println("1- Ver o nº de vendas realizadas");
@@ -49,7 +49,7 @@ public class AppView implements IAppView {
         if(x==4){ //Voluntário
             System.out.println("1- Ver o nº de encomendas que foram entregues");
         }
-    }
+    } */
 
     public void printMensagem(String s){
         System.out.printf("\n%s\n",s);
@@ -60,13 +60,5 @@ public class AppView implements IAppView {
         if(x==1) System.out.println("Insira o seu email:");
         if(x==3) System.out.println("Password ou email incorreto. Tente novamente.");
         if(x==2) System.out.println("Insira a sua password:");
-    }
-
-    public void userMode(){
-        System.out.println("-----------USER MODE----------");
-        System.out.println("1- Fazer uma encomenda");
-        System.out.println("...");
-        System.out.println("...");
-        System.out.println("0- Sair da aplicação");
     }
 }
