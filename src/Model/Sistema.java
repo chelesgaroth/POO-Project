@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Sistema implements ISistema {
 
-    private HashSet<Loja> listaLojas; // Register dos 4 tipos
+    private HashSet<Loja> listaLojas;
     private HashSet<User> listaUsers;
     private HashSet<Empresa> listaEmpr;
     private HashSet<Voluntario> listaVol;
@@ -22,6 +22,8 @@ public class Sistema implements ISistema {
     private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
     private ILogin quem; //quem é que está com o login aberto
     private HashSet<IEncomenda> totalEncs; //total das encomendas que passam pelo sistema
+    private HashMap<String,IEncomenda> encIntroduzidas; //encomendas introduzidas mas não validadas pela loja
+
 
     public Sistema() {
 
@@ -34,6 +36,7 @@ public class Sistema implements ISistema {
         this.catalogoProds = new CatalogoProds();
         this.quem = new Login();
         this.totalEncs = new HashSet<>();
+        this.encIntroduzidas = new HashMap<>();
     }
 
 
@@ -48,6 +51,7 @@ public class Sistema implements ISistema {
         this.catalogoProds = sistema.getCatalogoProds();
         this.quem = sistema.getQuem();
         this.totalEncs = sistema.getTotalEncs();
+        this.encIntroduzidas = sistema.getEncIntroduzidas();
     }
 
 
@@ -145,6 +149,14 @@ public class Sistema implements ISistema {
             vols.add(vol.clone());
         }
         this.listaVol = vols;
+    }
+
+    public HashMap<String, IEncomenda> getEncIntroduzidas() {
+        return this.encIntroduzidas;
+    }
+
+    public void setEncIntroduzidas(HashMap<String, IEncomenda> encIntroduzidas) {
+        this.encIntroduzidas = encIntroduzidas;
     }
 
     public boolean equals(Object o) {
@@ -252,5 +264,10 @@ public class Sistema implements ISistema {
            }
         }
         return false;
+    }
+
+    public void addEncIntroduzida (IEncomenda enc) {
+        String idLoja = enc.getLojaID();
+        this.encIntroduzidas.put(idLoja,enc);
     }
 }

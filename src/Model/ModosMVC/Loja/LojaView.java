@@ -12,6 +12,7 @@ public class LojaView implements ILojaView {
         System.out.println("2- Indicar que a encomenda está pronta");
         System.out.println("3- Encomendas em fila de espera");
         System.out.println("4- Ver o histórico de vendas realizadas");
+        System.out.println("5- Lista de encomendas por completar");
         System.out.println("0- Sair da aplicação");
     }
 

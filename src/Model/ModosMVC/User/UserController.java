@@ -1,5 +1,6 @@
 package Model.ModosMVC.User;
 
+import Model.Encomendas.IEncomenda;
 import Model.ISistema;
 import Model.Leitura.IReadFile;
 import Model.Leitura.ReadFile;
@@ -115,7 +116,8 @@ public class UserController implements IUserController {
                         //chamar validação de encomenda
                         System.out.println("Fim de Encomenda");
                         appuser.setProds(sistema.getCatalogoProds());
-                        appuser.constroiLinhaEncomenda(encomenda, sistema.getQuem());
+                        IEncomenda enc = appuser.constroiLinhaEncomenda(encomenda, sistema.getQuem());
+                        sistema.addEncIntroduzida(enc);
                     }
                     x="M";
                     break;

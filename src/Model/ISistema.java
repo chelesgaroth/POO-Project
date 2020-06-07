@@ -19,6 +19,7 @@ public interface ISistema {
     ILogin getQuem();
     HashSet<String> getAceites();
     HashSet<IEncomenda> getTotalEncs();
+    HashMap<String, IEncomenda> getEncIntroduzidas();
 
     void setTotalEncs(HashSet<IEncomenda> totalEncs);
     void setAceites(HashSet<String> encs);
@@ -28,6 +29,7 @@ public interface ISistema {
     void setListaEmpr(HashSet<Empresa> listaEmpr);
     void setListaVol(HashSet<Voluntario> listaVol);
     void setCatalogo(ICatalogoProds cat);
+    void setEncIntroduzidas(HashMap<String, IEncomenda> encIntroduzidas);
 
     void addTipo(ITipo t);
 
@@ -39,10 +41,12 @@ public interface ISistema {
     void addLogin(ILogin log, String userID);
     boolean existsLogin(ILogin log);
     void StockLoja();
+    void addEncIntroduzida (IEncomenda enc);
 
     void addAceite(String id);
     void addEncTotal(IEncomenda encomenda);
     boolean existLojasCod (String lojaId);
+
 
 
 

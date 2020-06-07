@@ -1,11 +1,12 @@
 package Model.ModosMVC.Loja;
 
+import Model.Encomendas.IEncomenda;
 import Model.ISistema;
+import Model.Logins.ILogin;
+import Model.Tipos.ILoja;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class LojaController implements ILojaController {
@@ -68,6 +69,23 @@ public class LojaController implements ILojaController {
                 }
                 case 4: { //Ver o histórico de vendas realizadas
                     break;
+                }
+
+                case 5 : {
+                    HashMap<String, IEncomenda> encsTotais = sistema.getEncIntroduzidas();
+                    HashSet<IEncomenda> encomendasProprias = new HashSet<>();
+                    ILogin loja = sistema.getQuem();
+                    String email = loja.getEmail();
+                    String[] user = email.split("@");
+                    for (String lojaid : encsTotais.keySet()) {
+                        if (lojaid.equals(user[0])) {
+                            IEncomenda enc = encsTotais.get(lojaid);
+                            System.out.println(enc);
+                            encomendasProprias.add(enc);
+                        }
+                    }
+                    //encomendasProprias: estas sao as encomendas dos utilizadores para a loja
+                    //para ficar completa falta a loja adicionar o peso da mesma e gerar codigo de encomenda
                 }
                 default:
                     break;

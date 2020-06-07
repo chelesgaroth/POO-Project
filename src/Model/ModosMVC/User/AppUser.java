@@ -4,6 +4,8 @@ import Model.Catalogos.CatalogoProds;
 import Model.Catalogos.ICatalogoProds;
 import Model.Catalogos.IProduto;
 import Model.Catalogos.Produto;
+import Model.Encomendas.Encomenda;
+import Model.Encomendas.IEncomenda;
 import Model.Encomendas.ILinhaEncomenda;
 import Model.Encomendas.LinhaEncomenda;
 import Model.Logins.ILogin;
@@ -27,12 +29,16 @@ public class AppUser implements IAppUser {
         this.prods = prods;
     }
 
-    public void constroiLinhaEncomenda (List<String> res, ILogin user){
-        ILinhaEncomenda linhaEncomenda = new LinhaEncomenda();
-        List<ILinhaEncomenda> encomendas = new ArrayList<>();
+    public IEncomenda constroiLinhaEncomenda (List<String> res, ILogin user){
+        LinhaEncomenda linhaEncomenda = new LinhaEncomenda();
+        ArrayList<LinhaEncomenda> encomendas = new ArrayList<>();
+        IEncomenda encFinal = new Encomenda();
         IProduto prod = new Produto();
         int i=0;
         int x=0;
+        String loja = "";
+        String useremail = user.getEmail();
+        String [] userId = useremail.split("@");
         //res : idProd / Quantidade / idProd / Quantidade ..... idLoja
         for (String string:res) {
             //primeiro verifica-se é o ultimo elemento da list, pois este é a loja
@@ -40,7 +46,7 @@ public class AppUser implements IAppUser {
 
             if (j==res.size()){
                 //ir buscar loja
-                System.out.println(" loja "+string);
+                loja = string;
             }
 
            if(j!=res.size()){
@@ -59,22 +65,27 @@ public class AppUser implements IAppUser {
             }
             if(((i%2)!=0)&& prod!=null){
                 //é a quantidade do produto anterior
-                System.out.println("Quantidade "+string);
                 float quantidade = Float.parseFloat(string);
                 linhaEncomenda.setQuantidade(quantidade);
-                linhaEncomenda.setValor(prod.getPreco()*quantidade);
+                float valor = prod.getPreco()* quantidade;
+                linhaEncomenda.setValor(valor);
                 x++;
             }
          }
            if (x==2) { //significa que já li o produto e a quantidade
                encomendas.add(linhaEncomenda);
-               System.out.println("Encomenda");
                System.out.println(linhaEncomenda.toString());
                x=0;
            }
 
             i++;
         }
-        System.out.println("User "+ user);
+
+        encFinal.setLojaID(loja);
+        String str = String.join("", userId[0]);
+        encFinal.setUserID(str);
+        encFinal.setProds(encomendas);
+        System.out.println("Encomenda: "+ encFinal.toString());
+        return encFinal;
     }
 }
