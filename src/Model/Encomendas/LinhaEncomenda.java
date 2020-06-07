@@ -63,7 +63,8 @@ public class LinhaEncomenda implements ILinhaEncomenda{
     }
 
     public String toString() {
-        return "Produto:" + produto +
+        return "Código produto:" + produto.getCodProduto() +
+                "\nDescrição " +  produto.getNome() +
                 "\nQuantidade: " + quantidade +
                 "\nPreço: " + valor +"\n";
     }

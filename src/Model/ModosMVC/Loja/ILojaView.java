@@ -9,4 +9,6 @@ public interface ILojaView {
     void printMensagem(String s);
     void infos();
     void encomendasFila(ArrayList<IEncomenda> res);
+    void tipodeEncomenda(int x);
+    void printa (String mensagem);
 }

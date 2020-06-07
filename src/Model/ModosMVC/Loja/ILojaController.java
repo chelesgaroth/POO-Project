@@ -1,5 +1,6 @@
 package Model.ModosMVC.Loja;
 
+import Model.Encomendas.IEncomenda;
 import Model.ISistema;
 
 public interface ILojaController {
@@ -8,4 +9,5 @@ public interface ILojaController {
     void setModel(IAppLoja model);
 
     void lojaMode();
+
 }

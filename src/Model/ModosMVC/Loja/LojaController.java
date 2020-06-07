@@ -39,7 +39,7 @@ public class LojaController implements ILojaController {
             opcao = ler.nextInt();
             switch (opcao) {
                 case 1: { //Validar a encomenda
-                    //Estas duas linhas é só para testar as filas de espera
+                 /*   //Estas duas linhas é só para testar as filas de espera
                     model.addEncomenda(sistema.getTotalEncs().iterator().next());
                     System.out.println(model.toString());
                     /*
@@ -49,8 +49,56 @@ public class LojaController implements ILojaController {
                     ADICIONAR A ENCOMENDA À LISTA DE ESPERA DA APP
                     ADICIONAR AS ENCOMENDAS TOTAL NO SISTEMA
                      */
+
+                    HashMap<String, IEncomenda> encsTotais = sistema.getEncIntroduzidas();
+                    HashSet<IEncomenda> encomendasProprias = new HashSet<>();
+                    ILogin loja = sistema.getQuem();
+                    String email = loja.getEmail();
+                    String[] user = email.split("@");
+                    for (String lojaid : encsTotais.keySet()) {
+                        if (lojaid.equals(user[0])) {
+                            IEncomenda enc = encsTotais.get(lojaid);
+                            System.out.println(enc);
+                            view.printa("Qual é o peso total da encomenda ?");
+                            Scanner ler2 = new Scanner(System.in);
+                            String peso = ler2.next();
+                            enc.setPesoTotal(Float.parseFloat(peso));
+                            ler2 = new Scanner(System.in);
+                            view.tipodeEncomenda(1);
+                            String medicamento = ler2.next();
+                            if (medicamento.equals("1")) {
+                                enc.setMedicamentos(true);
+                            } else if (medicamento.equals("2")) {
+                                enc.setMedicamentos(false);
+                            }
+
+                            ler2 = new Scanner(System.in);
+                            view.tipodeEncomenda(2);
+                            String congelados = ler2.next();
+                            if (congelados.equals("1")) {
+                                enc.setCongelados(true);
+                            } else if (congelados.equals("2")) {
+                                enc.setCongelados(false);
+                            }
+
+                            Random random = new Random();
+                            int numero = random.nextInt(10000);
+                            String idEnc = "e" + Integer.toString(numero);
+                            enc.setEncomendaID(idEnc);
+                            enc.setValidacao(true);
+                            System.out.println(enc);
+                            System.out.println("MEDICAMENTO ? " + enc.getMedicamentos());
+                            System.out.println("CONGELADOS? " + enc.getCongelados());
+                            enc.setHoraInicial(LocalTime.now());
+                            System.out.println("Hora inicial " + enc.getHoraInicial());
+                            System.out.println("Válido? " + enc.getValidacao());
+                            encomendasProprias.add(enc);
+
+                        }
+                    }
                     break;
                 }
+
                 case 2: { //Indicar que a encomenda está pronta
                     view.printMensagem("Qual a encomenda que está pronta?");
                     ler = new Scanner(System.in);
@@ -72,25 +120,17 @@ public class LojaController implements ILojaController {
                 }
 
                 case 5 : {
-                    HashMap<String, IEncomenda> encsTotais = sistema.getEncIntroduzidas();
-                    HashSet<IEncomenda> encomendasProprias = new HashSet<>();
-                    ILogin loja = sistema.getQuem();
-                    String email = loja.getEmail();
-                    String[] user = email.split("@");
-                    for (String lojaid : encsTotais.keySet()) {
-                        if (lojaid.equals(user[0])) {
-                            IEncomenda enc = encsTotais.get(lojaid);
-                            System.out.println(enc);
-                            encomendasProprias.add(enc);
-                        }
+
                     }
-                    //encomendasProprias: estas sao as encomendas dos utilizadores para a loja
-                    //para ficar completa falta a loja adicionar o peso da mesma e gerar codigo de encomenda
-                }
+
+
                 default:
                     break;
             }
         }while (opcao != 0) ;
         view.printMensagem("Obrigada!Volte Sempre!");
     }
+
+
+
 }

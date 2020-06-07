@@ -10,12 +10,19 @@ public interface IEncomenda {
     String getUserID();
     String getLojaID();
     double getPesoTotal();
+    boolean getMedicamentos();
+    boolean getCongelados();
+    boolean getValidacao();
     ArrayList<LinhaEncomenda> getProds() ;
     void setEncomendaID(String encomendaID);
     void setUserID(String userID);
     void setLojaID(String lojaID);
     void setPesoTotal(double pesoTotal);
     void setProds(ArrayList<LinhaEncomenda> prods);
+    void setMedicamentos(boolean medicamentos);
+    void setCongelados(boolean congelados);
+    void setHoraEntrega(LocalTime horaEntrega);
+    void setValidacao(boolean validacao);
 
     LocalTime getHoraInicial();
     void setHoraInicial(LocalTime horaInicial);

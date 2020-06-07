@@ -12,7 +12,6 @@ public class LojaView implements ILojaView {
         System.out.println("2- Indicar que a encomenda está pronta");
         System.out.println("3- Encomendas em fila de espera");
         System.out.println("4- Ver o histórico de vendas realizadas");
-        System.out.println("5- Lista de encomendas por completar");
         System.out.println("0- Sair da aplicação");
     }
 
@@ -35,5 +34,20 @@ public class LojaView implements ILojaView {
             System.out.print(res.get(i).getEncomendaID());
             System.out.println();
         }
+    }
+    public void tipodeEncomenda(int x) {
+        if (x==1) {
+            System.out.println("Algum destes produtos é medicamento?");
+            System.out.println("1- Sim");
+            System.out.println("2- Não");
+        }
+        if(x==2) {
+            System.out.println("Algum destes produtos é congelado?");
+            System.out.println("1- Sim");
+            System.out.println("2- Não");
+        }
+    }
+    public void printa (String mensagem){
+        System.out.println(mensagem);
     }
 }
