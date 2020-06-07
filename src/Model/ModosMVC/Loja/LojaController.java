@@ -38,6 +38,7 @@ public class LojaController implements ILojaController {
             opcao = ler.nextInt();
             switch (opcao) {
                 case 1: { //Validar a encomenda
+                    //Estas duas linhas é só para testar as filas de espera
                     model.addEncomenda(sistema.getTotalEncs().iterator().next());
                     System.out.println(model.toString());
                     /*
