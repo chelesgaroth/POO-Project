@@ -33,7 +33,7 @@ public class LinhaEncomenda implements ILinhaEncomenda{
     public IProduto getProduto(){
         return this.produto;
     }
-    public void setProduto(Produto prod){
+    public void setProduto(IProduto prod){
         this.produto = prod;
     }
 

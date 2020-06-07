@@ -243,4 +243,14 @@ public class Sistema implements ISistema {
 
     //Adicionar total das encomendas
     public void addEncTotal(IEncomenda encomenda) { this.totalEncs.add(encomenda);}
+
+    //Verificar se existe loja por codId
+    public boolean existLojasCod (String lojaId) {
+        for (ILoja loja : listaLojas) {
+           if(loja.getIdSuper(loja).equals(lojaId)) {
+               return true;
+           }
+        }
+        return false;
+    }
 }

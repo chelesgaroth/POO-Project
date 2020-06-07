@@ -19,13 +19,17 @@ public class UserController implements IUserController {
     private ISistema sistema;
     private IUserView view;
     private INavegador nav;
+    private IAppUser appuser;
     private int opcao;
 
 
     public UserController() {
         this.nav = new Navegador();
+        this.appuser = new AppUser();
         this.opcao = 0;
     }
+
+
     public void setSistema(ISistema sistema){
         this.sistema = sistema;
     }
@@ -110,6 +114,8 @@ public class UserController implements IUserController {
                         //Criar linha de encomenda
                         //chamar validação de encomenda
                         System.out.println("Fim de Encomenda");
+                        appuser.setProds(sistema.getCatalogoProds());
+                        appuser.constroiLinhaEncomenda(encomenda, sistema.getQuem());
                     }
                     x="M";
                     break;
@@ -155,13 +161,19 @@ public class UserController implements IUserController {
             catalogo(1,encomenda);
 
         }
-        if(opcao==2){
+        if(opcao==2) {
             System.out.println("Insira o código da loja");
-            ler= new Scanner(System.in);
+            ler = new Scanner(System.in);
             String loja = ler.nextLine();
-            encomenda.add(loja);
-            System.out.println(encomenda.toString());
+            if (sistema.existLojasCod(loja)) {
+                encomenda.add(loja);
+                System.out.println(encomenda.toString());
+            } else {
+                System.out.println("Loja inválida, insira novamente");
+                catalogo(1, encomenda);
+            }
         }
+
         return encomenda;
     }
 }

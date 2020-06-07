@@ -107,4 +107,8 @@ public class Loja extends Tipo implements ILoja {
                 this.getNome() + "\n" ;//+
                 //stock;
     }
+
+    public String getIdSuper (ILoja loja) {
+        return super.getId();
+    }
 }

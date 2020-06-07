@@ -10,4 +10,5 @@ public interface ICatalogoProds {
     String toString();
     void insereProd(IProduto produto);
     int totalProds();
+    IProduto getProd (String codProduto);
 }

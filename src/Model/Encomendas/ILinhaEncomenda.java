@@ -5,7 +5,7 @@ import Model.Catalogos.Produto;
 
 public interface ILinhaEncomenda {
     IProduto getProduto();
-    void setProduto(Produto prod);
+    void setProduto(IProduto prod);
     float getQuantidade();
     void setQuantidade(float quantidade);
     float getValor();

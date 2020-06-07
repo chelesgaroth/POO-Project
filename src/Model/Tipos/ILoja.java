@@ -22,4 +22,5 @@ public interface ILoja {
     boolean equals(Object o);
     int hashCode();
     String toString();
+    String getIdSuper (ILoja loja);
 }

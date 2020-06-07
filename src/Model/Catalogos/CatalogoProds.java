@@ -45,4 +45,10 @@ public class CatalogoProds implements ICatalogoProds {
 
     public int totalProds(){ return (this.catalogo.size()); }
 
+    public IProduto getProd (String codProduto){
+        IProduto prod = new Produto();
+        prod = catalogo.get(codProduto);
+        return prod;
+    }
+
 }

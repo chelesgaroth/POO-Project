@@ -69,13 +69,34 @@ public class Navegador implements INavegador {
             }
         }
         if (opcao==1){
-            if((this.pagina <= this.nTPag) && (this.inseridos <= lojas.size())){
+            if((aList.size()%20)!=0)this.nTPag = (prods.size() / 20) +1;
+            else this.nTPag = (aList.size() / 20);
+            if((this.pagina <= this.nTPag) && (this.inseridos <= aList.size())){
+                System.out.println(mensagem);
+                System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+                System.out.print("Código    Nome           ");
+                System.out.print("      Código    Nome                     \n");
+                System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+                for(i = this.inseridos; (i< (this.tamPag + this.inseridos)) && (i <aList.size()); i++ ){
+                    System.out.printf("%-10s" ,aList.get(i).getId());
+                    System.out.printf("%-20s" , aList.get(i).getNome());
+                    int j=i+10;
+                    if(j<=aList.size()){
+
+                    System.out.printf("%-10s",aList.get(j).getId());
+                    System.out.printf("%-25s",aList.get(j).getNome());}
+                    else {
+                        System.out.printf("sem mais resultados");
+                    }
+                    System.out.println();
+                    if(i==(this.inseridos+9)) break;
+          /*  if((this.pagina <= this.nTPag) && (this.inseridos <= lojas.size())){
                 System.out.println(mensagem);
                 for(i = this.inseridos; (i< (this.tamPag + this.inseridos)) && (i <lojas.size()); i++ ){
                     System.out.print("\n********LOJA*********\n");
                     System.out.println(aList.get(i).toString());
                     if(i==(this.inseridos+1)) break;
-                }
+            */    }
                 if(i>=aList.size()) System.out.println("Fim dos resultados.");
                 System.out.printf("\nPágina <%d/%d> \n\n",this.pagina ,this.nTPag);
 

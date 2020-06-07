@@ -10,4 +10,5 @@ public interface IProduto {
     void setPreco(float preco);
 
     void criaProduto(String codProduto ,String nome, float preco);
+
 }

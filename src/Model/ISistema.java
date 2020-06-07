@@ -42,6 +42,7 @@ public interface ISistema {
 
     void addAceite(String id);
     void addEncTotal(IEncomenda encomenda);
+    boolean existLojasCod (String lojaId);
 
 
 
