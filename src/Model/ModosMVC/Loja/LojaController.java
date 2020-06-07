@@ -27,21 +27,38 @@ public class LojaController implements ILojaController {
     public void setModel(IAppLoja model) { this.model = model; }
 
     public void lojaMode() {
+        view.infos();
+        Scanner ler = new Scanner(System.in);
+        String tempo = ler.nextLine();
+        double time = Float.parseFloat(tempo);
+        model.setTempoPessoa(time);
         do {
-            Scanner ler = new Scanner(System.in);
+            ler = new Scanner(System.in);
             view.modeLoja();
             opcao = ler.nextInt();
             switch (opcao) {
                 case 1: { //Validar a encomenda
+                    model.addEncomenda(sistema.getTotalEncs().iterator().next());
+                    System.out.println(model.toString());
                     /*
                     PEDIR INPUTS PARA TER INFOS PARA CRIAR UMA ENCOMENDA
                     DEPOIS DISSO FAZER SET DA ENCOMENDA COM ESSAS INFORMAÇÕES
-                    ADICIONAR A ENCOMENDA AO SISTEMA À LISTA ENCS
+                    FAZER SET DA HORAINICIAL DA ENTREGA
+                    ADICIONAR A ENCOMENDA À LISTA DE ESPERA DA APP
+                    ADICIONAR AS ENCOMENDAS TOTAL NO SISTEMA
                      */
                     break;
                 }
                 case 2: { //Indicar que a encomenda está pronta
-                    System.out.println(LocalTime.now());
+                    view.printMensagem("Qual a encomenda que está pronta?");
+                    ler = new Scanner(System.in);
+                    String encomenda = ler.nextLine();
+                    if(model.existsEncomenda(encomenda)){
+                        sistema.addAceite(encomenda);
+                        System.out.println(sistema.getAceites());
+                        model.removeEncomenda(encomenda);
+                        System.out.println(model.toString());
+                    }
                     break;
                 }
                 case 3: { // Encomendas em fila de espera

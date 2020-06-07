@@ -18,8 +18,9 @@ public class Encomenda implements IEncomenda{
     //Variaveis extra
     private boolean medicamentos;
     private boolean congelados;
+    private LocalTime horaInicial;
     private LocalTime horaEntrega; // se é null entao tem ser entregue o mais rapido possivel
-    private boolean validacao;
+    private boolean validacao; //??????????
 
     public Encomenda (){
         this.userID = "n/a";
@@ -29,6 +30,7 @@ public class Encomenda implements IEncomenda{
 
         this.medicamentos = false;
         this.congelados = false;
+        this.horaEntrega = LocalTime.now();
         this.horaEntrega = LocalTime.now();
         this.validacao = false;
     }
@@ -143,6 +145,13 @@ public class Encomenda implements IEncomenda{
         this.validacao = validacao;
     }
 
+    public LocalTime getHoraInicial() {
+        return horaInicial;
+    }
+
+    public void setHoraInicial(LocalTime horaInicial) {
+        this.horaInicial = horaInicial;
+    }
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -159,7 +168,7 @@ public class Encomenda implements IEncomenda{
     }
 
     public String toString() {
-        StringBuffer sb = new StringBuffer("\n\nEncomenda: ");
+        StringBuffer sb = new StringBuffer("\n\nEncomenda: ").append(this.encomendaID);
         sb.append("\nUsername: ").append(this.userID).append(", ");
         sb.append("\nLoja: ").append(this.lojaID).append(", ");
         sb.append("\nPeso Total: ").append(this.pesoTotal).append(", ");

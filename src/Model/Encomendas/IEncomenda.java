@@ -2,6 +2,7 @@ package Model.Encomendas;
 
 import Model.Catalogos.ICatalogoProds;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public interface IEncomenda {
@@ -16,5 +17,7 @@ public interface IEncomenda {
     void setPesoTotal(double pesoTotal);
     void setProds(ArrayList<LinhaEncomenda> prods);
 
+    LocalTime getHoraInicial();
+    void setHoraInicial(LocalTime horaInicial);
     void criaEncomenda (String aux, ICatalogoProds catalogoProds);
 }

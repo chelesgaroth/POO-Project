@@ -104,6 +104,7 @@ public class ReadFile implements IReadFile {
                             IEncomenda enco = new Encomenda();
                             aux = linhaPartida[1];
                             enco.criaEncomenda(aux,catalogoProds);
+                            sistema.addEncTotal(enco);
                             sistema.setCatalogo(catalogoProds);
                             conta6++;
                             break;
@@ -111,7 +112,7 @@ public class ReadFile implements IReadFile {
 
                         case ("Aceite"):{
                             aux = linhaPartida[1];
-                            sistema.addEncomenda(aux);
+                            sistema.addAceite(aux);
                             conta1++;
                             break;
                         }

@@ -3,14 +3,10 @@ package Model;
 import Model.Catalogos.CatalogoProds;
 import Model.Catalogos.ICatalogoProds;
 import Model.Encomendas.Encomenda;
+import Model.Encomendas.IEncomenda;
 import Model.Encomendas.ILinhaEncomenda;
 import Model.Logins.ILogin;
 import Model.Logins.Login;
-import Model.ModosMVC.*;
-import Model.ModosMVC.Loja.AppLoja;
-import Model.ModosMVC.Loja.IAppLoja;
-import Model.ModosMVC.User.AppUser;
-import Model.ModosMVC.User.IAppUser;
 import Model.Tipos.*;
 
 import java.util.*;
@@ -22,10 +18,10 @@ public class Sistema implements ISistema {
     private HashSet<Empresa> listaEmpr;
     private HashSet<Voluntario> listaVol;
     private HashMap<String, ILogin> logins; // UserID + (Email + Password)
-    ArrayList<String> encs; //encomendas validadas que as lojas tem de preparar
+    private HashSet<String> aceites; //encomendas já prontas para transportar
     private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
     private ILogin quem; //quem é que está com o login aberto
-
+    private HashSet<IEncomenda> totalEncs; //total das encomendas que passam pelo sistema
 
     public Sistema() {
 
@@ -34,24 +30,33 @@ public class Sistema implements ISistema {
         this.listaEmpr = new HashSet<>();
         this.listaVol = new HashSet<>();
         this.logins = new HashMap<>();
-        this.encs = new ArrayList<>();
+        this.aceites = new HashSet<>();
         this.catalogoProds = new CatalogoProds();
         this.quem = new Login();
+        this.totalEncs = new HashSet<>();
     }
 
 
     public Sistema(Sistema sistema) {
-        //
-        //
 
         this.listaLojas = sistema.getListaLojas();
         this.listaUsers = sistema.getListaUsers();
         this.listaEmpr = sistema.getListaEmpr();
         this.listaVol = sistema.getListaVol();
         this.logins = sistema.getLogins();
-        this.encs = sistema.getEncs();
+        this.aceites = sistema.getAceites();
         this.catalogoProds = sistema.getCatalogoProds();
         this.quem = sistema.getQuem();
+        this.totalEncs = sistema.getTotalEncs();
+    }
+
+
+    public HashSet<IEncomenda> getTotalEncs() {
+        return totalEncs;
+    }
+
+    public void setTotalEncs(HashSet<IEncomenda> totalEncs) {
+        this.totalEncs = totalEncs;
     }
 
     public ILogin getQuem() {
@@ -62,12 +67,12 @@ public class Sistema implements ISistema {
         this.quem = quem;
     }
 
-    public ArrayList<String> getEncs() {
-        return this.encs;
+    public HashSet<String> getAceites() {
+        return this.aceites;
     }
 
-    public void setEncs(ArrayList<String> encs) {
-        this.encs = encs;
+    public void setAceites(HashSet<String> encs) {
+        this.aceites = encs;
     }
 
     public HashSet<Loja> getListaLojas() {
@@ -160,7 +165,8 @@ public class Sistema implements ISistema {
         sb.append("\nLista de Empresas: ").append(this.listaEmpr).append(", ");
         sb.append("\nLista de Voluntários: ").append(this.listaVol);
         sb.append("\nLista de Logins: ").append(this.logins);
-        sb.append("\nEncomendas aceites: ").append(this.encs);
+        //sb.append("\nLista de Encomendas: ").append(this.totalEncs);
+        sb.append("\nEncomendas aceites: ").append(this.aceites);
         return sb.toString();
     }
 
@@ -231,7 +237,10 @@ public class Sistema implements ISistema {
     }
 
     //Adicionar encomendas validadas
-    public void addEncomenda(String id){
-        this.encs.add(id);
+    public void addAceite(String id){
+        this.aceites.add(id);
     }
+
+    //Adicionar total das encomendas
+    public void addEncTotal(IEncomenda encomenda) { this.totalEncs.add(encomenda);}
 }

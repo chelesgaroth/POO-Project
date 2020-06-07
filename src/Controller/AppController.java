@@ -85,13 +85,13 @@ public class AppController implements IAppController {
                     mode = email.charAt(0);
                     sistema.setQuem(login);
                     view.printMensagem("Login concluído!!\n");
-                    System.out.println("Login : " + login.toString());
+                    //System.out.println("Login : " + login.toString());
                     opcao = 0;
                     break;
                 }
             }
         } while(opcao!=0);
-        view.printMensagem("Adeus!!");
+        //view.printMensagem("Adeus!!");
         return mode;
     }
 }

@@ -1,9 +1,11 @@
 package Model;
 
 import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.IEncomenda;
 import Model.Logins.ILogin;
 import Model.Tipos.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -15,7 +17,11 @@ public interface ISistema {
     HashMap<String,ILogin> getLogins();
     ICatalogoProds getCatalogoProds();
     ILogin getQuem();
+    HashSet<String> getAceites();
+    HashSet<IEncomenda> getTotalEncs();
 
+    void setTotalEncs(HashSet<IEncomenda> totalEncs);
+    void setAceites(HashSet<String> encs);
     void setQuem(ILogin quem);
     void setListaLojas(HashSet<Loja> listaLojas);
     void setListaUsers(HashSet<User> listaUsers);
@@ -34,7 +40,9 @@ public interface ISistema {
     boolean existsLogin(ILogin log);
     void StockLoja();
 
-    void addEncomenda(String id);
+    void addAceite(String id);
+    void addEncTotal(IEncomenda encomenda);
+
 
 
 }
