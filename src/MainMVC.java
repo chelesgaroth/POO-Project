@@ -1,10 +1,9 @@
 import Controller.*;
 import Model.*;
-import Model.ModosMVC.Loja.*;
-import Model.ModosMVC.User.IUserController;
-import Model.ModosMVC.User.IUserView;
-import Model.ModosMVC.User.UserController;
-import Model.ModosMVC.User.UserView;
+import Controller.IUserController;
+import View.IUserView;
+import Controller.UserController;
+import View.UserView;
 import View.*;
 
 public class MainMVC {
@@ -20,34 +19,33 @@ public class MainMVC {
 
         ILojaView lojaView = new LojaView();
         ILojaController lojaController = new LojaController();
-        IAppLoja lojaModel = new AppLoja();
+
 
         controller.setSistema(sistema);
         controller.setAppView(view);
 
-        userController.setSistema(sistema);
-        userController.setAppView(userView);
 
-        lojaController.setSistema(sistema); //será que devemos ter o sistema???
-        lojaController.setView(lojaView);
-        lojaController.setModel(lojaModel);
+
+
 
         controller.runController();
+        int res=0;
         char login = controller.signUp();
         while(login != '0') {
             if (login == 'u') {
-                userController.userMode(); //ou chama o controller da appUser
+                userController.setSistema(sistema);
+                userController.setAppView(userView);
+                res = userController.userMode();
+                //if(res==1) login = 'l';
             }
             if (login == 'l') {
+                lojaController.setSistema(sistema);
+                lojaController.setView(lojaView);
+                System.out.println(sistema.toString());
                 lojaController.lojaMode();
             }
+
             login = controller.signUp();
         }
-
-        //fazer varias funcoes no controller?
-        //uma que nos lê o ficheiro
-        //outra que faz registo ou login
-        //e outra que nos apresenta a app de acordo com o tipo de quem esta a usar a app??
-        //assim podemos voltar atras nos menus
     }
 }

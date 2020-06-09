@@ -12,6 +12,7 @@ import Model.Tipos.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +105,8 @@ public class ReadFile implements IReadFile {
                             IEncomenda enco = new Encomenda();
                             aux = linhaPartida[1];
                             enco.criaEncomenda(aux,catalogoProds);
-                            sistema.addEncTotal(enco);
+                            enco.setHoraInicial(LocalTime.now());
+                            sistema.getFilaEncomendas().addEncomenda(enco);
                             sistema.setCatalogo(catalogoProds);
                             conta6++;
                             break;

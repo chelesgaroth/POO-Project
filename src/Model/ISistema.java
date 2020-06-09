@@ -18,10 +18,15 @@ public interface ISistema {
     ICatalogoProds getCatalogoProds();
     ILogin getQuem();
     HashSet<String> getAceites();
-    HashSet<IEncomenda> getTotalEncs();
-    HashMap<String, IEncomenda> getEncIntroduzidas();
+    IFila getFilaEspera();
+    IFila getFilaEncomendas();
+    IFila getFilaEntregues();
+    IGestaoEncomendas getGestao();
 
-    void setTotalEncs(HashSet<IEncomenda> totalEncs);
+    void setGestao(IGestaoEncomendas gestao);
+    void setFilaEspera(IFila filaEspera);
+    void setFilaEncomendas(IFila filaEncomendas);
+    void setFilaEntregues(IFila filaEntregues);
     void setAceites(HashSet<String> encs);
     void setQuem(ILogin quem);
     void setListaLojas(HashSet<Loja> listaLojas);
@@ -29,7 +34,6 @@ public interface ISistema {
     void setListaEmpr(HashSet<Empresa> listaEmpr);
     void setListaVol(HashSet<Voluntario> listaVol);
     void setCatalogo(ICatalogoProds cat);
-    void setEncIntroduzidas(HashMap<String, IEncomenda> encIntroduzidas);
 
     void addTipo(ITipo t);
 
@@ -41,13 +45,14 @@ public interface ISistema {
     void addLogin(ILogin log, String userID);
     boolean existsLogin(ILogin log);
     void StockLoja();
-    void addEncIntroduzida (IEncomenda enc);
+
 
     void addAceite(String id);
-    void addEncTotal(IEncomenda encomenda);
+
+
+    //VAMOS ELIMINAR --------------- LIXO
     boolean existLojasCod (String lojaId);
-
-
+    ITipo getLojaLista(String lojaId);
 
 
 }

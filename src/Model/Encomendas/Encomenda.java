@@ -169,11 +169,11 @@ public class Encomenda implements IEncomenda{
 
     public String toString() {
         StringBuffer sb = new StringBuffer("\n\nEncomenda: ").append(this.encomendaID);
-        sb.append("\nUsername: ").append(this.userID).append(", ");
-        sb.append("\nLoja: ").append(this.lojaID).append(", ");
-        sb.append("\nPeso Total: ").append(this.pesoTotal).append(", ");
-        sb.append("\nProdutos encomendados: ").append(this.prods);
-        sb.append("\nFim\n");
+        //sb.append("\nUsername: ").append(this.userID).append(", ");
+        //sb.append("\nLoja: ").append(this.lojaID).append(", ");
+        //sb.append("\nPeso Total: ").append(this.pesoTotal).append(", ");
+        //sb.append("\nProdutos encomendados: ").append(this.prods);
+        //sb.append("\nFim\n");
         //sb.append("\nAlgum dos produtos é um medicamento?: ").append(this.medicamentos).append(", ");
         //sb.append("\nAlgum dos produtos é um congelado?").append(this.congelados).append(", ");
         //sb.append("\nA que horas o utilizador quer a encomenda?").append(this.horaEntrega).append(", ");

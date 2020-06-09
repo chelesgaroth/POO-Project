@@ -21,8 +21,11 @@ public class Sistema implements ISistema {
     private HashSet<String> aceites; //encomendas já prontas para transportar
     private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
     private ILogin quem; //quem é que está com o login aberto
-    private HashSet<IEncomenda> totalEncs; //total das encomendas que passam pelo sistema
-    private HashMap<String,IEncomenda> encIntroduzidas; //encomendas introduzidas mas não validadas pela loja
+
+    private IFila filaEspera;
+    private IFila filaEncomendas;
+    private IFila filaEntregues;
+    private IGestaoEncomendas gestao;
 
 
     public Sistema() {
@@ -35,8 +38,10 @@ public class Sistema implements ISistema {
         this.aceites = new HashSet<>();
         this.catalogoProds = new CatalogoProds();
         this.quem = new Login();
-        this.totalEncs = new HashSet<>();
-        this.encIntroduzidas = new HashMap<>();
+        this.filaEspera = new FilaEspera();
+        this.filaEncomendas = new FilaEncomendas();
+        this.filaEntregues = new FilaEntregues();
+        this.gestao = new GestaoEncomendas();
     }
 
 
@@ -50,17 +55,42 @@ public class Sistema implements ISistema {
         this.aceites = sistema.getAceites();
         this.catalogoProds = sistema.getCatalogoProds();
         this.quem = sistema.getQuem();
-        this.totalEncs = sistema.getTotalEncs();
-        this.encIntroduzidas = sistema.getEncIntroduzidas();
+        this.filaEspera = getFilaEspera();
+        this.filaEncomendas = getFilaEncomendas();
+        this.filaEntregues = getFilaEntregues();
+        this.gestao = getGestao();
     }
 
-
-    public HashSet<IEncomenda> getTotalEncs() {
-        return totalEncs;
+    public IGestaoEncomendas getGestao() {
+        return gestao;
     }
 
-    public void setTotalEncs(HashSet<IEncomenda> totalEncs) {
-        this.totalEncs = totalEncs;
+    public void setGestao(IGestaoEncomendas gestao) {
+        this.gestao = gestao;
+    }
+
+    public IFila getFilaEspera() {
+        return filaEspera;
+    }
+
+    public void setFilaEspera(IFila filaEspera) {
+        this.filaEspera = filaEspera;
+    }
+
+    public IFila getFilaEncomendas() {
+        return filaEncomendas;
+    }
+
+    public void setFilaEncomendas(IFila filaEncomendas) {
+        this.filaEncomendas = filaEncomendas;
+    }
+
+    public IFila getFilaEntregues() {
+        return filaEntregues;
+    }
+
+    public void setFilaEntregues(IFila filaEntregues) {
+        this.filaEntregues = filaEntregues;
     }
 
     public ILogin getQuem() {
@@ -151,14 +181,6 @@ public class Sistema implements ISistema {
         this.listaVol = vols;
     }
 
-    public HashMap<String, IEncomenda> getEncIntroduzidas() {
-        return this.encIntroduzidas;
-    }
-
-    public void setEncIntroduzidas(HashMap<String, IEncomenda> encIntroduzidas) {
-        this.encIntroduzidas = encIntroduzidas;
-    }
-
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -177,7 +199,8 @@ public class Sistema implements ISistema {
         sb.append("\nLista de Empresas: ").append(this.listaEmpr).append(", ");
         sb.append("\nLista de Voluntários: ").append(this.listaVol);
         sb.append("\nLista de Logins: ").append(this.logins);
-        //sb.append("\nLista de Encomendas: ").append(this.totalEncs);
+        sb.append("\nFila de Encomendas: ").append(this.filaEncomendas);
+        sb.append("\nFila de Espera: ").append(this.filaEspera);
         sb.append("\nEncomendas aceites: ").append(this.aceites);
         return sb.toString();
     }
@@ -248,26 +271,33 @@ public class Sistema implements ISistema {
         }
     }
 
-    //Adicionar encomendas validadas
-    public void addAceite(String id){
-        this.aceites.add(id);
-    }
-
-    //Adicionar total das encomendas
-    public void addEncTotal(IEncomenda encomenda) { this.totalEncs.add(encomenda);}
-
-    //Verificar se existe loja por codId
+    //Verificar se existe loja por codId  ----------------VAMOS ELIMINAR AS SEGUINTES 2 FUNÇÕES
     public boolean existLojasCod (String lojaId) {
         for (ILoja loja : listaLojas) {
-           if(loja.getIdSuper(loja).equals(lojaId)) {
-               return true;
-           }
+            if(loja.getIdSuper(loja).equals(lojaId)) {
+                return true;
+            }
         }
         return false;
     }
 
-    public void addEncIntroduzida (IEncomenda enc) {
-        String idLoja = enc.getLojaID();
-        this.encIntroduzidas.put(idLoja,enc);
+    public ITipo getLojaLista(String lojaId) {
+        ITipo res = new Loja();
+        for (Loja loja : listaLojas) {
+            if(loja.getIdSuper(loja).equals(lojaId)) {
+                return loja;
+            }
+        }
+        return res;
     }
+
+
+    /**
+     * Adicionar o ID de uma encomenda à lista de encomendas aceites.
+     * Método usado principalmente quando lemos do ficheiro Logs.txt
+     */
+    public void addAceite(String id){
+        this.aceites.add(id);
+    }
+
 }

@@ -1,18 +1,13 @@
-package Model.ModosMVC.User;
+package Controller;
 
+import Model.Catalogos.IProduto;
 import Model.Encomendas.IEncomenda;
 import Model.ISistema;
-import Model.Leitura.IReadFile;
-import Model.Leitura.ReadFile;
-import Model.Tipos.ILoja;
-import Model.Tipos.IUser;
-import Model.Tipos.Loja;
-import View.IAppView;
+import View.IUserView;
 import View.INavegador;
 import View.Navegador;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,13 +15,11 @@ public class UserController implements IUserController {
     private ISistema sistema;
     private IUserView view;
     private INavegador nav;
-    private IAppUser appuser;
     private int opcao;
 
 
     public UserController() {
         this.nav = new Navegador();
-        this.appuser = new AppUser();
         this.opcao = 0;
     }
 
@@ -34,19 +27,25 @@ public class UserController implements IUserController {
     public void setSistema(ISistema sistema){
         this.sistema = sistema;
     }
-
     public void setAppView(IUserView view) {
         this.view = view;
     }
-    public void userMode() {
+
+
+    public int userMode() {
+        int res = 0;
         do {
             Scanner ler = new Scanner(System.in);
             view.userMode();
             opcao = ler.nextInt();
-            List<String> encomenda = new ArrayList<>();
+            List<IProduto> prods = new ArrayList<>();
+            List<String> quantidades = new ArrayList<>();
             switch (opcao) {
                 case 1: { //Encomendar algo
-                    catalogo(0,encomenda); //se o catálogo por chamado com 0 então pretendemos visualizar os Produtos
+                    catalogo(0,prods,quantidades); //se o catálogo por chamado com 0 então pretendemos visualizar os Produtos
+                    opcao = 0;
+                    res = 1;
+                    view.printMensagem("Enviando pedido à loja...\nPor favor aguarde");
                     break;
                 }
                 case 2: {
@@ -57,9 +56,10 @@ public class UserController implements IUserController {
             }
         }while (opcao!=0);
         view.printMensagem("Obrigada!Volte Sempre!");
+        return res;
     }
 
-    public void catalogo(int opcao,List<String> encomenda){
+    public void catalogo(int opcao, List<IProduto> prods, List<String> quantidades){
 
         Scanner ler;
         String x = " ";
@@ -109,17 +109,14 @@ public class UserController implements IUserController {
                     break;
                 }
                 case "E":{
-                    if(opcao==0) escolheProdLoja(0,encomenda);
+                    if(opcao==0) escolheProdLoja(0,prods,quantidades);
                     if(opcao == 1){
-                        encomenda= escolheProdLoja(2,encomenda);
-                        //Criar linha de encomenda
-                        //chamar validação de encomenda
-                        System.out.println("Fim de Encomenda");
-                        appuser.setProds(sistema.getCatalogoProds());
-                        IEncomenda enc = appuser.constroiLinhaEncomenda(encomenda, sistema.getQuem());
-                        sistema.addEncIntroduzida(enc);
+                        String loja = escolheProdLoja(2,prods,quantidades);
+                        //Mandar a encomenda para a gestao e depois para a fila de espera
+                        IEncomenda enc = sistema.getGestao().constroiEncomendaParaLoja(loja,prods,quantidades, sistema.getQuem());
+                        sistema.getFilaEspera().addEncomenda(enc);
                     }
-                    x="M";
+                    x = "M";
                     break;
                 }
                 default: {
@@ -132,50 +129,54 @@ public class UserController implements IUserController {
     }
 
 
-    public List<String> escolheProdLoja(int opcao,List<String> encomenda) {
-
+    public String escolheProdLoja(int opcao, List<IProduto> prods, List<String> quantidades) {
+        String loja = " ";
         Scanner ler = new Scanner(System.in);
         if(opcao==0){
-            System.out.println("Insira o código do produto");
+            System.out.println("Insira o código do produto"); //ver se o produto existe
             String prod = ler.nextLine();
-            encomenda.add(prod);
-            System.out.println(encomenda.toString());
+            while(!sistema.getCatalogoProds().existsProdStr(prod)){
+                System.out.println("Produto não existe!! Insira novamente.");
+                prod = ler.nextLine();
+            }
+            IProduto produto = sistema.getCatalogoProds().getProd(prod);
+            prods.add(produto);
+            System.out.println(prods.toString());
+            System.out.println("Cesto de Compras: " + prod);
             System.out.println("Qual a quantidade pretendida");
             ler = new Scanner(System.in);
-            int quantidade = ler.nextInt();
-            encomenda.add(String.valueOf(quantidade));
+            String quantidade = ler.nextLine();
+            quantidades.add(quantidade);
             System.out.println("Pretende escolher mais produtos? Selecione 1, caso contrário 0");
             ler = new Scanner(System.in);
             String x = ler.nextLine();
             if (x.equals("0")) {
-                escolheProdLoja(1, encomenda);
+                escolheProdLoja(1,prods,quantidades);
             }
             if(x.equals("1")){
                 System.out.println("escolheu 1");
-                catalogo(0,encomenda);
+                catalogo(0,prods,quantidades);
             }
             else System.out.println("Opção inválida, tente novamente");
 
         }
 
         if (opcao==1) {
-            HashSet<Loja> lojas = sistema.getListaLojas();
-            catalogo(1,encomenda);
+            //HashSet<Loja> lojas = sistema.getListaLojas();
+            catalogo(1,prods,quantidades);
 
         }
         if(opcao==2) {
             System.out.println("Insira o código da loja");
             ler = new Scanner(System.in);
-            String loja = ler.nextLine();
+            loja = ler.nextLine();
             if (sistema.existLojasCod(loja)) {
-                encomenda.add(loja);
-                System.out.println(encomenda.toString());
+                System.out.println("Loja Escolhida : " + loja);
             } else {
                 System.out.println("Loja inválida, insira novamente");
-                catalogo(1, encomenda);
+                catalogo(1, prods,quantidades);
             }
         }
-
-        return encomenda;
+        return loja;
     }
 }

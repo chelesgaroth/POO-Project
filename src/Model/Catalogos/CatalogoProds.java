@@ -43,12 +43,18 @@ public class CatalogoProds implements ICatalogoProds {
         this.catalogo.put(produto.getCodProduto(),produto);
     }
 
+    public boolean existsProd (IProduto produto) { return(this.catalogo.containsValue(produto)); }
+
     public int totalProds(){ return (this.catalogo.size()); }
 
     public IProduto getProd (String codProduto){
         IProduto prod = new Produto();
         prod = catalogo.get(codProduto);
         return prod;
+    }
+
+    public boolean existsProdStr(String codProd) {
+         return this.catalogo.containsKey(codProd);
     }
 
 }

@@ -1,12 +1,11 @@
-package Model.ModosMVC.Loja;
+package Controller;
 
-import Model.Encomendas.IEncomenda;
 import Model.ISistema;
+import View.ILojaView;
 
 public interface ILojaController {
     void setSistema(ISistema sistema);
     void setView(ILojaView view);
-    void setModel(IAppLoja model);
 
     void lojaMode();
 

@@ -1,4 +1,4 @@
-package Model.ModosMVC.User;
+package View;
 
 public interface IUserView {
     void userMode();
