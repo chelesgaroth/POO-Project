@@ -1,10 +1,11 @@
 package Model.Tipos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class User extends Tipo implements IUser {
+public class User extends Tipo implements IUser, Serializable {
 
     //Variávieis para as Apps
     private List<String> delivery_requests;

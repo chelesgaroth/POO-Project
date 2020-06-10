@@ -3,9 +3,10 @@ package Model.Encomendas;
 import Model.Catalogos.IProduto;
 import Model.Catalogos.Produto;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class LinhaEncomenda implements ILinhaEncomenda{
+public class LinhaEncomenda implements ILinhaEncomenda, Serializable {
     private IProduto produto;
     private float quantidade;
     private float valor;

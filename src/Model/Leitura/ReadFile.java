@@ -60,7 +60,7 @@ public class ReadFile implements IReadFile {
                             ITipo user = new User();
                             aux = linhaPartida[1];
                             parseTipo(aux,user);
-                            sistema.addTipo(user);
+                            sistema.getUsers().addTipo(user);
                             id = user.getId();
 
 
@@ -72,7 +72,7 @@ public class ReadFile implements IReadFile {
                             ITipo voluntario = new Voluntario();
                             aux = linhaPartida[1];
                             parseTipo(aux,voluntario);
-                            sistema.addTipo(voluntario);
+                            sistema.getVoluntarios().addTipo(voluntario);
                             id = voluntario.getId();
 
                             conta3++;
@@ -83,7 +83,7 @@ public class ReadFile implements IReadFile {
                             ITipo empresa = new Empresa();
                             aux = linhaPartida[1];
                             parseTipo(aux,empresa);
-                            sistema.addTipo(empresa);
+                            sistema.getEmpresas().addTipo(empresa);
                             id = empresa.getId();
 
                             conta4++;
@@ -94,7 +94,7 @@ public class ReadFile implements IReadFile {
                             ITipo loja = new Loja();
                             aux = linhaPartida[1];
                             parseTipo(aux,loja);
-                            sistema.addTipo(loja);
+                            sistema.getLojas().addTipo(loja);
                             id = loja.getId();
 
                             conta5++;
@@ -106,7 +106,7 @@ public class ReadFile implements IReadFile {
                             aux = linhaPartida[1];
                             enco.criaEncomenda(aux,catalogoProds);
                             enco.setHoraInicial(LocalTime.now());
-                            sistema.getFilaEncomendas().addEncomenda(enco);
+                            sistema.getFilaEspera().addEncomenda(enco);
                             sistema.setCatalogo(catalogoProds);
                             conta6++;
                             break;

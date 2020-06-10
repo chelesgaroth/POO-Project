@@ -4,11 +4,13 @@ import Model.Catalogos.ICatalogoProds;
 import Model.Catalogos.IProduto;
 import Model.Encomendas.ILinhaEncomenda;
 import Model.Tipos.ILoja;
+import Model.Tipos.ITipo;
 import Model.Tipos.Loja;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Navegador implements INavegador {
     private int tamPag; //nº de strings por pagina ou seja tamanho da pagina
@@ -23,7 +25,7 @@ public class Navegador implements INavegador {
         this.inseridos = 0;
     }
 
-    public void divide(ICatalogoProds cat, HashSet<Loja> lojas, String mensagem,int opcao) {
+    public void divide(ICatalogoProds cat, Set<ITipo> lojas, String mensagem, int opcao) {
         List<Loja> aList = new ArrayList<>();
         List<IProduto> prods = new ArrayList<>();
         if(opcao==0){
@@ -34,9 +36,8 @@ public class Navegador implements INavegador {
 
 
         if (opcao == 1) {
-            System.out.println(lojas.toString());
-            for (Loja x : lojas){
-                aList.add(x);
+            for (ITipo x : lojas){
+                if(x instanceof  Loja) aList.add((Loja) x);
             }
         }
         System.out.print("\033[H\033[2J"); //limpa ecra
@@ -104,13 +105,13 @@ public class Navegador implements INavegador {
         }
     }
 
-    public void proxima(ICatalogoProds cat, HashSet<Loja> lojas, String mensagem, int opcao){
+    public void proxima(ICatalogoProds cat, Set<ITipo> lojas, String mensagem, int opcao){
         this.pagina += 1;
         this.inseridos += 20;
         divide(cat,lojas,mensagem,opcao);
     }
 
-    public void anterior(ICatalogoProds cat, HashSet<Loja> lojas, String mensagem, int opcao){
+    public void anterior(ICatalogoProds cat, Set<ITipo> lojas, String mensagem, int opcao){
         this.pagina -= 1;
         this.inseridos -= 20;
         if((this.pagina >= 0) && (this.inseridos >=0)){
@@ -121,12 +122,12 @@ public class Navegador implements INavegador {
         }
     }
 
-    public void total(ICatalogoProds cat,HashSet<Loja> lojas, int opcao){
+    public void total(ICatalogoProds cat,Set<ITipo> lojas, int opcao){
         if (opcao==0)  System.out.print("Total: " + cat.totalProds() + "\n\n");
         if (opcao==1) System.out.print("Total: "+ lojas.size()+ "\n\n");
     }
 
-    public void escolha(ICatalogoProds cat, HashSet<Loja> lojas, String mensagem, int opcao,int num){
+    public void escolha(ICatalogoProds cat, Set<ITipo> lojas, String mensagem, int opcao,int num){
         this.pagina = num;
         this.inseridos = num*2;
         divide(cat,lojas,mensagem,opcao);

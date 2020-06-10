@@ -1,5 +1,6 @@
 package Model.Tipos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,12 @@ import java.util.List;
  * Classe que representa um voluntário
  */
 
-public class Voluntario extends Tipo implements IVoluntario{
+public class Voluntario extends Tipo implements IVoluntario, Serializable {
 
     private float radius_volunteer;
     private boolean availability;
+    private boolean medicamentos;
+
     private float volunteer_rating;
     private LocalDateTime time_start;
     private  LocalDateTime time_finish;
@@ -25,6 +28,7 @@ public class Voluntario extends Tipo implements IVoluntario{
         this.radius_volunteer = 0;
         this.package_list = new ArrayList<>();
         this.availability = true;
+        this.medicamentos = false;
         this.volunteer_rating = 5;
         this.time_start = LocalDateTime.now();
         this.time_finish = LocalDateTime.now();
@@ -61,7 +65,13 @@ public class Voluntario extends Tipo implements IVoluntario{
         this.time_finish=time_finish;
     }
 
+    public boolean getMedicamentos() {
+        return medicamentos;
+    }
 
+    public void setMedicamentos(boolean medicamentos) {
+        this.medicamentos = medicamentos;
+    }
 
     public float getRadius_volunteer() {
         return this.radius_volunteer;

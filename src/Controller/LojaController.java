@@ -3,6 +3,7 @@ package Controller;
 import Model.Encomendas.IEncomenda;
 import Model.ISistema;
 import Model.Tipos.ITipo;
+import Model.Tipos.Loja;
 import View.ILojaView;
 import View.LojaView;
 
@@ -28,7 +29,11 @@ public class LojaController implements ILojaController {
         Scanner ler = new Scanner(System.in);
         String tempo = ler.nextLine();
         String id = sistema.getQuem().getPassword().substring(0,3);
-        ITipo loja = sistema.getLojaLista(id);
+        ITipo loja = sistema.getLojas().getTipo(id);
+        if(loja instanceof Loja) {
+            ((Loja) loja).setTempoPessoa(Double.parseDouble(tempo));
+            ((Loja) loja).setPessoasFila(sistema.getFilaEspera().getEncomendas(id).size());
+        }
         do {
             ler = new Scanner(System.in);
             view.modeLoja();
@@ -68,8 +73,7 @@ public class LojaController implements ILojaController {
                     if(opcao==1) encomenda.setCongelados(true);
                     else encomenda.setCongelados(false);
 
-                    sistema.getFilaEspera().removeEncomenda(encomenda);
-                    sistema.getFilaEncomendas().addEncomenda(encomenda);
+                    sistema.addAceite(encomenda.getEncomendaID());
                     break;
                 }
 

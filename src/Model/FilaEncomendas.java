@@ -2,12 +2,13 @@ package Model;
 
 import Model.Encomendas.IEncomenda;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class FilaEncomendas implements IFila{
+public class FilaEncomendas implements IFila, Serializable {
     private Map<String, Set<IEncomenda>> fila;
 
     public FilaEncomendas(){
@@ -15,21 +16,21 @@ public class FilaEncomendas implements IFila{
     }
 
     public void addEncomenda(IEncomenda encomenda) {
-        String lojaId = encomenda.getLojaID();
-        if(this.fila.containsKey(lojaId)){
-            this.fila.get(lojaId).add(encomenda);
+        String userId = encomenda.getUserID();
+        if(this.fila.containsKey(userId)){
+            this.fila.get(userId).add(encomenda);
         }
         else {
             Set<IEncomenda> value = new TreeSet<>(new CompareEncomenda());
             value.add(encomenda);
-            this.fila.put(lojaId, value);
+            this.fila.put(userId, value);
         }
     }
 
     public int removeEncomenda(IEncomenda encomenda) {
-        String lojaId = encomenda.getLojaID();
-        if(this.fila.containsKey(lojaId)){
-            this.fila.get(lojaId).remove(encomenda);
+        String userId = encomenda.getUserID();
+        if(this.fila.containsKey(userId)){
+            this.fila.get(userId).remove(encomenda);
         }
         else{
             return -1;
@@ -37,18 +38,22 @@ public class FilaEncomendas implements IFila{
         return 0;
     }
 
-    @Override
     public Set<IEncomenda> getEncomendas(String codId) {
-        return null;
+        if(this.fila.containsKey(codId)) return this.fila.get(codId);
+        else return null;
     }
 
-    @Override
     public boolean containsEncTipo(String encId, String codId) {
         return false;
     }
 
     @Override
     public IEncomenda getEncomendaTipo(String encId, String codId) {
+        return null;
+    }
+
+    @Override
+    public IEncomenda existsEncomenda(String id) {
         return null;
     }
 

@@ -6,12 +6,13 @@ import Model.Catalogos.Produto;
 import Model.Encomendas.Encomenda;
 import Model.Encomendas.ILinhaEncomenda;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Loja extends Tipo implements ILoja {
+public class Loja extends Tipo implements ILoja, Serializable {
 
     private int pessoasFila; //sistema.encs.size()
     private LocalDateTime tempo;
@@ -104,8 +105,8 @@ public class Loja extends Tipo implements ILoja {
     public String toString() {
         return "Loja:" +
                 this.getId() + "," +
-                this.getNome() + "\n" ;//+
-                //stock;
+                this.getNome() + "\n" +
+                stock;
     }
 
     public String getIdSuper (ILoja loja) {

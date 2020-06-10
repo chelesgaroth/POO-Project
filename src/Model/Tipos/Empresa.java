@@ -1,15 +1,17 @@
 package Model.Tipos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Empresa extends Tipo implements IEmpresa{
+public class
+Empresa extends Tipo implements IEmpresa, Serializable {
     private int nif;
     private double raio;
     private double preco; // preco por km
 
-    private int aceitaEncomenda;
-    private int aceitaMedicamento;
+    private boolean disponibilidade;
+    private boolean aceitaMedicamento;
     private LocalDateTime tempo;
     private double taxaAdicional;
     private boolean chuva;
@@ -21,16 +23,17 @@ public class Empresa extends Tipo implements IEmpresa{
         this.nif = 0;
         this.preco = 0.0;
         this.raio = 0.0;
+        this.disponibilidade = false;
 
-        this.aceitaEncomenda = 0;
-        this.aceitaMedicamento =0;
+
+        this.aceitaMedicamento = false;
         this.tempo = LocalDateTime.now();
         this.taxaAdicional = 0.0;
         this.chuva = false;
         this.transito = false;
     }
 
-    public Empresa (String id,int aceitaEncomenda,int nif, int aceitaMedicamento, LocalDateTime tempo, double preco, float longitude,
+    public Empresa (String id,int nif, boolean aceitaMedicamento, LocalDateTime tempo, double preco, float longitude,
                     float latitude, double raio, double taxaAdicional, boolean chuva, boolean transito, String nome) {
 
         super(id,nome,longitude,latitude);
@@ -38,7 +41,7 @@ public class Empresa extends Tipo implements IEmpresa{
         this.preco = preco;
         this.raio = raio;
 
-        this.aceitaEncomenda = aceitaEncomenda;
+
         this.aceitaMedicamento = aceitaMedicamento;
         this.tempo = tempo;
         this.taxaAdicional = taxaAdicional;
@@ -48,7 +51,7 @@ public class Empresa extends Tipo implements IEmpresa{
 
     public Empresa (Empresa emp) {
         super(emp);
-        emp.aceitaEncomenda = emp.getAceitaEncomenda();
+
         emp.aceitaMedicamento = emp.getAceitaMedicamento();
         emp.raio = emp.getRaio();
         emp.tempo = emp.getTempo();
@@ -82,12 +85,10 @@ public class Empresa extends Tipo implements IEmpresa{
     }
 
     //Variaveis para a App
-    public int getAceitaMedicamento() {
+    public boolean getAceitaMedicamento() {
         return this.aceitaMedicamento;
     }
-    public int getAceitaEncomenda() {
-        return this.aceitaEncomenda;
-    }
+
     public LocalDateTime getTempo() {
         return this.tempo;
     }
@@ -103,13 +104,10 @@ public class Empresa extends Tipo implements IEmpresa{
     }
 
 
-    public void setAceitaMedicamento(int aceitaMedicamento) {
+    public void setAceitaMedicamento(boolean aceitaMedicamento) {
         this.aceitaMedicamento = aceitaMedicamento;
     }
-    public void setAceitaEncomenda(int aceitaEncomenda) {
 
-        this.aceitaEncomenda = aceitaEncomenda;
-    }
     public void setTempo(LocalDateTime tempo) {
         this.tempo = tempo;
     }
@@ -125,6 +123,14 @@ public class Empresa extends Tipo implements IEmpresa{
         this.transito = transito;
     }
 
+
+    public boolean getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
 
     public Empresa clone () {
         return new Empresa(this);

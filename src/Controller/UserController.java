@@ -1,15 +1,20 @@
 package Controller;
 
 import Model.Catalogos.IProduto;
+import Model.Encomendas.Encomenda;
+import Model.Encomendas.Entrega;
 import Model.Encomendas.IEncomenda;
+import Model.Encomendas.IEntrega;
 import Model.ISistema;
+import Model.Tipos.Empresa;
+import Model.Tipos.ITipo;
+import Model.Tipos.Loja;
+import Model.Tipos.Voluntario;
 import View.IUserView;
 import View.INavegador;
 import View.Navegador;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserController implements IUserController {
     private ISistema sistema;
@@ -40,6 +45,7 @@ public class UserController implements IUserController {
             opcao = ler.nextInt();
             List<IProduto> prods = new ArrayList<>();
             List<String> quantidades = new ArrayList<>();
+            IEncomenda encomenda = new Encomenda();
             switch (opcao) {
                 case 1: { //Encomendar algo
                     catalogo(0,prods,quantidades); //se o catálogo por chamado com 0 então pretendemos visualizar os Produtos
@@ -48,9 +54,54 @@ public class UserController implements IUserController {
                     view.printMensagem("Enviando pedido à loja...\nPor favor aguarde");
                     break;
                 }
-                case 2: {
-
+                case 2: { //escolha do transporte
+                    HashSet<ITipo> set = new HashSet<>();
+                    char op =' ';
+                    view.transportes(op,set);
+                    while((op!='M') && (op!= 'E')){
+                        ler = new Scanner(System.in);
+                        op = (ler.nextLine()).charAt(0);
+                        encomenda = transporte(op);
+                    }
+                    if(op=='E'){
+                        ler = new Scanner(System.in);
+                        String escolha = ler.nextLine();
+                        IEntrega entrega = new Entrega();
+                        if(escolha.charAt(0)=='v') {
+                            ITipo tipo = sistema.getVoluntarios().getTipo(escolha);
+                            Voluntario vol = (Voluntario) tipo;
+                            while(!vol.getAvailability()){
+                                view.printMensagem("Voluntário não disponível. Insira novamente");
+                                ler = new Scanner(System.in);
+                                escolha = ler.nextLine();
+                                tipo = sistema.getVoluntarios().getTipo(escolha);
+                                vol = (Voluntario) tipo;
+                            }
+                            entrega.setTransporte(tipo);
+                        }
+                        if(escolha.charAt(0)=='t') {
+                            ITipo tipo = sistema.getEmpresas().getTipo(escolha);
+                            Empresa emp = (Empresa) tipo;
+                            while(!emp.getDisponibilidade()){
+                                view.printMensagem("Empresa não disponível. Insira novamente");
+                                ler = new Scanner(System.in);
+                                escolha = ler.nextLine();
+                                tipo = sistema.getEmpresas().getTipo(escolha);
+                                emp = (Empresa) tipo;
+                            }
+                            entrega.setTransporte(tipo);
+                        }
+                        entrega.setEncomenda(encomenda);
+                        sistema.getFilaEncomendas().removeEncomenda(encomenda);
+                        sistema.getFilaEntregues().addEncomenda(entrega);
+                        System.out.println("Transporte escolhido: " + escolha);
+                        System.out.println("Por favor aguarde o contacto do transporte...");
+                        System.out.println(sistema.toString());
+                    }
                     break;
+                }
+                case 4: {
+                    System.out.println(sistema.getFilaEncomendas().toString());
                 }
                 default: break;
             }
@@ -59,15 +110,33 @@ public class UserController implements IUserController {
         return res;
     }
 
-    public void catalogo(int opcao, List<IProduto> prods, List<String> quantidades){
+    public IEncomenda transporte(char opcao){
+        //Se o número de encomendas deste user for igual a 1
+        /*Caso o user tenha feito mais do que 1 encomenda , apenas podemos escolher as transportadoras que conseguem
+        transportar mais de uma encomenda*/
+        IEncomenda res = new Encomenda();
+        Set<IEncomenda> encomendasUser = sistema.getFilaEncomendas().getEncomendas(sistema.getQuem().getPassword().substring(0,3));
+        HashSet<ITipo> set = new HashSet<>();
+        for( IEncomenda enco : encomendasUser){
+            res = enco;
+            Loja loja = (Loja) sistema.getLojas().getTipo(enco.getLojaID());
+            set = sistema.getGestao().verificarTransporte(sistema.getVoluntarios(),sistema.getEmpresas(),enco,loja);
+            break;
+        }
+        view.transportes(opcao,set);
+        return res;
+    }
 
+
+
+    public void catalogo(int opcao, List<IProduto> prods, List<String> quantidades){
         Scanner ler;
         String x = " ";
         int num = 0;
         if(opcao==0)
             nav.divide(sistema.getCatalogoProds(),null,"\nCATALOGO DE PRODUTOS",0);
         if (opcao==1)
-            nav.divide(null,sistema.getListaLojas(),"\nCATALOGO DE LOJAS", 1);
+            nav.divide(null,sistema.getLojas().getCatalogo(),"\nCATALOGO DE LOJAS", 1);
         nav.menu();
         do {
             ler = new Scanner(System.in);
@@ -77,7 +146,7 @@ public class UserController implements IUserController {
                     if(opcao==0)
                         nav.proxima(sistema.getCatalogoProds(), null,"\nCATALOGO DE PRODUTOS",0);
                     if(opcao==1)
-                        nav.proxima(null, sistema.getListaLojas(),"\nCATALOGO DE LOJAS",1);
+                        nav.proxima(null, sistema.getLojas().getCatalogo(),"\nCATALOGO DE LOJAS",1);
                     nav.menu();
                     break;
                 }
@@ -85,7 +154,7 @@ public class UserController implements IUserController {
                     if (opcao==0)
                         nav.anterior(sistema.getCatalogoProds(),null, "\nCATALOGO DE PRODUTOS",0);
                     if(opcao==1)
-                        nav.anterior(null,sistema.getListaLojas(), "\nCATALOGO DE LOJAS",1);
+                        nav.anterior(null,sistema.getLojas().getCatalogo(), "\nCATALOGO DE LOJAS",1);
                     nav.menu();
                     break;
                 }
@@ -96,7 +165,7 @@ public class UserController implements IUserController {
                     if (opcao==0)
                         nav.escolha(sistema.getCatalogoProds(), null,"\nCATALOGO DE PRODUTOS", 0, num);
                     if(opcao==1)
-                        nav.escolha(null, sistema.getListaLojas(),"\nCATALOGO DE LOJAS", 1, num);
+                        nav.escolha(null, sistema.getLojas().getCatalogo(),"\nCATALOGO DE LOJAS", 1, num);
                     nav.menu();
                     break;
                 }
@@ -104,7 +173,7 @@ public class UserController implements IUserController {
                     if (opcao==0)
                         nav.total(sistema.getCatalogoProds(),null,0);
                     if (opcao==1)
-                        nav.total(null,sistema.getListaLojas(),1);
+                        nav.total(null,sistema.getLojas().getCatalogo(),1);
                     nav.menu();
                     break;
                 }
@@ -141,8 +210,7 @@ public class UserController implements IUserController {
             }
             IProduto produto = sistema.getCatalogoProds().getProd(prod);
             prods.add(produto);
-            System.out.println(prods.toString());
-            System.out.println("Cesto de Compras: " + prod);
+            System.out.println("Cesto de Compras: " + prods.toString());
             System.out.println("Qual a quantidade pretendida");
             ler = new Scanner(System.in);
             String quantidade = ler.nextLine();
@@ -157,7 +225,7 @@ public class UserController implements IUserController {
                 System.out.println("escolheu 1");
                 catalogo(0,prods,quantidades);
             }
-            else System.out.println("Opção inválida, tente novamente");
+            //else System.out.println("Opção inválida, tente novamente");
 
         }
 
@@ -170,8 +238,8 @@ public class UserController implements IUserController {
             System.out.println("Insira o código da loja");
             ler = new Scanner(System.in);
             loja = ler.nextLine();
-            if (sistema.existLojasCod(loja)) {
-                System.out.println("Loja Escolhida : " + loja);
+            if (sistema.getLojas().existsID(loja)) {
+                //System.out.println("Loja Escolhida : " + loja);
             } else {
                 System.out.println("Loja inválida, insira novamente");
                 catalogo(1, prods,quantidades);

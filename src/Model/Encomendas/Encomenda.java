@@ -4,10 +4,11 @@ import Model.Catalogos.ICatalogoProds;
 import Model.Catalogos.IProduto;
 import Model.Catalogos.Produto;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Encomenda implements IEncomenda{
+public class Encomenda implements IEncomenda, Serializable {
     //Variaveis do logs.txt
     private String encomendaID;
     private String userID;
@@ -19,8 +20,7 @@ public class Encomenda implements IEncomenda{
     private boolean medicamentos;
     private boolean congelados;
     private LocalTime horaInicial;
-    private LocalTime horaEntrega; // se é null entao tem ser entregue o mais rapido possivel
-    private boolean validacao; //??????????
+
 
     public Encomenda (){
         this.userID = "n/a";
@@ -30,13 +30,12 @@ public class Encomenda implements IEncomenda{
 
         this.medicamentos = false;
         this.congelados = false;
-        this.horaEntrega = LocalTime.now();
-        this.horaEntrega = LocalTime.now();
-        this.validacao = false;
+        this.horaInicial = LocalTime.now();
+
     }
 
     public Encomenda (String userID, String lojaID, int pesoTotal, ArrayList<LinhaEncomenda> prods, boolean medicamentos,
-                      boolean congelados, LocalTime horaEntrega, boolean validacao){
+                      boolean congelados){
         this.userID = userID;
         this.lojaID = lojaID;
         this.pesoTotal = pesoTotal;
@@ -47,8 +46,6 @@ public class Encomenda implements IEncomenda{
 
         this.medicamentos = medicamentos;
         this.congelados = congelados;
-        this.horaEntrega = horaEntrega;
-        this.validacao = validacao;
     }
 
     public Encomenda (Encomenda enco){
@@ -59,8 +56,6 @@ public class Encomenda implements IEncomenda{
 
         this.medicamentos = enco.getMedicamentos();
         this.congelados = enco.getCongelados();
-        this.horaEntrega = enco.getHoraEntrega();
-        this.validacao = enco.getValidacao();
     }
 
     //Variaveis do logs.txt
@@ -121,13 +116,6 @@ public class Encomenda implements IEncomenda{
         return this.congelados;
     }
 
-    public LocalTime getHoraEntrega() {
-        return this.horaEntrega;
-    }
-
-    public boolean getValidacao(){
-        return this.validacao;
-    }
 
     public void setMedicamentos(boolean medicamentos) {
         this.medicamentos = medicamentos;
@@ -135,14 +123,6 @@ public class Encomenda implements IEncomenda{
 
     public void setCongelados(boolean congelados) {
         this.congelados = congelados;
-    }
-
-    public void setHoraEntrega(LocalTime horaEntrega) {
-        this.horaEntrega = horaEntrega;
-    }
-
-    public void setValidacao(boolean validacao) {
-        this.validacao = validacao;
     }
 
     public LocalTime getHoraInicial() {
@@ -181,10 +161,10 @@ public class Encomenda implements IEncomenda{
         return sb.toString();
     }
 
-    public Encomenda clone(){
+    /*public Encomenda clone(){
         return new Encomenda(this);
     }
-
+    */
 
     public void criaEncomenda (String aux, ICatalogoProds catalogoProds){
         String [] auxiliar = aux.split(",");

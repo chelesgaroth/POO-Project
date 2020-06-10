@@ -3,6 +3,7 @@ package Model;
 import Model.Encomendas.Encomenda;
 import Model.Encomendas.IEncomenda;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -11,7 +12,7 @@ import java.util.*;
  * VALUE: TreeSet com as encomendas para a loja
  */
 
-public class FilaEspera implements IFila{
+public class FilaEspera implements IFila, Serializable {
     private Map<String, Set<IEncomenda>> fila;
 
     public FilaEspera(){
@@ -61,6 +62,19 @@ public class FilaEspera implements IFila{
             if(enco.getEncomendaID().equals(encId)) return enco;
         }
         return res;
+    }
+
+    public IEncomenda existsEncomenda(String id){
+        Set<String> set = this.fila.keySet();
+        for(String aux : set){
+            Set<IEncomenda> value = this.fila.get(aux);
+            for(IEncomenda encomenda : value){
+                if(encomenda.getEncomendaID().equals(id)){
+                    return encomenda;
+                }
+            }
+        }
+        return null;
     }
 
     public String toString() {

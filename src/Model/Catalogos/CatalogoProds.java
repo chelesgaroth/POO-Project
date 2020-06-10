@@ -2,11 +2,12 @@ package Model.Catalogos;
 
 import Model.Encomendas.*;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class CatalogoProds implements ICatalogoProds {
+public class CatalogoProds implements ICatalogoProds, Serializable {
     private HashMap<String,IProduto> catalogo;
 
     public CatalogoProds(){

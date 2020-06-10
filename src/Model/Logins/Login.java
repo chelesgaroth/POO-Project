@@ -1,9 +1,10 @@
 package Model.Logins;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Login implements ILogin {
+public class Login implements ILogin, Serializable {
     String email;
     String password;
 

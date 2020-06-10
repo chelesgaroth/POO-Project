@@ -1,8 +1,9 @@
 package Model.Catalogos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Produto implements IProduto {
+public class Produto implements IProduto, Serializable {
     private String codProduto;
     private String nome;
     private float preco;
@@ -66,9 +67,9 @@ public class Produto implements IProduto {
 
     public String toString() {
         return "Produto:" +
-                codProduto + "\n" +
+                codProduto ; /*+ "\n" +
                 nome + "\n" +
-                preco;
+                preco;*/
     }
 
     public void criaProduto(String codProduto ,String nome, float preco){

@@ -1,8 +1,9 @@
 package Model.Tipos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Tipo implements  ITipo{
+public abstract class Tipo implements  ITipo, Serializable {
     private String id;
     private String nome;
     private float x; //latitude

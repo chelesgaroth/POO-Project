@@ -1,7 +1,9 @@
 package Controller;
 
 import Model.*;
+import Model.Leitura.IRWEstado;
 import Model.Leitura.IReadFile;
+import Model.Leitura.RWEstado;
 import Model.Leitura.ReadFile;
 import Model.Logins.ILogin;
 import Model.Logins.Login;
@@ -9,6 +11,7 @@ import Model.Tipos.ILoja;
 import Model.Tipos.Loja;
 import View.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +24,7 @@ public class AppController implements IAppController {
     private IReadFile lerFiles;
     private String file;
     private int opcao;
+    private IRWEstado rw;
 
 
     public AppController(){
@@ -28,6 +32,7 @@ public class AppController implements IAppController {
         this.nav = new Navegador();
         this.lerFiles = new ReadFile();
         this.opcao = 0;
+        this.rw = new RWEstado();
     }
 
     public void setSistema(ISistema sistema){
@@ -87,6 +92,33 @@ public class AppController implements IAppController {
                     view.printMensagem("Login concluído!!\n");
                     //System.out.println("Login : " + login.toString());
                     opcao = 0;
+                    break;
+                }
+                case 4:{
+                    view.printMensagem("Insira um nome para o ficheiro .dat");
+                    ler = new Scanner(System.in);
+                    String f = ler.nextLine();
+                    rw.setFileOut(f);
+                    try {
+                        view.printMensagem("Saving ...");
+                        rw.saveData(this.sistema);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                case 5:{
+                    view.printMensagem("Insira o nome do ficheiro:");
+                    ler = new Scanner(System.in);
+                    String f = ler.nextLine();
+                    rw.setFileIn(f);
+                    try {
+                        view.printMensagem("Loading ...");
+                        setSistema(rw.loadData());
+                    } catch (ClassNotFoundException | IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(sistema.toString());
                     break;
                 }
             }

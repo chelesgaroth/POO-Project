@@ -11,6 +11,9 @@ public class AppView implements IAppView {
         System.out.println("Prima:");
         System.out.println("1- Fazer Registo"); //adiciona ao estado
         System.out.println("2- Fazer Login "); //retoma o estado do aplicativo
+        System.out.println("3- Alterar a password");
+        System.out.println("4- Guardar estado do programa");
+        System.out.println("5- Carregar estado do programa");
         System.out.println("0- Sair do aplicativo");
     }
 
