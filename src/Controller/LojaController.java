@@ -32,7 +32,11 @@ public class LojaController implements ILojaController {
         ITipo loja = sistema.getLojas().getTipo(id);
         if(loja instanceof Loja) {
             ((Loja) loja).setTempoPessoa(Double.parseDouble(tempo));
-            ((Loja) loja).setPessoasFila(sistema.getFilaEspera().getEncomendas(id).size());
+            if(sistema.getFilaEspera().getEncomendas(id)!=null)((Loja) loja).setPessoasFila(sistema.getFilaEspera().getEncomendas(id).size());
+            else {
+                view.printMensagem("Não há pessoas na Fila de Espera\n");
+                ((Loja) loja).setPessoasFila(0);
+            }
         }
         do {
             ler = new Scanner(System.in);

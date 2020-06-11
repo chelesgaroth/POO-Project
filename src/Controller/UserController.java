@@ -44,7 +44,13 @@ public class UserController implements IUserController {
     public int userMode() {
         int res = 0;
         setUser();
-        this.encoFinal = sistema.getFilaEncomendas().getEncomendaRecente(user.getId());
+        if(sistema.getFilaEncomendas().getEncomendas(user.getId())!=null){
+            this.encoFinal = sistema.getFilaEncomendas().getEncomendaRecente(user.getId());
+        }
+        else{
+            view.printMensagem("» Não tem pedidos de encomenda! Ou ainda estão a ser processados!" +
+                    "\nPor favor aguarde... Ou faça um novo pedido!\n");
+        }
         do {
             Scanner ler = new Scanner(System.in);
             view.userMode();
@@ -124,23 +130,24 @@ public class UserController implements IUserController {
                     break;
                 }
                 case 3: {
-                    view.classificacao();
-                    ler = new Scanner(System.in);
-                    int classificacao = ler.nextInt();
-                    if(classificacao==0) break;
+                    int classificacao = 0 ;
                     List<IEntrega> lista = this.user.getHistorico();
                     int i=0;
-                    //System.out.println(lista);
                     if(lista.size()>=1) for(i=0; i< (lista.size()-1); i++);
                     IEntrega e;
                     if(lista.size()!=0){
                         e = lista.get(i);
                         ITipo transp = e.getTransporte();
+                        view.printMensagem("Por favor classifique o transporte "+ transp.getNome() +
+                                " da encomenda " + e.getEncomenda().getEncomendaID() + ":\n");
+                        view.classificacao();
+                        ler = new Scanner(System.in);
+                        classificacao = ler.nextInt();
+                        if(classificacao==0) break; //sai deste menu
                         if(transp instanceof Voluntario) ((Voluntario) transp).setVolunteer_rating(classificacao);
                         if(transp instanceof Empresa) ((Empresa) transp).setClassificacao(classificacao);
-                        //System.out.println(((Voluntario) transp).getVolunteer_rating());
                     }
-                    else view.printMensagem("Não há encomendas por classificar!!");
+                    else view.printMensagem("Não há encomendas por classificar!!\n");
                     break;
                 }
                 case 4: { //Encomendas à espera de transporte
@@ -148,7 +155,9 @@ public class UserController implements IUserController {
                     break;
                 }
                 case 5:{
+                    System.out.println();
                     System.out.println(user.getHistorico());
+                    System.out.println();
                 }
                 default: break;
             }
