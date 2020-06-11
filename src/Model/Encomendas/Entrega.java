@@ -19,6 +19,7 @@ public class Entrega extends Encomenda implements IEntrega, Serializable {
     private boolean entregue;
     private float distPercorrida;
     private LocalDate dataEntrega;
+    private double precoTotal;
 
     public Entrega(){
         this.encomenda = new Encomenda();
@@ -97,6 +98,14 @@ public class Entrega extends Encomenda implements IEntrega, Serializable {
         this.transporte = transporte;
     }
 
+    public double getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(double precoTotal) {
+        this.precoTotal = precoTotal;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,6 +139,7 @@ public class Entrega extends Encomenda implements IEntrega, Serializable {
                 "\nEntregue: " + entregue +
                 "\nDistancia: " + distPercorrida +
                 "\nData da Entrega: " + dataEntrega +
+                "\nPreço Total: " + precoTotal +
                 "\nClassificação: " + classi;
     }
 }

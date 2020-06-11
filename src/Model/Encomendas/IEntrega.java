@@ -19,4 +19,6 @@ public interface IEntrega {
     void setTransporte(ITipo transporte);
     IEncomenda getEncomenda();
     void setEncomenda(IEncomenda encomenda);
+    double getPrecoTotal();
+    void setPrecoTotal(double precoTotal);
 }

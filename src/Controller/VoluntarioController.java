@@ -1,16 +1,10 @@
 package Controller;
 
-import Model.Catalogos.IProduto;
 import Model.CompareEntrega;
-import Model.Encomendas.Encomenda;
-import Model.Encomendas.Entrega;
-import Model.Encomendas.IEncomenda;
-import Model.Encomendas.IEntrega;
+import Model.Encomendas.*;
 import Model.ISistema;
 import Model.Tipos.*;
-import View.INavegador;
-import View.IUserView;
-import View.IVoluntarioView;
+import View.IAppView;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,7 +12,7 @@ import java.util.*;
 
 public class VoluntarioController implements IVoluntarioController {
     private ISistema sistema;
-    private IVoluntarioView view;
+    private IAppView view;
     private Voluntario voluntario;
     private IEntrega entregaFinal;
     private int opcao;
@@ -31,7 +25,7 @@ public class VoluntarioController implements IVoluntarioController {
     public void setSistema(ISistema sistema){
         this.sistema = sistema;
     }
-    public void setAppView(IVoluntarioView view) {
+    public void setAppView(IAppView view) {
         this.view = view;
     }
     public void setVoluntario(){
@@ -43,12 +37,12 @@ public class VoluntarioController implements IVoluntarioController {
     public void VoluntarioMode(){
         setVoluntario();
         Scanner ler = new Scanner(System.in);
-        view.prepara();
+        view.prepara(0);
         String yn = ler.nextLine();
         if(yn.equals("Y")) this.voluntario.setMedicamentos(true);
         do {
             ler = new Scanner(System.in);
-            view.mode();
+            view.Voluntariomode();
             opcao = ler.nextInt();
 
             switch (opcao) {
@@ -70,6 +64,9 @@ public class VoluntarioController implements IVoluntarioController {
                     IEntrega entrega = sistema.getFilaEntregues().getEntrega(codigoE);
 
                     if((med.contains(entrega) && !voluntario.getMedicamentos())) {
+                        sistema.getFilaEncomendas().addEncomenda(sistema.getFilaEntregues().getEntrega(codigoE).getEncomenda());
+                        sistema.getFilaEntregues().removeEncomenda(sistema.getFilaEntregues().getEntrega(codigoE));
+                        ((Voluntario)sistema.getVoluntarios().getTipo(voluntario.getId())).setAvailability(false);
                         view.printMensagem("Avisando o Utilizador que a encomenda foi cancelada...");
                         opcao = 0;
                     }
@@ -94,7 +91,10 @@ public class VoluntarioController implements IVoluntarioController {
                     view.listagem(array);
                 }
                 case 4:{ //Classificacoes
-
+                    HashMap<String,Integer> res = sistema.getFilaEntregues().getClassificacoes(voluntario.getId());
+                    if(res !=null){
+                        view.classificacoes(res);
+                    }
                 }
             }
         }while(opcao!=0);
@@ -109,6 +109,12 @@ public class VoluntarioController implements IVoluntarioController {
         entregaFinal.setHoraEntrega(LocalTime.now());
         entregaFinal.setEntregue(true);
         entregaFinal.setDataEntrega(LocalDate.now());
+        ArrayList<LinhaEncomenda> linhas = entregaFinal.getEncomenda().getProds();
+        float preco = 0;
+        for( LinhaEncomenda l : linhas){
+            preco += l.getValor();
+        }
+        entregaFinal.setPrecoTotal(preco);
         user.getHistorico().add(entregaFinal);
         System.out.println(entregaFinal.toString());
         view.printMensagem("Encomenda Entregue!!");

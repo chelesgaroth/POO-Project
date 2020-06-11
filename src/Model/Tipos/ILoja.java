@@ -10,10 +10,8 @@ import java.util.ArrayList;
 public interface ILoja {
 
     int getPessoasFila();
-    LocalDateTime getTempo();
     double getTempoPessoa();
     void setPessoasFila(int pessoasFila);
-    void setTempo(LocalDateTime tempo);
     void setTempoPessoa(double tempoPessoa);
     ICatalogoProds getStock();
     void setStock(ICatalogoProds stock);

@@ -2,10 +2,15 @@ package Model;
 
 import Model.Encomendas.IEncomenda;
 import Model.Encomendas.IEntrega;
+import Model.Tipos.Empresa;
+import Model.Tipos.Voluntario;
 
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * KEY : transporte
+ */
 public class FilaEntregues implements IFilaEntregues, Serializable {
     private Map<String, Set<IEntrega>> fila;
 
@@ -99,6 +104,26 @@ public class FilaEntregues implements IFilaEntregues, Serializable {
             }
         }
         return  null;
+    }
+
+    public HashMap<String,Integer> getClassificacoes(String keyTransp){
+        HashMap<String,Integer> res = new HashMap<>();
+        Set<IEntrega> value = this.fila.get(keyTransp);
+        for(IEntrega e : value){
+            if(e.getEntregue()){
+                if(e.getTransporte() instanceof Voluntario){
+                    if((((Voluntario) e.getTransporte()).getVolunteer_rating())!=0){
+                        res.put(e.getEncomenda().getUserID(),(((Voluntario) e.getTransporte()).getVolunteer_rating()));
+                    }
+                }
+                else{
+                    if((((Empresa) e.getTransporte()).getClassificacao())!=0){
+                        res.put(e.getEncomenda().getUserID(),(((Empresa) e.getTransporte()).getClassificacao()));
+                    }
+                }
+            }
+        }
+        return res;
     }
 
     public String toString() {

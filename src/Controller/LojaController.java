@@ -4,25 +4,25 @@ import Model.Encomendas.IEncomenda;
 import Model.ISistema;
 import Model.Tipos.ITipo;
 import Model.Tipos.Loja;
-import View.ILojaView;
-import View.LojaView;
+import View.AppView;
+import View.IAppView;
 
 import java.util.*;
 
 
 public class LojaController implements ILojaController {
     private ISistema sistema;
-    private ILojaView view;
+    private IAppView view;
     private int opcao;
 
     public LojaController(){
         this.opcao = 0;
-        this.view = new LojaView();
+        this.view = new AppView();
     }
 
     public void setSistema(ISistema sistema){ this.sistema = sistema; }
 
-    public void setView(ILojaView view){ this.view= view; }
+    public void setView(IAppView view){ this.view= view; }
 
     public void lojaMode() {
         view.infos();
@@ -47,7 +47,7 @@ public class LojaController implements ILojaController {
                     Set<IEncomenda> set = sistema.getFilaEspera().getEncomendas(id);
                     if(set==null) view.printMensagem("Não há encomendas na fila de espera!");
                     else{
-                        view.encomendasFila(set);
+                        view.encomendasEspera(set);
                     }
                     break;
                 }
@@ -77,11 +77,12 @@ public class LojaController implements ILojaController {
                     if(opcao==1) encomenda.setCongelados(true);
                     else encomenda.setCongelados(false);
 
+
                     sistema.addAceite(encomenda.getEncomendaID());
 
                     view.printMensagem("Encomenda Feita!!");
                     view.printMensagem("Esperar pela recolha da encomenda...");
-                    view.printMensagem("\nPressione ENTER para aceder ao User Menu\nPressione 0 para voltar ao Login Menu");
+                    view.printMensagem("\nPressione ENTER para aceder ao Loja Menu\nPressione 0 para voltar ao Login Menu");
                     Scanner scanner = new Scanner(System.in);
                     String aux = scanner.nextLine();
                     if(aux.equals("0")) opcao = 0;
@@ -92,14 +93,6 @@ public class LojaController implements ILojaController {
 
                     break;
                 }
-                case 4: {
-                    break;
-                }
-
-                case 5 : {
-
-                    }
-
                 default:
                     break;
             }

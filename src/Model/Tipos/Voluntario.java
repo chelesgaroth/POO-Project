@@ -16,9 +16,7 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
     private boolean medicamentos;
 
     private int volunteer_rating;
-    private LocalDateTime time_start;
-    private  LocalDateTime time_finish;
-    private List<String> package_list;
+
 
     /**
      * Construtor por omissão
@@ -26,12 +24,10 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
     public Voluntario(){
         super();
         this.radius_volunteer = 0;
-        this.package_list = new ArrayList<>();
         this.availability = true;
         this.medicamentos = false;
         this.volunteer_rating = 0;
-        this.time_start = LocalDateTime.now();
-        this.time_finish = LocalDateTime.now();
+
     }
 
     /**
@@ -41,11 +37,8 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
 
         super(voluntario);
         this.radius_volunteer= voluntario.getRadius_volunteer();
-        this.package_list= voluntario.getPackage_list();
         this.availability= voluntario.getAvailability();
         this.volunteer_rating= voluntario.getVolunteer_rating();
-        this.time_start= voluntario.getTime_start();
-        this.time_finish= voluntario.getTime_finish();
     }
 
     /**
@@ -58,11 +51,9 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
 
         super(id_volunteer,name,x_volunteer,y_volunteer);
         this.radius_volunteer=radius_volunteer;
-        setPackage_list(package_list);
         this.availability=availability;
         this.volunteer_rating=volunteer_rating;
-        this.time_start=time_start;
-        this.time_finish=time_finish;
+
     }
 
     public boolean getMedicamentos() {
@@ -80,19 +71,6 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
         this.radius_volunteer = radius_volunteer;
     }
 
-    public List<String> getPackage_list() {
-        List<String> res = new ArrayList<>();
-        for (String s : package_list) {
-            res.add(s) ;
-        }
-        return res;
-    }
-    public void setPackage_list(List<String> package_list){
-        this.package_list= new ArrayList<>();
-        package_list.forEach(s -> {
-            this.package_list.add(s);
-        });
-    }
 
     public boolean getAvailability(){
         return this.availability;
@@ -106,18 +84,7 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
     public void setVolunteer_rating(int volunteer_rating){
         this.volunteer_rating=volunteer_rating;
     }
-    public LocalDateTime getTime_start(){
-        return this.time_start;
-    }
-    public void setTime_start(LocalDateTime time_start){
-        this.time_start=time_start;
-    }
-    public LocalDateTime getTime_finish(){
-        return this.time_finish;
-    }
-    public void setTime_finish(LocalDateTime time_finish){
-        this.time_finish=time_finish;
-    }
+
 
 
     public Voluntario clone(){
@@ -129,9 +96,7 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
         if (obj==null || obj.getClass()!=this.getClass()) return false;
         Voluntario v = (Voluntario) obj;
         return this.radius_volunteer==v.getRadius_volunteer() &&
-                this.package_list.equals(v.getPackage_list()) &&
-                this.availability==(v.getAvailability()) && this.volunteer_rating==v.getVolunteer_rating() &&
-                this.time_start.equals(v.getTime_start()) && this.time_finish.equals(v.getTime_finish());
+                this.availability==(v.getAvailability()) && this.volunteer_rating==v.getVolunteer_rating();
     }
 
     public String toString() {

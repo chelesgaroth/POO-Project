@@ -1,7 +1,16 @@
 package View;
 
 import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.IEncomenda;
+import Model.Encomendas.IEntrega;
 import Model.Encomendas.ILinhaEncomenda;
+import Model.Tipos.Empresa;
+import Model.Tipos.ITipo;
+import Model.Tipos.Voluntario;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AppView implements IAppView {
 
@@ -22,47 +31,6 @@ public class AppView implements IAppView {
         System.out.println("3- Alterar a password");
         System.out.println("4- Guardar estado do programa");
         System.out.println("0- Sair do aplicativo");
-    }
-
-    public void registo (){
-        System.out.println("---------TRAZ AQUI!--------");
-        System.out.println("Fazer registo de:");
-        System.out.println("1- Utilizador");
-        System.out.println("2- Voluntário");
-        System.out.println("3- Loja");
-        System.out.println("4- Empresa");
-        System.out.println("0- Voltar ao Menu Inicial");
-    }
-
-    /*public void mode(int x, String nome){
-        System.out.println("---------TRAZ AQUI!--------");
-
-        if(x==1){ //User
-            System.out.println("1- Fazer uma encomenda");
-            System.out.println("2- Histórico de compras");
-            /*
-        * solicitar a entrega de uma encomenda que foi pedida a uma loja;
-        * aceitar, ou não, o serviço de entrega proposto por uma empresa transportadora (os
-        serviços feitos por voluntários são automaticamente aceites pelo sistema);
-        * aceder à informação das entregas efectuadas num determinado período e por voluntário
-        ou transportador;
-        * classificar o voluntário ou a empresa de transportes mediante o grau de satisfação com
-        o serviço;
-
-        }
-        if(x==2){ //Loja
-            System.out.println("1- Ver o nº de vendas realizadas");
-        }
-        if(x==3){ //Empresa
-            System.out.println("1- Ver o nº de encomendas transportadas");
-        }
-        if(x==4){ //Voluntário
-            System.out.println("1- Ver o nº de encomendas que foram entregues");
-        }
-    } */
-
-    public void printMensagem(String s){
-        System.out.printf("\n%s\n",s);
     }
 
     public void login(int x){
@@ -93,4 +61,235 @@ public class AppView implements IAppView {
         }
 
     }
+
+    public void registo (){
+        System.out.println("---------TRAZ AQUI!--------");
+        System.out.println("Fazer registo de:");
+        System.out.println("1- Utilizador");
+        System.out.println("2- Voluntário");
+        System.out.println("3- Loja");
+        System.out.println("4- Empresa");
+        System.out.println("0- Voltar ao Menu Inicial");
+    }
+
+    public void Voluntariomode(){
+        System.out.println("-----------VOLUNTÁRIO MODE----------");
+        System.out.println("1- Encomendas à espera da validação");
+        System.out.println("2- Entregar/Recusar Encomenda ao Utilizador");
+        System.out.println("3- Histórico de entregas");
+        System.out.println("4- Classificações recebidas pelos Users");
+        System.out.println("0- Voltar ao Menu de Login");
+    }
+
+    public void userMode(){
+        System.out.println("-----------USER MODE----------");
+        System.out.println("1- Fazer uma encomenda");
+        System.out.println("2- Escolher o transporte");
+        System.out.println("3- Classificar transporte + Recibo");
+        System.out.println("4- Encomendas em espera de Transporte");
+        System.out.println("5- Histórico");
+        System.out.println("0- Voltar ao Menu de Login");
+    }
+
+    public void modeLoja(){
+        System.out.println("-----------LOJA MODE----------");
+        System.out.println("1- Encomendas em fila de espera");
+        System.out.println("2- Validar uma encomenda");
+        System.out.println("3- Ver o histórico de vendas realizadas");
+        System.out.println("0- Voltar ao Menu de Login");
+    }
+
+    public void modeEmpresa(){
+        System.out.println("-----------EMPRESA MODE----------");
+        System.out.println("1- Encomendas à espera da validação");
+        System.out.println("2- Entregar/Recusar Encomenda ao Utilizador");
+        System.out.println("3- Histórico de entregas");
+        System.out.println("4- Classificações recebidas pelos Users");
+        System.out.println("5- Total Faturado num período");
+        System.out.println("0- Voltar ao Menu de Login");
+    }
+
+    public void encomendasEspera(Set<IEncomenda> res){
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("                ENCOMENDAS NA FILA DE ESPERA");
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("Utilizador                               Código da Encomenda");
+        for(IEncomenda enco : res){
+            System.out.printf("%-38s",enco.getUserID());
+            System.out.print(enco.getEncomendaID());
+            System.out.println();
+        }
+    }
+
+    public void encomendasFila(Set<IEntrega> res){
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("                ENCOMENDAS PARA TRANSPORTE");
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("Código da Encomenda  Medicamento   Congelados   Hora Inicial");
+        for(IEntrega enco : res){
+            System.out.printf("%-20s",enco.getEncomenda().getEncomendaID());
+            System.out.printf("%-20s",enco.getEncomenda().getMedicamentos());
+            System.out.printf("%-20s",enco.getEncomenda().getCongelados());
+            System.out.print(enco.getEncomenda().getHoraInicial());
+            System.out.println();
+        }
+    }
+
+    public void listagem(IEntrega[] res){
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("                   HISTÓRICO DE ENTREGAS");
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("Código     Distância Percorrida       Data           Hora   ");
+        for(int i=0; i<res.length; i++){
+            System.out.printf("%-20s",res[i].getEncomenda().getEncomendaID());
+            System.out.printf("%-20s",res[i].getDistPercorrida());
+            System.out.printf("%-20s",res[i].getDataEntrega());
+            System.out.print(res[i].getHoraEntrega());
+            System.out.println();
+        }
+    }
+
+    public void prepara(int x){
+        if(x==0){
+            System.out.println("Aceita transportar medicamentos?");
+            System.out.println("(Y) Yes                  (N) No ");
+        }
+        if(x==1){
+            System.out.println("Está a chover ou está trânsito ?");
+            System.out.println("(Y) Yes                  (N) No ");
+        }
+        if(x==2) System.out.println("Quantas encomendas consegue transportar?");
+        if(x==3) System.out.println("Qual é a taxa adicional?");
+    }
+
+
+    public void transportes(char opcao, HashSet<ITipo> res){
+        int x = 0x2713;
+        if(opcao== ' ') {
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+            System.out.println("                   OPÇÕES DE TRANSPORTE");
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+
+        }
+        if(opcao=='V') {
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+            System.out.println("VOLUNTÁRIOS       CÓDIGO      RAIO DE AÇÃO           PREÇO  ");
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+            for(ITipo tipo : res){
+                if(tipo instanceof Voluntario){
+                    Voluntario vol = (Voluntario) tipo;
+                    System.out.printf("%-15s",vol.getNome());
+                    System.out.printf("    %-15s",vol.getId());
+                    if(vol.getAvailability()){
+                        String check = "✓";
+                        System.out.printf("%-15s",check);
+                    }
+                    else {
+                        String no = "x";
+                        System.out.printf("%-15s",no);
+                    }
+                    String preco = "     Grátis";
+                    System.out.printf("%-15s",preco);
+                    System.out.println();
+                }
+            }
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+            System.out.println("(E) Escolha um meio de transporte");
+        }
+        else if(opcao =='T'){
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+            System.out.println("TRANSPORTADORAS      CÓDIGO     DISPONIBILIDADE        PREÇO");
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+            for(ITipo tipo : res){
+                if(tipo instanceof Empresa){
+                    Empresa emp = (Empresa) tipo;
+                    System.out.printf("%-15s",emp.getNome());
+                    System.out.printf("%-25s",emp.getId());
+                    if(emp.getDisponibilidade()){
+                        String check = "✓";
+                        System.out.printf("%-15s",check);
+                    }
+                    else {
+                        String no = "x";
+                        System.out.printf("%-15s",no);
+                    }
+                    System.out.printf("%-15s",emp.getPreco());
+                    System.out.println();
+                }
+            }
+            System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+            System.out.println("(E) Escolha um meio de transporte");
+        }
+        else if(opcao == 'M'){
+            System.out.println("Obrigada!! Dentro de minutos a encomenda será entregue!\nAté já!");
+        }
+        //else System.out.println("Opção inválida! Escolha novamente");
+        if(opcao != 'E') System.out.println("\n(V) Voluntários       (M) Menu           (T) Transportadoras");
+    }
+
+
+    public void classificacao(){
+        System.out.println("-----------CLASSIFICAÇÃO----------");
+        System.out.println("1- ★");
+        System.out.println("2- ★★");
+        System.out.println("3- ★★★");
+        System.out.println("4- ★★★★");
+        System.out.println("5- ★★★★★");
+        System.out.println("0- Voltar ao Menu");
+    }
+
+
+    public void classificacoes(HashMap<String,Integer> res){
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("                     CLASSIFICAÇÕES");
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("Código do User                                 Classificação");
+        for(String u : res.keySet()){
+            System.out.printf("%-45s",u);
+            if(res.get(u)==1){
+                System.out.print("★");
+            }
+            if(res.get(u)==2){
+                System.out.print("★★");
+            }
+            if(res.get(u)==3){
+                System.out.print("★★★");
+            }
+            if(res.get(u)==4){
+                System.out.print("★★★★");
+            }
+            if(res.get(u)==5){
+                System.out.print("★★★★★");
+            }
+            System.out.println();
+        }
+    }
+
+    public void infos(){
+        System.out.println("-----------LOJA MODE----------");
+        System.out.println("Quanto tempo demora, em média, em minutos, a atender uma pessoa?");
+    }
+
+
+    public void tipodeEncomenda(int x) {
+        if (x==1) {
+            System.out.println("Algum destes produtos é medicamento?");
+            System.out.println("1- Sim");
+            System.out.println("2- Não");
+        }
+        if(x==2) {
+            System.out.println("Algum destes produtos é congelado?");
+            System.out.println("1- Sim");
+            System.out.println("2- Não");
+        }
+        if(x==3){
+            System.out.println("Insira o peso da encomenda: ");
+        }
+    }
+
+    public void printMensagem(String s){
+        System.out.printf("\n%s\n",s);
+    }
+
+
 }

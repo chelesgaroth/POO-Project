@@ -7,7 +7,7 @@ import Model.Encomendas.IEncomenda;
 import Model.Encomendas.IEntrega;
 import Model.ISistema;
 import Model.Tipos.*;
-import View.IUserView;
+import View.IAppView;
 import View.INavegador;
 import View.Navegador;
 
@@ -15,7 +15,7 @@ import java.util.*;
 
 public class UserController implements IUserController {
     private ISistema sistema;
-    private IUserView view;
+    private IAppView view;
     private INavegador nav;
     private User user;
     private int opcao;
@@ -32,7 +32,7 @@ public class UserController implements IUserController {
     public void setSistema(ISistema sistema){
         this.sistema = sistema;
     }
-    public void setAppView(IUserView view) {
+    public void setAppView(IAppView view) {
         this.view = view;
     }
     public void setUser(){
@@ -110,10 +110,27 @@ public class UserController implements IUserController {
                                 tipo = sistema.getEmpresas().getTipo(escolha);
                                 emp = (Empresa) tipo;
                             }
+                            view.printMensagem("Caso esteja a chover ou trânsito irá ser lhe cobrada uma taxa de 1.5 Eur");
+                            view.printMensagem("Aceita?\n(Y) Continuar                   (N) Escolher Voluntário");
+                            ler = new Scanner(System.in);
+                            if(ler.nextLine().equals("N")){
+                                view.printMensagem("Escolha de novo o transporte!");
+                                opcao = 2;
+                                break;
+                            }
+                            if(encomenda.getCongelados()){
+                                view.printMensagem("A sua encomenda contem congelados.Logo o serviço será mais rápido e " +
+                                        "irá ser lhe aplicada uma taxa extra da Empresa");
+                                view.printMensagem("Aceita?\n(Y) Continuar                   (N) Escolher Voluntário");
+                                ler = new Scanner(System.in);
+                                if(ler.nextLine().equals("N")){
+                                    view.printMensagem("Escolha de novo o transporte!");
+                                    opcao =2;
+                                    break;
+                                }
+                            }
                             entrega.setTransporte(tipo);
                         }
-                        System.out.println(entrega.getTransporte());
-                        System.out.println(entrega.getTransporte().getNome());
                         entrega.setEncomenda(encomenda);
                         sistema.getFilaEncomendas().removeEncomenda(encomenda);
                         sistema.getFilaEntregues().addEncomenda(entrega);
@@ -130,14 +147,20 @@ public class UserController implements IUserController {
                     break;
                 }
                 case 3: {
+
                     int classificacao = 0 ;
                     List<IEntrega> lista = this.user.getHistorico();
                     int i=0;
                     if(lista.size()>=1) for(i=0; i< (lista.size()-1); i++);
                     IEntrega e;
                     if(lista.size()!=0){
+                        view.printMensagem("Já recebeu a sua encomenda!! ");
                         e = lista.get(i);
                         ITipo transp = e.getTransporte();
+                        view.printMensagem("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+                        view.printMensagem("RECIBO DA COMPRA: ");
+                        view.printMensagem(e.toString());
+                        view.printMensagem("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
                         view.printMensagem("Por favor classifique o transporte "+ transp.getNome() +
                                 " da encomenda " + e.getEncomenda().getEncomendaID() + ":\n");
                         view.classificacao();
@@ -151,7 +174,8 @@ public class UserController implements IUserController {
                     break;
                 }
                 case 4: { //Encomendas à espera de transporte
-                    System.out.println(sistema.getFilaEncomendas().getEncomendas(user.getId()).toString());
+                    if(sistema.getFilaEncomendas().getEncomendas(user.getId())==null) view.printMensagem("Não há encomendas!");
+                    else System.out.println(sistema.getFilaEncomendas().getEncomendas(user.getId()).toString());
                     break;
                 }
                 case 5:{

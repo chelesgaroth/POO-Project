@@ -13,9 +13,10 @@ Empresa extends Tipo implements IEmpresa, Serializable {
     private boolean disponibilidade;
     private boolean aceitaMedicamento;
     private double taxaAdicional;
+    private double taxaChuva;
     private boolean chuva;
     private int nEncs;
-
+    private double precoPeso;
     private int classificacao;
 
 
@@ -24,14 +25,15 @@ Empresa extends Tipo implements IEmpresa, Serializable {
         this.nif = 0;
         this.preco = 0.0;
         this.raio = 0.0;
-        this.disponibilidade = false;
+        this.disponibilidade = true;
 
-
+        this.taxaChuva = 1.5;
         this.aceitaMedicamento = false;
         this.taxaAdicional = 0.0;
         this.chuva = false;
         this.nEncs = 0;
         this.classificacao = 0;
+        this.precoPeso = 0.5;
     }
 
     public Empresa (String id,int nif, boolean aceitaMedicamento, double preco, float longitude,
@@ -62,6 +64,15 @@ Empresa extends Tipo implements IEmpresa, Serializable {
     }
 
     //Getters e Setters
+
+
+    public double getTaxaChuva() {
+        return taxaChuva;
+    }
+
+    public void setTaxaChuva(double taxaChuva) {
+        this.taxaChuva = taxaChuva;
+    }
 
     public int getNif() {
         return this.nif;
@@ -133,6 +144,14 @@ Empresa extends Tipo implements IEmpresa, Serializable {
 
     public void setNEncs(int nEncs) {
         this.nEncs = nEncs;
+    }
+
+    public double getPrecoPeso() {
+        return precoPeso;
+    }
+
+    public void setPrecoPeso(double precoPeso) {
+        this.precoPeso = precoPeso;
     }
 
     public Empresa clone () {

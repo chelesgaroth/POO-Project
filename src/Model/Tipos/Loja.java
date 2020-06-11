@@ -15,14 +15,12 @@ import java.util.Objects;
 public class Loja extends Tipo implements ILoja, Serializable {
 
     private int pessoasFila; //sistema.encs.size()
-    private LocalDateTime tempo;
     private double tempoPessoa; //tempo medio a atender uma pessoa
     private ICatalogoProds stock; //Stock da loja
 
     public Loja () {
 
         //Variáveis da App
-        this.tempo = LocalDateTime.now();
         this.tempoPessoa  = 0.0;
         this.pessoasFila = 0;
         this.stock = new CatalogoProds();
@@ -33,7 +31,6 @@ public class Loja extends Tipo implements ILoja, Serializable {
 
         super(nome,codLoja,0,0);
         this.pessoasFila = pessoasFila;
-        this.tempo = tempo;
         this.tempoPessoa = tempoPessoa;
         this.stock = stock;
     }
@@ -41,7 +38,6 @@ public class Loja extends Tipo implements ILoja, Serializable {
     public Loja (Loja l){
         super(l);
         l.pessoasFila = l.getPessoasFila();
-        l.tempo = l.getTempo();
         l.tempoPessoa = l.getTempoPessoa();
         l.stock = l.getStock();
     }
@@ -50,9 +46,6 @@ public class Loja extends Tipo implements ILoja, Serializable {
         return this.pessoasFila;
     }
 
-    public LocalDateTime getTempo() {
-        return this.tempo;
-    }
 
     public double getTempoPessoa() {
         return tempoPessoa;
@@ -67,9 +60,6 @@ public class Loja extends Tipo implements ILoja, Serializable {
         this.pessoasFila = pessoasFila;
     }
 
-    public void setTempo(LocalDateTime tempo) {
-        this.tempo = tempo;
-    }
 
     public void setTempoPessoa(double tempoPessoa) {
         this.tempoPessoa = tempoPessoa;
@@ -93,13 +83,12 @@ public class Loja extends Tipo implements ILoja, Serializable {
         return  super.equals(loja) &&
                 pessoasFila == loja.pessoasFila &&
                 Double.compare(loja.tempoPessoa, tempoPessoa) == 0 &&
-                Objects.equals(tempo, loja.tempo) &&
                 this.stock.equals(loja.stock);
     }
 
     //HashCode para as variáveis do ficheiro Logs.txt
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getPessoasFila(), getTempo(), getTempoPessoa(), getStock());
+        return Objects.hash(super.hashCode(), getPessoasFila(), getTempoPessoa(), getStock());
     }
 
     public String toString() {

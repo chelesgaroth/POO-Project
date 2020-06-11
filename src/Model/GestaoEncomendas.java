@@ -66,7 +66,7 @@ public class GestaoEncomendas implements IGestaoEncomendas, Serializable {
                  xV = vol.getX();
                  yV = vol.getY();
                  rV = vol.getRadius_volunteer();
-                 if(raioAcao(x,y,rV,xV,yV)){
+                 if(raioAcao(x,y,rV,xV,yV)&&(vol.getAvailability())){
                      vol.setAvailability(true);
                  }
                  else vol.setAvailability(false);
@@ -79,7 +79,7 @@ public class GestaoEncomendas implements IGestaoEncomendas, Serializable {
                 xE = emp.getX();
                 yE = emp.getY();
                 rE = (float) emp.getRaio();
-                if(raioAcao(x,y,rE,xE,yE)){
+                if(raioAcao(x,y,rE,xE,yE)&&(emp.getDisponibilidade())){
                     emp.setDisponibilidade(true);
                 }
                 else emp.setDisponibilidade(false);

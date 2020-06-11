@@ -1,11 +1,11 @@
 package Controller;
 
 import Model.ISistema;
-import View.ILojaView;
+import View.IAppView;
 
 public interface ILojaController {
     void setSistema(ISistema sistema);
-    void setView(ILojaView view);
+    void setView(IAppView view);
 
     void lojaMode();
 

@@ -1,12 +1,11 @@
 package Controller;
 
 import Model.ISistema;
-import Model.Tipos.Empresa;
-import View.IEmpresaView;
+import View.IAppView;
 
 public interface IEmpresaController {
     void setSistema(ISistema sistema);
-    void setView(IEmpresaView view);
+    void setView(IAppView view);
     void setEmpresa();
     void mode();
 }

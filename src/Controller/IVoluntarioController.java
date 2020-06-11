@@ -1,12 +1,12 @@
 package Controller;
 
 import Model.ISistema;
-import View.IVoluntarioView;
+import View.IAppView;
 
 public interface IVoluntarioController {
 
     void setSistema(ISistema sistema);
-    void setAppView(IVoluntarioView view);
+    void setAppView(IAppView view);
     void setVoluntario();
     void VoluntarioMode();
 }

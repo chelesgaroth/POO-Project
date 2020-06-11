@@ -14,6 +14,8 @@ public interface IEmpresa {
 
     int getNEncs();
     void setNEncs(int nEncs);
+    double getTaxaChuva();
+    void setTaxaChuva(double taxaChuva);
 
     Empresa clone ();
 

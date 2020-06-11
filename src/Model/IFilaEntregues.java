@@ -2,6 +2,7 @@ package Model;
 
 import Model.Encomendas.IEntrega;
 
+import java.util.HashMap;
 import java.util.Set;
 
 public interface IFilaEntregues {
@@ -13,5 +14,6 @@ public interface IFilaEntregues {
     Set<IEntrega> getMedicamentos(String codId);
     IEntrega getEntrega(String id);
     boolean containsEncFalse (String encId);
+    HashMap<String,Integer> getClassificacoes(String keyTransp);
 
 }
