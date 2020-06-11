@@ -13,6 +13,9 @@ import View.Navegador;
 
 import java.util.*;
 
+/**
+ * Controller referente apenas à parte exclusiva ao user no projeto
+ */
 public class UserController implements IUserController {
     private ISistema sistema;
     private IAppView view;
@@ -40,7 +43,10 @@ public class UserController implements IUserController {
         this.user = (User) sistema.getUsers().getTipo(id);
     }
 
-
+    /**
+     * switch com case para a opção que o user escolje do menu da view userMode. Faz scan da opção que ele escolhe depois de ver
+     * o menu que foi imprimido.
+     */
     public int userMode() {
         int res = 0;
         setUser();
@@ -134,10 +140,10 @@ public class UserController implements IUserController {
                         entrega.setEncomenda(encomenda);
                         sistema.getFilaEncomendas().removeEncomenda(encomenda);
                         sistema.getFilaEntregues().addEncomenda(entrega);
-                        System.out.println(entrega.toString());
-                        System.out.println(sistema.toString());
-                        System.out.println("Transporte escolhido: " + escolha);
-                        System.out.println("Por favor aguarde o contacto do transporte...");
+                        view.printMensagem(entrega.toString());
+                        view.printMensagem(sistema.toString());
+                        view.printMensagem("Transporte escolhido: " + escolha);
+                        view.printMensagem("Por favor aguarde o contacto do transporte...");
 
                         view.printMensagem("\nPressione ENTER para aceder ao User Menu\nPressione 0 para voltar ao Login Menu");
                         Scanner scanner = new Scanner(System.in);
@@ -179,9 +185,9 @@ public class UserController implements IUserController {
                     break;
                 }
                 case 5:{
-                    System.out.println();
-                    System.out.println(user.getHistorico());
-                    System.out.println();
+                    view.printMensagem("");
+                    view.lista(user.getHistorico());
+                    view.printMensagem("");
                 }
                 default: break;
             }
@@ -210,7 +216,9 @@ public class UserController implements IUserController {
     }
 
 
-
+    /**
+     * função que chama o navegador para printar os produtos e as lojas , caso a opção seja 0 ou 1, respetivamente
+     */
     public int catalogo(int opcao, List<IProduto> prods, List<String> quantidades){
         Scanner ler;
         String x = " ";
@@ -284,51 +292,49 @@ public class UserController implements IUserController {
         return 0;
     }
 
-
+    /**
+     * função auxiliar à inserção da encomenda.
+     */
     public String escolheProdLoja(int opcao, List<IProduto> prods, List<String> quantidades) {
         String loja = " ";
         Scanner ler = new Scanner(System.in);
         if(opcao==0){
-            System.out.println("Insira o código do produto"); //ver se o produto existe
+            view.printMensagem("Insira o código do produto"); //ver se o produto existe
             String prod = ler.nextLine();
             while(!sistema.getCatalogoProds().existsProdStr(prod)){
-                System.out.println("Produto não existe!! Insira novamente.");
+                view.printMensagem("Produto não existe!! Insira novamente.");
                 prod = ler.nextLine();
             }
             IProduto produto = sistema.getCatalogoProds().getProd(prod);
             prods.add(produto);
-            System.out.println("Cesto de Compras: " + prods.toString());
-            System.out.println("Qual a quantidade pretendida");
+            view.printMensagem("Cesto de Compras: " + prods.toString());
+            view.printMensagem("Qual a quantidade pretendida");
             ler = new Scanner(System.in);
             String quantidade = ler.nextLine();
             quantidades.add(quantidade);
-            System.out.println("Pretende escolher mais produtos? Selecione 1, caso contrário 0");
+            view.printMensagem("Pretende escolher mais produtos? Selecione 1, caso contrário 0");
             ler = new Scanner(System.in);
             String x = ler.nextLine();
             if (x.equals("0")) {
                 escolheProdLoja(1,prods,quantidades);
             }
             if(x.equals("1")){
-                //System.out.println("escolheu 1");
                 catalogo(0,prods,quantidades);
             }
-            //else System.out.println("Opção inválida, tente novamente");
 
         }
 
         if (opcao==1) {
-            //HashSet<Loja> lojas = sistema.getListaLojas();
             catalogo(1,prods,quantidades);
 
         }
         if(opcao==2) {
-            System.out.println("Insira o código da loja");
+            view.printMensagem("Insira o código da loja");
             ler = new Scanner(System.in);
             loja = ler.nextLine();
             if (sistema.getLojas().existsID(loja)) {
-                //System.out.println("Loja Escolhida : " + loja);
             } else {
-                System.out.println("Loja inválida, insira novamente");
+                view.printMensagem("Loja inválida, insira novamente");
                 catalogo(1, prods,quantidades);
             }
         }

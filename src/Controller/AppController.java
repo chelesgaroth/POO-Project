@@ -13,14 +13,17 @@ import View.*;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Controller geral que faz as opções comuns a todos os models.
+ */
 public class AppController implements IAppController {
-    private ISistema sistema;
-    private IAppView view;
-    private INavegador nav;
-    private IReadFile lerFiles;
-    private String file;
-    private int opcao;
-    private IRWEstado rw;
+    private ISistema sistema;  //sistema para fazer set na main
+    private IAppView view;     //view para fazer set main
+    private INavegador nav;    //navegador
+    private IReadFile lerFiles; //readfile
+    private String file; //ficheiro
+    private int opcao;   //opção que insere
+    private IRWEstado rw;  //rwestado
 
 
     public AppController(){
@@ -39,6 +42,9 @@ public class AppController implements IAppController {
         this.view = view;
     }
 
+    /**
+     * switch case para as opções que surgem no menu da view preInicio
+     */
     public ISistema runController() {
         Scanner ler = new Scanner(System.in);
         do{

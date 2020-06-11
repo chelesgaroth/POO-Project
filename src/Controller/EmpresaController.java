@@ -16,13 +16,15 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-
+/**
+ * Controller para a empresa
+ */
 public class EmpresaController implements IEmpresaController {
-    private ISistema sistema;
-    private IAppView view;
-    private Empresa empresa;
-    private IEntrega entregaFinal;
-    private int opcao;
+    private ISistema sistema;  //sistema para fazer set na main
+    private IAppView view;     //view para fazer set na main
+    private Empresa empresa;    //empresa para fazer set
+    private IEntrega entregaFinal; //entrega que vai ser completada
+    private int opcao; //opcao que é inserida
 
     public EmpresaController(){
         this.empresa = new Empresa();
@@ -39,6 +41,10 @@ public class EmpresaController implements IEmpresaController {
         this.empresa = (Empresa) sistema.getEmpresas().getTipo(id);
     }
 
+    /**
+     *  controller que vê a opção que se escolhe do menu da view prepara e depois do menu modeEmpresa. Faz scan
+     *  da opção que a empresa escolheu depois de ver o menu imprimido no ecrã pela view.
+     */
     public void mode(){
         setEmpresa();
         Scanner ler = new Scanner(System.in);
@@ -131,6 +137,9 @@ public class EmpresaController implements IEmpresaController {
         }while (opcao!=0);
     }
 
+    /**
+     * método que faz set da entrega final com as informações e add da entrega no historico do user
+     */
     public void entregar(){
         User user = (User) sistema.getUsers().getTipo(entregaFinal.getEncomenda().getUserID());
         Loja loja = (Loja) sistema.getLojas().getTipo(entregaFinal.getEncomenda().getLojaID());

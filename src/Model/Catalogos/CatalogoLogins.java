@@ -5,6 +5,9 @@ import Model.Logins.ILogin;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * classe do catálogo de logins
+ */
 public class CatalogoLogins implements ICatalogoLogins, Serializable {
     private HashMap<String, ILogin> logins; // UserID + (Email + Password)
 

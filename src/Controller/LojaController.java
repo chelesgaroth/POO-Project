@@ -9,11 +9,13 @@ import View.IAppView;
 
 import java.util.*;
 
-
+/**
+ * Controller para a parte referente apenas à loja
+ */
 public class LojaController implements ILojaController {
-    private ISistema sistema;
-    private IAppView view;
-    private int opcao;
+    private ISistema sistema; //sistema para dar set na main
+    private IAppView view; // view para dar set na main
+    private int opcao;//opcao que escolhe
 
     public LojaController(){
         this.opcao = 0;
@@ -24,6 +26,9 @@ public class LojaController implements ILojaController {
 
     public void setView(IAppView view){ this.view= view; }
 
+    /**
+     * metodo que vai ver qual é opcao que escolhe do menu da view modeLoja. Faz scan da opção que a loja inseriu depois de ver o menu.
+     */
     public void lojaMode() {
         view.infos();
         Scanner ler = new Scanner(System.in);

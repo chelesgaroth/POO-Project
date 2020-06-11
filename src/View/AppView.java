@@ -1,6 +1,7 @@
 package View;
 
 import Model.Catalogos.ICatalogoProds;
+import Model.Encomendas.Entrega;
 import Model.Encomendas.IEncomenda;
 import Model.Encomendas.IEntrega;
 import Model.Encomendas.ILinhaEncomenda;
@@ -10,6 +11,7 @@ import Model.Tipos.Voluntario;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class AppView implements IAppView {
@@ -313,6 +315,10 @@ public class AppView implements IAppView {
             System.out.print(res[i]);
             System.out.println();
         }
+    }
+
+    public void lista (List<IEntrega> res) {
+        System.out.println(res);
     }
 
 }
