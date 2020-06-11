@@ -18,5 +18,6 @@ public interface IFilaEntregues {
     HashMap<String,Integer> getClassificacoes(String keyTransp);
     int getFaturacao(String transp, LocalDate date);
     String[] top10Empresas();
+    Float[] distEmpresa(String[] res);
 
 }

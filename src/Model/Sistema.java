@@ -3,6 +3,7 @@ package Model;
 import Model.Catalogos.*;
 
 import Model.Encomendas.IEncomenda;
+import Model.Encomendas.IEntrega;
 import Model.Logins.ILogin;
 import Model.Logins.Login;
 import Model.Tipos.*;
@@ -231,12 +232,22 @@ public class Sistema implements ISistema, Serializable {
                if(c2 instanceof User){
                    res2 = ((User)c2).getHistorico().size();
                }
-               if(res1>res2) return 1;
-               else if(res1<res2) return -1;
+               if(res1>res2) return -1;
+               else if(res1<res2) return 1;
                else return 0;
            }
        });
        return array;
+    }
+
+    public Integer[] getNComprasUser(ITipo[] users){
+        Integer[] res = new Integer[users.length];
+        int n;
+        for(int i=0; i< users.length;i++){
+            n = ((User)users[i]).getHistorico().size();
+            res[i] = n;
+        }
+        return res;
     }
 
 

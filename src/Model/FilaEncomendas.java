@@ -2,6 +2,7 @@ package Model;
 
 import Model.Encomendas.Encomenda;
 import Model.Encomendas.IEncomenda;
+import Model.Encomendas.IEntrega;
 import Model.IFila;
 
 import java.io.Serializable;

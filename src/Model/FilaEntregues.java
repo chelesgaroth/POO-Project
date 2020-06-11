@@ -156,12 +156,24 @@ public class FilaEntregues implements IFilaEntregues, Serializable {
                 for(IEntrega e : getEntregas(c2)){
                     res2 += e.getDistPercorrida();
                 }
-                if(res1>res2) return 1;
-                else if(res1<res2) return -1;
+                if(res1>res2) return -1;
+                else if(res1<res2) return 1;
                 else return 0;
             }
         });
         return array;
+    }
+
+    public Float[] distEmpresa(String[] res){
+        Float[] res2 = new Float[res.length];
+        float res1=0;
+        for(int i=0; i<res.length;i++){
+            for(IEntrega e : getEntregas(res[i])){
+                res1 += e.getDistPercorrida();
+            }
+            res2[i] = res1;
+        }
+        return res2;
     }
 
 

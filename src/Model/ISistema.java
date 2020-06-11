@@ -46,6 +46,7 @@ public interface ISistema {
     void addAceite(String id);
 
     ITipo[] top10Users();
+    Integer[] getNComprasUser(ITipo[] users);
 
 
 }

@@ -95,7 +95,16 @@ public class LojaController implements ILojaController {
                 }
 
                 case 3: { //Ver o histórico de vendas realizadas
-
+                    if(!sistema.getFilaEncomendas().existsKey(loja.getId())){
+                        view.printMensagem("Não tem vendas.");
+                        break;
+                    }
+                    Set<IEncomenda> set = sistema.getFilaEncomendas().getEncomendas(loja.getId());
+                    if(set.size()==0){
+                        view.printMensagem("Não tem vendas.");
+                        break;
+                    }
+                    else view.vendasLoja(set);
                     break;
                 }
                 default:

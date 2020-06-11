@@ -99,7 +99,7 @@ public class AppView implements IAppView {
         System.out.println("-----------LOJA MODE----------");
         System.out.println("1- Encomendas em fila de espera");
         System.out.println("2- Validar uma encomenda");
-        System.out.println("3- Ver o histórico de vendas realizadas");
+        System.out.println("3- Encomendas já prontas à espera da transportadora");
         System.out.println("0- Voltar ao Menu de Login");
     }
 
@@ -295,30 +295,46 @@ public class AppView implements IAppView {
         System.out.printf("\n%s\n",s);
     }
 
-    public void top (ITipo[] res){
+    public void top (ITipo[] res, Integer[] n){
         System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
         System.out.println("                      TOP 10 USERS");
         System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
-        System.out.println("Código do User                                 ");
+        System.out.println("Código do User                              Nº de Encomendas");
         for(int i=0; i<10; i++){
-            System.out.print(res[i].getId());
+            System.out.printf("%-45s",res[i].getId());
+            System.out.print(n[i]);
             System.out.println();
         }
     }
 
-    public void top2 (String[] res){
+    public void top2 (String[] res, Float[] dist){
         System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
         System.out.println("                      TOP 10 EMPRESAS");
         System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
-        System.out.println("Código da Empresa                                ");
-        for(int i=0; i<10; i++){
-            System.out.print(res[i]);
+        System.out.println("Código da Empresa                       Distancia Percorrida");
+        for(int i=0; (i<10)&&(i<res.length); i++){
+            System.out.printf("%-45s",res[i]);
+            System.out.print(dist[i]);
             System.out.println();
         }
     }
 
     public void lista (List<IEntrega> res) {
         System.out.println(res);
+    }
+
+    public void vendasLoja(Set<IEncomenda> res){
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("                      VENDAS FEITAS");
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("Código da Encomenda   Medicamento   Congelados     Cod.User ");
+        for(IEncomenda enco : res){
+            System.out.printf("%-20s",enco.getEncomendaID());
+            System.out.printf("%-20s",enco.getMedicamentos());
+            System.out.printf("%-20s",enco.getCongelados());
+            System.out.print(enco.getUserID());
+            System.out.println();
+        }
     }
 
 }

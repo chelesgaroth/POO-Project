@@ -31,8 +31,9 @@ public interface IAppView {
     void classificacoes(HashMap<String,Integer> res);
     void infos();
     void tipodeEncomenda(int x);
-    void top (ITipo[] res);
-    void top2 (String[] res);
+    void top (ITipo[] res, Integer[] n);
+    void top2 (String[] res, Float[] dist);
     void lista (List<IEntrega> res);
+    void vendasLoja(Set<IEncomenda> res);
 
 }

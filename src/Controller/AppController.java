@@ -183,12 +183,14 @@ public class AppController implements IAppController {
                 }
                 case 5:{
                     ITipo[] res = sistema.top10Users();
-                    view.top(res);
+                    Integer[] n = sistema.getNComprasUser(res);
+                    view.top(res,n);
                     break;
                 }
                 case 6:
                     String[] res = sistema.getFilaEntregues().top10Empresas();
-                    view.top2(res);
+                    Float[] dist = sistema.getFilaEntregues().distEmpresa(res);
+                    view.top2(res,dist);
                     break;
             }
         } while(opcao!=0);
