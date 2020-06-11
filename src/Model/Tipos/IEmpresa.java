@@ -12,6 +12,9 @@ public interface IEmpresa {
     int getClassificacao();
     void setClassificacao(int classificacao);
 
+    int getNEncs();
+    void setNEncs(int nEncs);
+
     Empresa clone ();
 
 }

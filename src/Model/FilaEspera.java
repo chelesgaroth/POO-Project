@@ -4,6 +4,7 @@ import Model.Encomendas.Encomenda;
 import Model.Encomendas.IEncomenda;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.*;
 
 /**
@@ -77,7 +78,9 @@ public class FilaEspera implements IFila, Serializable {
         return null;
     }
 
-    @Override
+    public IEncomenda getEncomendaRecente(String user){
+        return null;
+    }
     public boolean existsKey(String codId) {
         return false;
     }

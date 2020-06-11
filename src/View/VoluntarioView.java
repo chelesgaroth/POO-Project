@@ -45,7 +45,7 @@ public class VoluntarioView implements IVoluntarioView {
         System.out.println("                   HISTÓRICO DE ENTREGAS");
         System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
         System.out.println("Código     Distância Percorrida       Data           Hora   ");
-        for(int i=0; res[i]!=null; i++){
+        for(int i=0; i<res.length; i++){
             System.out.printf("%-20s",res[i].getEncomenda().getEncomendaID());
             System.out.printf("%-20s",res[i].getDistPercorrida());
             System.out.printf("%-20s",res[i].getDataEntrega());

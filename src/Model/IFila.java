@@ -13,4 +13,5 @@ public interface IFila {
     IEncomenda getEncomendaTipo (String encId, String codId);
     IEncomenda existsEncomenda(String id);
     boolean existsKey(String codId);
+    IEncomenda getEncomendaRecente(String user);
 }

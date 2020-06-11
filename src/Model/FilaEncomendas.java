@@ -1,8 +1,10 @@
 package Model;
 
+import Model.Encomendas.Encomenda;
 import Model.Encomendas.IEncomenda;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -46,6 +48,20 @@ public class FilaEncomendas implements IFila, Serializable {
     public boolean existsKey(String codId){
         return this.fila.containsKey(codId);
     }
+    
+    public IEncomenda getEncomendaRecente(String user) {
+        Set<IEncomenda> value = this.fila.get(user);
+        IEncomenda res = new Encomenda();
+        LocalTime min = LocalTime.now();
+        for(IEncomenda enc : value){
+            if(enc.getHoraInicial().compareTo(min)<1){
+                min = enc.getHoraInicial();
+                res = enc;
+            }
+        }
+        return res;
+    }
+
     public boolean containsEncTipo(String encId, String codId) {
         return false;
     }

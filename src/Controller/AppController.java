@@ -7,15 +7,11 @@ import Model.Leitura.RWEstado;
 import Model.Leitura.ReadFile;
 import Model.Logins.ILogin;
 import Model.Logins.Login;
-import Model.Tipos.ILoja;
-import Model.Tipos.Loja;
+import Model.Tipos.*;
 import View.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AppController implements IAppController {
     private ISistema sistema;
@@ -94,6 +90,113 @@ public class AppController implements IAppController {
 
             switch (opcao) {
                 case 1:{ //registo
+                    Random rn = new Random(100);
+                    int id1 = rn.nextInt(100);
+                    String id = String.valueOf(id1);
+                    view.registo();
+                    ler = new Scanner(System.in);
+                    String tipo = ler.nextLine();
+                    if (!tipo.equals("0")){
+                        if (tipo.equals("1")) {
+                            id = "u" + id;
+                            System.out.println("user");
+                            ITipo user = new User();
+                            view.reg(1);
+                            ler = new Scanner(System.in);
+                            String nome = ler.nextLine();
+                            view.reg(2);
+                            ler = new Scanner(System.in);
+                            float x = ler.nextFloat();
+                            view.reg(3);
+                            ler = new Scanner(System.in);
+                            float y = ler.nextFloat();
+                            user.setNome(nome);
+                            user.setX(x);
+                            user.setY(y);
+                            user.setId(id);
+                            sistema.getUsers().addTipo(user);
+
+
+                        }
+                        if (tipo.equals("2")){
+                            id = "v" + id;
+                            System.out.println("voluntario" );
+                            ITipo vol = new Voluntario();
+                            view.reg(1);
+                            ler = new Scanner(System.in);
+                            String nome = ler.nextLine();
+                            view.reg(2);
+                            ler = new Scanner(System.in);
+                            float x = ler.nextFloat();
+                            view.reg(3);
+                            ler = new Scanner(System.in);
+                            float y = ler.nextFloat();
+                            view.reg(4);
+                            ler= new Scanner(System.in);
+                            float raio = ler.nextFloat();
+                            vol.setNome(nome);
+                            vol.setX(x);
+                            vol.setY(y);
+                            vol.setId(id);
+                            ((Voluntario)vol).setRadius_volunteer(raio);
+                            sistema.getVoluntarios(). addTipo(vol);
+
+                        }
+                        if (tipo.equals("3")){
+                            id = "l" + id;
+                            ITipo loja = new Loja();
+                            System.out.println("loja");
+                            ler = new Scanner(System.in);
+                            String nome = ler.nextLine();
+                            view.reg(2);
+                            ler = new Scanner(System.in);
+                            float x = ler.nextFloat();
+                            view.reg(3);
+                            ler = new Scanner(System.in);
+                            float y = ler.nextFloat();
+                            loja.setY(y);
+                            loja.setX(x);
+                            loja.setId(id);
+                            loja.setNome(nome);
+                            sistema.getLojas().addTipo(loja);
+
+                        }
+                        if (tipo.equals("4")) {
+                            id = "t" + id;
+                            System.out.println("empresa");
+                            ITipo emp = new Empresa();
+                            view.reg(1);
+                            ler = new Scanner(System.in);
+                            String nome = ler.nextLine();
+                            view.reg(2);
+                            ler = new Scanner(System.in);
+                            float x = ler.nextFloat();
+                            view.reg(3);
+                            ler = new Scanner(System.in);
+                            float y = ler.nextFloat();
+                            view.reg(4);
+                            ler= new Scanner(System.in);
+                            float raio = ler.nextFloat();
+                            view.reg(5);
+                            ler= new Scanner(System.in);
+                            int nif = ler.nextInt();
+                            view.reg(6);
+                            ler= new Scanner(System.in);
+                            float preco = ler.nextFloat();
+                            ((Empresa)emp).setNif(nif);
+                            emp.setNome(nome);
+                            emp.setId(id);
+                            emp.setX(x);
+                            emp.setY(y);
+                            ((Empresa)emp).setPreco(preco);
+                            ((Empresa)emp).setRaio(raio);
+                            sistema.getEmpresas().addTipo(emp);
+                        }
+
+                        System.out.println(sistema.toString());
+
+                    }
+                    break;
                 }
                 case 2:{ //login
                     view.login(0);
@@ -122,6 +225,26 @@ public class AppController implements IAppController {
                     break;
                 }
                 case 3:{
+                    view.printMensagem("Indique o seu email");
+                    ler = new Scanner(System.in);
+                    String email2 = ler.nextLine();
+                    view.printMensagem("Indique a palavra passe antiga");
+                    ler = new Scanner(System.in);
+                    String pass2 = ler.nextLine();
+                    ILogin login = new Login();
+                    login.setEmail(email2);
+                    login.setPassword(pass2);
+                    if (sistema.getLogins().existsLogin(login)) {
+                        view.printMensagem("Insira a password nova");
+                        ler = new Scanner(System.in);
+                        String pass3 = ler.nextLine();
+                        String id = sistema.getLogins().getCodigoID(email2);
+                        ILogin log = sistema.getLogins().getLog(id);
+                        log.setPassword(pass3);
+                    }
+                    else view.printMensagem("Login inexistente");
+                    System.out.println(sistema.toString());
+
                     break;
                 }
                 case 4:{

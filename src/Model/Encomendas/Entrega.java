@@ -1,7 +1,9 @@
 package Model.Encomendas;
 
 
+import Model.Tipos.Empresa;
 import Model.Tipos.ITipo;
+import Model.Tipos.Tipo;
 import Model.Tipos.Voluntario;
 
 import java.io.Serializable;
@@ -21,7 +23,8 @@ public class Entrega extends Encomenda implements IEntrega, Serializable {
     public Entrega(){
         this.encomenda = new Encomenda();
         this.horaEntrega = LocalTime.now();
-        this.transporte = new Voluntario(); // new Empresa();
+        this.transporte =null;/*
+        this.transporte = new Empresa();*/
         this.entregue = false;
         this.distPercorrida = 0;
         this.dataEntrega = LocalDate.now();
@@ -115,6 +118,11 @@ public class Entrega extends Encomenda implements IEntrega, Serializable {
 
     @Override
     public String toString() {
+        int classi = 0;
+        if(transporte instanceof Voluntario) {
+            classi = ((Voluntario) transporte).getVolunteer_rating();
+        }
+        else classi = ((Empresa)transporte).getClassificacao();
         return "Entrega:\n" +
                 "Código: " + encomenda.getEncomendaID() +
                 "\nHora da Entrega: " + horaEntrega +
@@ -122,6 +130,6 @@ public class Entrega extends Encomenda implements IEntrega, Serializable {
                 "\nEntregue: " + entregue +
                 "\nDistancia: " + distPercorrida +
                 "\nData da Entrega: " + dataEntrega +
-                "\nClassificação: " + ((Voluntario)transporte).getVolunteer_rating();
+                "\nClassificação: " + classi;
     }
 }

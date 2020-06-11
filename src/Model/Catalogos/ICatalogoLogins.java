@@ -11,4 +11,5 @@ public interface ICatalogoLogins {
     void addLogin(ILogin log, String userID);
     boolean existsLogin(ILogin log);
     String getCodigoID(String email);
+    ILogin getLog (String id);
 }

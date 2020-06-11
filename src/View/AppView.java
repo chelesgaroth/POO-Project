@@ -71,4 +71,26 @@ public class AppView implements IAppView {
         if(x==3) System.out.println("Password ou email incorreto. Tente novamente.");
         if(x==2) System.out.println("Insira a sua password:");
     }
+
+    public void reg (int x){
+        if (x==1){
+            System.out.println("Insira o nome ");
+        }
+        if (x==2){
+            System.out.println("Insira a latitude");
+        }
+        if (x==3){
+            System.out.println("Insira a longitude");
+        }
+        if (x==4) {
+            System.out.println("Insira o raio de ação");
+        }
+        if(x==5) {
+            System.out.println("Insira o NIF");
+        }
+        if(x==6){
+            System.out.println("Insira o preço por km");
+        }
+
+    }
 }

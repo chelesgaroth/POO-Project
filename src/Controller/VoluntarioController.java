@@ -54,7 +54,7 @@ public class VoluntarioController implements IVoluntarioController {
             switch (opcao) {
                 case 1:{ //Encomendas em espera --- ver só as que são false
                     Set<IEntrega> res = sistema.getFilaEntregues().getEntregasFalse(voluntario.getId());
-                    if(res!=null)view.encomendasFila(res);
+                    if(res.size()!=0)view.encomendasFila(res);
                     else view.printMensagem("Não há Encomendas por entregar");
                     break;
                 }
@@ -85,8 +85,13 @@ public class VoluntarioController implements IVoluntarioController {
                 }
                 case 3: { //Histórico de entregas
                     Set<IEntrega> res = sistema.getFilaEntregues().getEntregasTrue(voluntario.getId());
+                    if(res.size()==0){
+                        view.printMensagem("Não existe histórico!");
+                        break;
+                    }
                     IEntrega[] array = res.toArray(new IEntrega[res.size()]);
                     Arrays.sort(array,new CompareEntrega());
+                    view.listagem(array);
                 }
                 case 4:{ //Classificacoes
 

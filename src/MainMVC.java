@@ -23,6 +23,9 @@ public class MainMVC {
         IVoluntarioView volView = new VoluntarioView();
         IVoluntarioController volController = new VoluntarioController();
 
+        IEmpresaView empresaView = new EmpresaView();
+        IEmpresaController empresaController = new EmpresaController();
+
         controller.setSistema(sistema);
         controller.setAppView(view);
 
@@ -40,6 +43,9 @@ public class MainMVC {
         volController.setSistema(sistema);
         volController.setAppView(volView);
 
+        empresaController.setSistema(sistema);
+        empresaController.setView(empresaView);
+
         int res=0;
         char login = controller.signUp();
         while(login != '0') {
@@ -54,6 +60,10 @@ public class MainMVC {
             if(login == 'v'){
                 System.out.println(sistema.toString());
                 volController.VoluntarioMode();
+            }
+            if(login == 't'){
+                System.out.println(sistema.toString());
+                empresaController.mode();
             }
 
             login = controller.signUp();

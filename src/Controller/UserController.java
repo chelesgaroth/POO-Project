@@ -19,11 +19,13 @@ public class UserController implements IUserController {
     private INavegador nav;
     private User user;
     private int opcao;
+    private IEncomenda encoFinal;
 
 
     public UserController() {
         this.nav = new Navegador();
         this.opcao = 0;
+        this.encoFinal = new Encomenda();
     }
 
 
@@ -42,6 +44,7 @@ public class UserController implements IUserController {
     public int userMode() {
         int res = 0;
         setUser();
+        this.encoFinal = sistema.getFilaEncomendas().getEncomendaRecente(user.getId());
         do {
             Scanner ler = new Scanner(System.in);
             view.userMode();
@@ -51,13 +54,15 @@ public class UserController implements IUserController {
             IEncomenda encomenda = new Encomenda();
             switch (opcao) {
                 case 1: { //Encomendar algo
-                    catalogo(0,prods,quantidades); //se o catálogo por chamado com 0 então pretendemos visualizar os Produtos
+                    int num = catalogo(0,prods,quantidades); //se o catálogo por chamado com 0 então pretendemos visualizar os Produtos
                     res = 1;
-                    view.printMensagem("Enviando pedido à loja...\nPor favor aguarde");
-                    view.printMensagem("\nPressione ENTER para aceder ao User Menu\nPressione 0 para voltar ao Login Menu");
-                    Scanner scanner = new Scanner(System.in);
-                    String aux = scanner.nextLine();
-                    if(aux.equals("0")) opcao = 0;
+                    if(num!=-1){
+                        view.printMensagem("Enviando pedido à loja...\nPor favor aguarde");
+                        view.printMensagem("\nPressione ENTER para aceder ao User Menu\nPressione 0 para voltar ao Login Menu");
+                        Scanner scanner = new Scanner(System.in);
+                        String aux = scanner.nextLine();
+                        if(aux.equals("0")) opcao = 0;
+                    }
                     break;
                 }
                 case 2: { //escolha do transporte
@@ -101,9 +106,12 @@ public class UserController implements IUserController {
                             }
                             entrega.setTransporte(tipo);
                         }
+                        System.out.println(entrega.getTransporte());
+                        System.out.println(entrega.getTransporte().getNome());
                         entrega.setEncomenda(encomenda);
                         sistema.getFilaEncomendas().removeEncomenda(encomenda);
                         sistema.getFilaEntregues().addEncomenda(entrega);
+                        System.out.println(entrega.toString());
                         System.out.println(sistema.toString());
                         System.out.println("Transporte escolhido: " + escolha);
                         System.out.println("Por favor aguarde o contacto do transporte...");
@@ -125,14 +133,14 @@ public class UserController implements IUserController {
                     //System.out.println(lista);
                     if(lista.size()>=1) for(i=0; i< (lista.size()-1); i++);
                     IEntrega e;
-                    if(lista.get(0)!=null){
+                    if(lista.size()!=0){
                         e = lista.get(i);
                         ITipo transp = e.getTransporte();
                         if(transp instanceof Voluntario) ((Voluntario) transp).setVolunteer_rating(classificacao);
                         if(transp instanceof Empresa) ((Empresa) transp).setClassificacao(classificacao);
                         //System.out.println(((Voluntario) transp).getVolunteer_rating());
                     }
-                    else view.printMensagem("ERRO");
+                    else view.printMensagem("Não há encomendas por classificar!!");
                     break;
                 }
                 case 4: { //Encomendas à espera de transporte
@@ -154,7 +162,7 @@ public class UserController implements IUserController {
         /*Caso o user tenha feito mais do que 1 encomenda , apenas podemos escolher as transportadoras que conseguem
         transportar mais de uma encomenda*/
         IEncomenda res = new Encomenda();
-        Set<IEncomenda> encomendasUser = sistema.getFilaEncomendas().getEncomendas(sistema.getQuem().getPassword().substring(0,3));
+        Set<IEncomenda> encomendasUser = sistema.getFilaEncomendas().getEncomendas(user.getId());
         HashSet<ITipo> set = new HashSet<>();
         if(encomendasUser!=null) {
             for (IEncomenda enco : encomendasUser) {
@@ -170,7 +178,7 @@ public class UserController implements IUserController {
 
 
 
-    public void catalogo(int opcao, List<IProduto> prods, List<String> quantidades){
+    public int catalogo(int opcao, List<IProduto> prods, List<String> quantidades){
         Scanner ler;
         String x = " ";
         int num = 0;
@@ -223,11 +231,14 @@ public class UserController implements IUserController {
                     if(opcao == 1){
                         String loja = escolheProdLoja(2,prods,quantidades);
                         //Mandar a encomenda para a gestao e depois para a fila de espera
-                        IEncomenda enc = sistema.getGestao().constroiEncomendaParaLoja(loja,prods,quantidades, user);
-                        sistema.getFilaEspera().addEncomenda(enc);
+                        this.encoFinal = sistema.getGestao().constroiEncomendaParaLoja(loja,prods,quantidades, user);
+                        sistema.getFilaEspera().addEncomenda(encoFinal);
                     }
                     x = "M";
                     break;
+                }
+                case "M":{
+                    return -1;
                 }
                 default: {
                     if (!(x.equals("M"))) view.printMensagem("Por favor insira uma opção válida!");
@@ -236,6 +247,8 @@ public class UserController implements IUserController {
                 }
             }
         }while(!(x.equals("M")));
+
+        return 0;
     }
 
 

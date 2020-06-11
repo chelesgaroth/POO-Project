@@ -46,7 +46,7 @@ public class FilaEntregues implements IFilaEntregues, Serializable {
         if(this.fila.containsKey(codId)){
             Set<IEntrega> value = this.fila.get(codId);
             for(IEntrega e : value){
-                if(e.getEntregue()) res.add(e);
+                if(!e.getEntregue()) res.add(e);
             }
         }
         return res;
@@ -57,7 +57,7 @@ public class FilaEntregues implements IFilaEntregues, Serializable {
         if(this.fila.containsKey(codId)){
             Set<IEntrega> value = this.fila.get(codId);
             for(IEntrega e : value){
-                if(!e.getEntregue()) res.add(e);
+                if(e.getEntregue()) res.add(e);
             }
         }
         return res;

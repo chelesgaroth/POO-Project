@@ -23,6 +23,7 @@ public class Encomenda implements IEncomenda, Serializable {
 
 
     public Encomenda (){
+        this.encomendaID = null;
         this.userID = "n/a";
         this.lojaID = "n/a";
         this.pesoTotal = 0.0;

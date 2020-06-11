@@ -77,8 +77,7 @@ public class LojaController implements ILojaController {
 
                     view.printMensagem("Encomenda Feita!!");
                     view.printMensagem("Esperar pela recolha da encomenda...");
-                    view.printMensagem("\nENTER (Continuar no Loja Menu");
-                    view.printMensagem("0 (Voltar ao Login Menu");
+                    view.printMensagem("\nPressione ENTER para aceder ao User Menu\nPressione 0 para voltar ao Login Menu");
                     Scanner scanner = new Scanner(System.in);
                     String aux = scanner.nextLine();
                     if(aux.equals("0")) opcao = 0;

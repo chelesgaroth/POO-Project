@@ -34,4 +34,8 @@ public class CatalogoLogins implements ICatalogoLogins {
         }
         return null;
     }
+
+    public ILogin getLog (String id){
+        return this.logins.get(id);
+    }
 }

@@ -12,10 +12,9 @@ Empresa extends Tipo implements IEmpresa, Serializable {
 
     private boolean disponibilidade;
     private boolean aceitaMedicamento;
-    private LocalDateTime tempo;
     private double taxaAdicional;
     private boolean chuva;
-    private boolean transito;
+    private int nEncs;
 
     private int classificacao;
 
@@ -29,15 +28,14 @@ Empresa extends Tipo implements IEmpresa, Serializable {
 
 
         this.aceitaMedicamento = false;
-        this.tempo = LocalDateTime.now();
         this.taxaAdicional = 0.0;
         this.chuva = false;
-        this.transito = false;
-        this.classificacao = 5;
+        this.nEncs = 0;
+        this.classificacao = 0;
     }
 
-    public Empresa (String id,int nif, boolean aceitaMedicamento, LocalDateTime tempo, double preco, float longitude,
-                    float latitude, double raio, double taxaAdicional, boolean chuva, boolean transito, String nome) {
+    public Empresa (String id,int nif, boolean aceitaMedicamento, double preco, float longitude,
+                    float latitude, double raio, double taxaAdicional, boolean chuva, int n, String nome) {
 
         super(id,nome,longitude,latitude);
         this.nif = nif;
@@ -46,23 +44,21 @@ Empresa extends Tipo implements IEmpresa, Serializable {
 
 
         this.aceitaMedicamento = aceitaMedicamento;
-        this.tempo = tempo;
         this.taxaAdicional = taxaAdicional;
         this.chuva = chuva;
-        this.transito = transito;
+        this.nEncs = n;
     }
 
     public Empresa (Empresa emp) {
         super(emp);
 
-        emp.aceitaMedicamento = emp.getAceitaMedicamento();
-        emp.raio = emp.getRaio();
-        emp.tempo = emp.getTempo();
-        emp.preco = emp.getPreco();
-        emp.transito = emp.getTransito();
-        emp.chuva = emp.getChuva();
-        emp.taxaAdicional = emp.getTaxaAdicional();
-        emp.nif = emp.getNif();
+        this.aceitaMedicamento = emp.getAceitaMedicamento();
+        this.raio = emp.getRaio();
+        this.preco = emp.getPreco();
+        this.chuva = emp.getChuva();
+        this.taxaAdicional = emp.getTaxaAdicional();
+        this.nif = emp.getNif();
+        this.nEncs = emp.getNEncs();
     }
 
     //Getters e Setters
@@ -92,12 +88,7 @@ Empresa extends Tipo implements IEmpresa, Serializable {
         return this.aceitaMedicamento;
     }
 
-    public LocalDateTime getTempo() {
-        return this.tempo;
-    }
-    public boolean getTransito() {
-        return this.transito;
-    }
+
     public boolean getChuva() {
 
         return this.chuva;
@@ -111,19 +102,12 @@ Empresa extends Tipo implements IEmpresa, Serializable {
         this.aceitaMedicamento = aceitaMedicamento;
     }
 
-    public void setTempo(LocalDateTime tempo) {
-        this.tempo = tempo;
-    }
-
     public void setTaxaAdicional(double taxaAdicional) {
         this.taxaAdicional = taxaAdicional;
     }
 
     public void setChuva(boolean chuva) {
         this.chuva = chuva;
-    }
-    public void setTransito(boolean transito) {
-        this.transito = transito;
     }
 
 
@@ -141,6 +125,14 @@ Empresa extends Tipo implements IEmpresa, Serializable {
 
     public void setClassificacao(int classificacao) {
         this.classificacao = classificacao;
+    }
+
+    public int getNEncs() {
+        return nEncs;
+    }
+
+    public void setNEncs(int nEncs) {
+        this.nEncs = nEncs;
     }
 
     public Empresa clone () {
