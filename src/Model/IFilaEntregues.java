@@ -2,6 +2,7 @@ package Model;
 
 import Model.Encomendas.IEntrega;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -15,5 +16,7 @@ public interface IFilaEntregues {
     IEntrega getEntrega(String id);
     boolean containsEncFalse (String encId);
     HashMap<String,Integer> getClassificacoes(String keyTransp);
+    int getFaturacao(String transp, LocalDate date);
+    String[] top10Empresas();
 
 }

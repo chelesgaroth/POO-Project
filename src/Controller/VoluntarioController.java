@@ -95,6 +95,7 @@ public class VoluntarioController implements IVoluntarioController {
                     if(res !=null){
                         view.classificacoes(res);
                     }
+                    break;
                 }
             }
         }while(opcao!=0);

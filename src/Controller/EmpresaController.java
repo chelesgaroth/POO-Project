@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.CompareEntrega;
 import Model.Encomendas.Entrega;
 import Model.Encomendas.IEntrega;
 import Model.Encomendas.LinhaEncomenda;
@@ -12,9 +13,8 @@ import View.IAppView;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Set;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 
 public class EmpresaController implements IEmpresaController {
@@ -96,9 +96,36 @@ public class EmpresaController implements IEmpresaController {
                     }
                     break;
                 }
-                case 3:{ //Recusar pedidos de entrega
-
-
+                case 3:{
+                    Set<IEntrega> res = sistema.getFilaEntregues().getEntregasTrue(empresa.getId());
+                    if(res.size()==0){
+                        view.printMensagem("Não existe histórico!");
+                        break;
+                    }
+                    IEntrega[] array = res.toArray(new IEntrega[res.size()]);
+                    Arrays.sort(array,new CompareEntrega());
+                    view.listagem(array);
+                    break;
+                }
+                case 4: {
+                    //Classificacoes
+                    HashMap<String,Integer> res = sistema.getFilaEntregues().getClassificacoes(empresa.getId());
+                    if(res !=null){
+                        view.classificacoes(res);
+                    }
+                    break;
+                }
+                case 5: { //total faturado num periodo
+                    if(sistema.getFilaEntregues().getEntregas(empresa.getId())!=null) {
+                        view.printMensagem("Por favor insira uma data (dd/mm/aaaa): ");
+                        ler = new Scanner(System.in);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                        String date = ler.nextLine();
+                        LocalDate localDate = LocalDate.parse(date, formatter);
+                        int res = sistema.getFilaEntregues().getFaturacao(empresa.getId(), localDate);
+                        view.printMensagem("A faturação da empresa na data "+ localDate + " é " + res + " Eur\n");
+                    }
+                    break;
                 }
             }
         }while (opcao!=0);

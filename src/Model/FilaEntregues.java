@@ -3,9 +3,12 @@ package Model;
 import Model.Encomendas.IEncomenda;
 import Model.Encomendas.IEntrega;
 import Model.Tipos.Empresa;
+import Model.Tipos.ITipo;
+import Model.Tipos.User;
 import Model.Tipos.Voluntario;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -125,6 +128,42 @@ public class FilaEntregues implements IFilaEntregues, Serializable {
         }
         return res;
     }
+
+    public int getFaturacao(String transp, LocalDate date){
+        int res = 0;
+        Set<IEntrega> value = this.fila.get(transp);
+        for(IEntrega e : value){
+            if(e.getDataEntrega().equals(date)){
+                res += e.getPrecoTotal();
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Só vai até 10 com o array na view
+     * @return
+     */
+    public String[] top10Empresas(){
+        Set<String> set = this.fila.keySet();
+        String[] array = set.toArray(new String[set.size()]);
+        Arrays.sort(array, new Comparator<String>(){
+            public int compare(String c1, String c2){
+                float res1 = 0; float res2 = 0;
+                for(IEntrega e : getEntregas(c1)){
+                    res1 += e.getDistPercorrida();
+                }
+                for(IEntrega e : getEntregas(c2)){
+                    res2 += e.getDistPercorrida();
+                }
+                if(res1>res2) return 1;
+                else if(res1<res2) return -1;
+                else return 0;
+            }
+        });
+        return array;
+    }
+
 
     public String toString() {
         return "Fila: " + fila;

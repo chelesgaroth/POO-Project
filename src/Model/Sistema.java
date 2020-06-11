@@ -202,8 +202,6 @@ public class Sistema implements ISistema, Serializable {
         }
     }
 
-
-
     /**
      * Adicionar o ID de uma encomenda à lista de encomendas aceites.
      * Método usado principalmente quando lemos do ficheiro Logs.txt
@@ -216,5 +214,30 @@ public class Sistema implements ISistema, Serializable {
             this.filaEspera.removeEncomenda(encomenda);
         }
     }
+
+    /**
+     * Só vai até 10 com o array na view
+     * @return
+     */
+    public ITipo[] top10Users(){
+       Set<ITipo> set = this.users.getCatalogo();
+       ITipo[] array = set.toArray(new ITipo[set.size()]);
+       Arrays.sort(array, new Comparator<ITipo>(){
+           public int compare(ITipo c1, ITipo c2){
+               int res1 = 0; int res2 = 0;
+               if(c1 instanceof User){
+                   res1 = ((User)c1).getHistorico().size();
+               }
+               if(c2 instanceof User){
+                   res2 = ((User)c2).getHistorico().size();
+               }
+               if(res1>res2) return 1;
+               else if(res1<res2) return -1;
+               else return 0;
+           }
+       });
+       return array;
+    }
+
 
 }

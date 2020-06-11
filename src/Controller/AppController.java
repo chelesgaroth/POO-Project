@@ -80,6 +80,7 @@ public class AppController implements IAppController {
      * Caso seja 't' -> empresa;
      * Caso seja 'v' -> voluntário.
      */
+
     public char signUp (){
         Scanner ler = new Scanner(System.in);
         String email,pass;
@@ -89,112 +90,26 @@ public class AppController implements IAppController {
             opcao = ler.nextInt();
 
             switch (opcao) {
-                case 1:{ //registo
-                    Random rn = new Random(100);
-                    int id1 = rn.nextInt(100);
-                    String id = String.valueOf(id1);
+                case 1: { //registo
+
                     view.registo();
                     ler = new Scanner(System.in);
                     String tipo = ler.nextLine();
                     if (!tipo.equals("0")){
                         if (tipo.equals("1")) {
-                            id = "u" + id;
-                            System.out.println("user");
-                            ITipo user = new User();
-                            view.reg(1);
-                            ler = new Scanner(System.in);
-                            String nome = ler.nextLine();
-                            view.reg(2);
-                            ler = new Scanner(System.in);
-                            float x = ler.nextFloat();
-                            view.reg(3);
-                            ler = new Scanner(System.in);
-                            float y = ler.nextFloat();
-                            user.setNome(nome);
-                            user.setX(x);
-                            user.setY(y);
-                            user.setId(id);
-                            sistema.getUsers().addTipo(user);
-
-
+                            regista(1);
                         }
                         if (tipo.equals("2")){
-                            id = "v" + id;
-                            System.out.println("voluntario" );
-                            ITipo vol = new Voluntario();
-                            view.reg(1);
-                            ler = new Scanner(System.in);
-                            String nome = ler.nextLine();
-                            view.reg(2);
-                            ler = new Scanner(System.in);
-                            float x = ler.nextFloat();
-                            view.reg(3);
-                            ler = new Scanner(System.in);
-                            float y = ler.nextFloat();
-                            view.reg(4);
-                            ler= new Scanner(System.in);
-                            float raio = ler.nextFloat();
-                            vol.setNome(nome);
-                            vol.setX(x);
-                            vol.setY(y);
-                            vol.setId(id);
-                            ((Voluntario)vol).setRadius_volunteer(raio);
-                            sistema.getVoluntarios(). addTipo(vol);
 
+                            regista(2);
                         }
                         if (tipo.equals("3")){
-                            id = "l" + id;
-                            ITipo loja = new Loja();
-                            System.out.println("loja");
-                            ler = new Scanner(System.in);
-                            String nome = ler.nextLine();
-                            view.reg(2);
-                            ler = new Scanner(System.in);
-                            float x = ler.nextFloat();
-                            view.reg(3);
-                            ler = new Scanner(System.in);
-                            float y = ler.nextFloat();
-                            loja.setY(y);
-                            loja.setX(x);
-                            loja.setId(id);
-                            loja.setNome(nome);
-                            sistema.getLojas().addTipo(loja);
 
+                            regista(3);
                         }
                         if (tipo.equals("4")) {
-                            id = "t" + id;
-                            System.out.println("empresa");
-                            ITipo emp = new Empresa();
-                            view.reg(1);
-                            ler = new Scanner(System.in);
-                            String nome = ler.nextLine();
-                            view.reg(2);
-                            ler = new Scanner(System.in);
-                            float x = ler.nextFloat();
-                            view.reg(3);
-                            ler = new Scanner(System.in);
-                            float y = ler.nextFloat();
-                            view.reg(4);
-                            ler= new Scanner(System.in);
-                            float raio = ler.nextFloat();
-                            view.reg(5);
-                            ler= new Scanner(System.in);
-                            int nif = ler.nextInt();
-                            view.reg(6);
-                            ler= new Scanner(System.in);
-                            float preco = ler.nextFloat();
-                            ((Empresa)emp).setNif(nif);
-                            emp.setNome(nome);
-                            emp.setId(id);
-                            emp.setX(x);
-                            emp.setY(y);
-                            ((Empresa)emp).setPreco(preco);
-                            ((Empresa)emp).setRaio(raio);
-                            sistema.getEmpresas().addTipo(emp);
+                            regista(4);
                         }
-
-                        System.out.println(sistema.toString());
-
                     }
                     break;
                 }
@@ -260,9 +175,186 @@ public class AppController implements IAppController {
                     }
                     break;
                 }
+                case 5:{
+                    ITipo[] res = sistema.top10Users();
+                    view.top(res);
+                    break;
+                }
+                case 6:
+                    String[] res = sistema.getFilaEntregues().top10Empresas();
+                    view.top2(res);
+                    break;
             }
         } while(opcao!=0);
         //view.printMensagem("Adeus!!");
         return mode;
+    }
+
+    public void regista (int tipo) {
+        /**
+         Cria o id
+         */
+        String id = "";
+        Random rn = new Random();
+        int id1 = rn.nextInt(100);
+        id = String.valueOf(id1);
+
+        /**
+         * Lê as variáveis comuns a todos
+         */
+        view.reg(1);
+        Scanner ler = new Scanner (System.in);
+        String nome = ler.nextLine();
+        view.reg(2);
+        ler = new Scanner(System.in);
+        float x = ler.nextFloat();
+        view.reg(3);
+        ler = new Scanner(System.in);
+        float y = ler.nextFloat();
+
+        /**
+         Tipo do user
+         */
+
+        if(tipo==1) {
+            id = "u" + id;
+            String pass = id + "_0000";
+            String email = id+ "@trazAqui.com";
+            ITipo user = new User();
+            ILogin login = new Login();
+            login.setPassword(pass);
+            login.setEmail(email);
+            while (sistema.getLogins().existsLogin(login)){
+                rn = new Random();
+                id1 = rn.nextInt(100);
+                id = "u" + String.valueOf(id1);
+            }
+            pass = id + "_0000";
+            email = id+ "@trazAqui.com";
+            login.setPassword(pass);
+            login.setEmail(email);
+            sistema.getLogins().addLogin(login,id);
+            user.setNome(nome);
+            user.setX(x);
+            user.setY(y);
+            user.setId(id);
+            sistema.getUsers().addTipo(user);
+        }
+
+        /**
+         Tipo do voluntário
+         */
+        if(tipo==2) {
+            id = "v" + id;
+            String pass = id + "_0000";
+            String email = id+ "@trazAqui.com";
+            ILogin login = new Login();
+            login.setPassword(pass);
+            login.setEmail(email);
+            ITipo vol = new Voluntario();
+            while (sistema.getLogins().existsLogin(login)){
+                rn = new Random();
+                id1 = rn.nextInt(100);
+                id = "v"+ String.valueOf(id1);
+            }
+            pass = id + "_0000";
+            email = id+ "@trazAqui.com";
+            login.setPassword(pass);
+            login.setEmail(email);
+
+            vol.setNome(nome);;
+            vol.setX(x);
+            vol.setY(y);
+            vol.setId(id);
+            view.reg(4);
+            ler= new Scanner(System.in);
+            float raio = ler.nextFloat();
+            ((Voluntario)vol).setRadius_volunteer(raio);
+            sistema.getVoluntarios().addTipo(vol);
+            sistema.getLogins().addLogin(login,id);
+
+        }
+
+        /**
+         * Tipo de loja
+         */
+        if (tipo==3){
+            id = "l" + id;
+            String pass = id + "_0000";
+            String email = id+ "@trazAqui.com";
+            ILogin login = new Login();
+            login.setPassword(pass);
+            login.setEmail(email);
+            ITipo loja = new Loja();
+
+            while (sistema.getLogins().existsLogin(login)){
+                rn = new Random();
+                id1 = rn.nextInt(100);
+                id = "l" + String.valueOf(id1);
+            }
+            pass = id + "_0000";
+            email = id+ "@trazAqui.com";
+
+            loja.setY(y);
+            loja.setX(x);
+            loja.setId(id);
+            loja.setNome(nome);
+            login.setPassword(pass);
+            login.setEmail(email);
+
+            sistema.getLojas().addTipo(loja);
+            sistema.getLogins().addLogin(login,id);
+        }
+
+        /**
+         * Tipo de empresa
+         */
+        if (tipo==4) {
+            id = "t" + id;
+            String pass = id + "_0000";
+            String email = id+ "@trazAqui.com";
+            ILogin login = new Login();
+            login.setPassword(pass);
+            login.setEmail(email);
+            ITipo emp = new Empresa();
+            while (sistema.getLogins().existsLogin(login)){
+                rn = new Random(100);
+                id1 = rn.nextInt(100);
+                id = "t" + String.valueOf(id1);
+            }
+            pass = id + "_0000";
+            email = id+ "@trazAqui.com";
+            login.setPassword(pass);
+            login.setEmail(email);
+            view.reg(4);
+            float raio = ler.nextFloat();
+
+            view.reg(5);
+            ler= new Scanner(System.in);
+            int nif = ler.nextInt();
+
+            view.reg(6);
+            ler= new Scanner(System.in);
+            float preco = ler.nextFloat();
+
+            ((Empresa)emp).setNif(nif);
+            emp.setNome(nome);
+            emp.setId(id);
+            emp.setX(x);
+            emp.setY(y);
+            ((Empresa)emp).setPreco(preco);
+            ((Empresa)emp).setRaio(raio);
+            sistema.getEmpresas().addTipo(emp);
+            System.out.println(emp.toString());
+            sistema.getLogins().addLogin(login,id);
+        }
+        view.printMensagem("Registo concluído com sucesso");
+
+        String pass = id + "_0000";
+        String email = id+ "@trazAqui.com";
+        view.printMensagem("O seu email: " +email);
+        view.printMensagem("A sua password é: " +pass);
+        System.out.println(sistema.toString());
+
     }
 }

@@ -291,5 +291,26 @@ public class AppView implements IAppView {
         System.out.printf("\n%s\n",s);
     }
 
+    public void top (ITipo[] res){
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("                      TOP 10 USERS");
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("Código do User                                 ");
+        for(int i=0; i<10; i++){
+            System.out.print(res[i].getId());
+            System.out.println();
+        }
+    }
+
+    public void top2 (String[] res){
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("                      TOP 10 EMPRESAS");
+        System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
+        System.out.println("Código da Empresa                                ");
+        for(int i=0; i<10; i++){
+            System.out.print(res[i]);
+            System.out.println();
+        }
+    }
 
 }

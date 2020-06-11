@@ -29,12 +29,16 @@ public class MainMVC {
         controller.setAppView(view);
 
         userController.setSistema(sistema);
+        userController.setAppView(view);
 
         lojaController.setSistema(sistema);
+        lojaController.setView(view);
 
         volController.setSistema(sistema);
+        volController.setAppView(view);
 
         empresaController.setSistema(sistema);
+        empresaController.setView(view);
 
         int res=0;
         char login = controller.signUp();
