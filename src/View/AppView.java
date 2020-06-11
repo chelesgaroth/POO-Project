@@ -30,6 +30,8 @@ public class AppView implements IAppView {
         System.out.println("2- Fazer Login "); //retoma o estado do aplicativo
         System.out.println("3- Alterar a password");
         System.out.println("4- Guardar estado do programa");
+        System.out.println("5- Ver os Top10 Users de acordo com o nº de encomendas feitas");
+        System.out.println("6- Ver as Top10Empresas de acordo com a dist. percorrida");
         System.out.println("0- Sair do aplicativo");
     }
 
