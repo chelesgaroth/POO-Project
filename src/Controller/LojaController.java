@@ -74,6 +74,14 @@ public class LojaController implements ILojaController {
                     else encomenda.setCongelados(false);
 
                     sistema.addAceite(encomenda.getEncomendaID());
+
+                    view.printMensagem("Encomenda Feita!!");
+                    view.printMensagem("Esperar pela recolha da encomenda...");
+                    view.printMensagem("\nENTER (Continuar no Loja Menu");
+                    view.printMensagem("0 (Voltar ao Login Menu");
+                    Scanner scanner = new Scanner(System.in);
+                    String aux = scanner.nextLine();
+                    if(aux.equals("0")) opcao = 0;
                     break;
                 }
 

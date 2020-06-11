@@ -1,9 +1,6 @@
 package Model;
 
-import Model.Catalogos.CatalogoProds;
-import Model.Catalogos.CatalogoTipo;
-import Model.Catalogos.ICatalogoProds;
-import Model.Catalogos.ICatalogoTipo;
+import Model.Catalogos.*;
 
 import Model.Encomendas.IEncomenda;
 import Model.Logins.ILogin;
@@ -20,8 +17,8 @@ public class Sistema implements ISistema, Serializable {
     private ICatalogoTipo empresas;
     private ICatalogoTipo voluntarios;
     private ICatalogoProds catalogoProds; //Catalogo com todos os produtos que existem na aplicação
+    private ICatalogoLogins logins;
 
-    private HashMap<String, ILogin> logins; // UserID + (Email + Password)
     private HashSet<String> aceites; //encomendas já prontas para transportar
 
     private ILogin quem; //quem é que está com o login aberto
@@ -39,7 +36,7 @@ public class Sistema implements ISistema, Serializable {
         this.voluntarios = new CatalogoTipo();
         this.catalogoProds = new CatalogoProds();
 
-        this.logins = new HashMap<>();
+        this.logins = new CatalogoLogins();
         this.aceites = new HashSet<>();
 
         this.quem = new Login();
@@ -151,7 +148,7 @@ public class Sistema implements ISistema, Serializable {
     }
 
 
-    public HashMap<String, ILogin> getLogins() {
+    public ICatalogoLogins getLogins() {
         return this.logins;
     }
 
@@ -177,33 +174,22 @@ public class Sistema implements ISistema, Serializable {
 
     public String toString() {
         StringBuffer sb = new StringBuffer("Sistema: ");
-        sb.append("\nLista de Lojas: ").append(this.lojas).append(", ");
-        sb.append("\nLista de Clientes: ").append(this.users).append(", ");
-        sb.append("\nLista de Empresas: ").append(this.empresas).append(", ");
-        sb.append("\nLista de Voluntários: ").append(this.voluntarios);
-        sb.append("\nLista de Logins: ").append(this.logins);
-        sb.append("\nFila de Encomendas: ").append(this.filaEncomendas);
-        sb.append("\nFila de Espera: ").append(this.filaEspera);
-        sb.append("\nFila de Entregas: ").append(this.filaEntregues);
+        //sb.append("\nLista de Lojas: ").append(this.lojas).append(", ");
+        //sb.append("\nLista de Clientes: ").append(this.users).append(", ");
+        //sb.append("\nLista de Empresas: ").append(this.empresas).append(", ");
+        //sb.append("\nLista de Voluntários: ").append(this.voluntarios);
+        //sb.append("\nLista de Logins: ").append(this.logins);
+        sb.append("\n\nFila de Encomendas à espera de Transporte: ").append(this.filaEncomendas);
+        sb.append("\n\nFila de Espera para as Lojas: ").append(this.filaEspera);
+        sb.append("\n\nFila de Entregas após escolha transporte: ").append(this.filaEntregues);
         sb.append("\nEncomendas aceites: ").append(this.aceites);
+        sb.append("\n\nÚltimo Login: ").append(this.quem);
         return sb.toString();
     }
 
     public Sistema clone() {
         return new Sistema(this);
     }
-
-
-
-
-    //LOGINS
-    public void addLogin(ILogin log, String userID) {
-        this.logins.put(userID,log);
-    }
-    public boolean existsLogin(ILogin log) {
-        return this.logins.containsValue(log);
-    }
-
 
 
     //DEFINIR O STOCK DE CADA LOJA

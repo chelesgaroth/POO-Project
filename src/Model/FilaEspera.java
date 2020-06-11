@@ -77,6 +77,11 @@ public class FilaEspera implements IFila, Serializable {
         return null;
     }
 
+    @Override
+    public boolean existsKey(String codId) {
+        return false;
+    }
+
     public String toString() {
         return "Fila: " + fila;
     }

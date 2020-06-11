@@ -126,7 +126,7 @@ public class ReadFile implements IReadFile {
 
                     }
                     login.setLogin(id);
-                    sistema.addLogin(login,id);
+                    sistema.getLogins().addLogin(login,id);
                 }
             }
         }

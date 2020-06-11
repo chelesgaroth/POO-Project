@@ -148,7 +148,7 @@ public class Encomenda implements IEncomenda, Serializable {
     }
 
     public String toString() {
-        StringBuffer sb = new StringBuffer("\n\nEncomenda: ").append(this.encomendaID);
+        StringBuffer sb = new StringBuffer("Encomenda: ").append(this.encomendaID);
         //sb.append("\nUsername: ").append(this.userID).append(", ");
         //sb.append("\nLoja: ").append(this.lojaID).append(", ");
         //sb.append("\nPeso Total: ").append(this.pesoTotal).append(", ");

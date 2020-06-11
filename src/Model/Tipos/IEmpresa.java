@@ -9,6 +9,9 @@ public interface IEmpresa {
     void setRaio(double raio);
     void setPreco(double preco);
 
+    int getClassificacao();
+    void setClassificacao(int classificacao);
+
     Empresa clone ();
 
 }

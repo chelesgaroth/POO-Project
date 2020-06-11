@@ -9,8 +9,8 @@ public class Login implements ILogin, Serializable {
     String password;
 
     public Login(){
-        this.email = "n/a";
-        this.password = "n/a";
+        this.email = "InserirCódigo@trazAqui.com";
+        this.password = "Código_0000";
     }
     public Login(String email,String password){
         this.email = email;
@@ -50,8 +50,7 @@ public class Login implements ILogin, Serializable {
     }
 
     public String toString() {
-        return "Login:" +
-                email + ", " +
+        return email + ", " +
                 password + "\n" ;
     }
 

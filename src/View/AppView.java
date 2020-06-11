@@ -5,6 +5,14 @@ import Model.Encomendas.ILinhaEncomenda;
 
 public class AppView implements IAppView {
 
+    public void preInicio(){
+        System.out.println();
+        System.out.println("-----------Bem-Vindo!!-----------");
+        System.out.println("1- Ler um ficheiro .txt");
+        System.out.println("2- Carregar estado do programa");
+        System.out.println("0- Sair do aplicativo");
+    }
+
     public void inicio () {
         System.out.println();
         System.out.println("---------TRAZ AQUI!--------");
@@ -13,7 +21,6 @@ public class AppView implements IAppView {
         System.out.println("2- Fazer Login "); //retoma o estado do aplicativo
         System.out.println("3- Alterar a password");
         System.out.println("4- Guardar estado do programa");
-        System.out.println("5- Carregar estado do programa");
         System.out.println("0- Sair do aplicativo");
     }
 

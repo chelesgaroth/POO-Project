@@ -13,8 +13,19 @@ public class UserView implements IUserView {
         System.out.println("1- Fazer uma encomenda");
         System.out.println("2- Escolher o transporte");
         System.out.println("3- Classificar transporte");
-        System.out.println("4- Encomendas em Espera");
+        System.out.println("4- Encomendas em espera de Transporte");
+        System.out.println("5- Histórico");
         System.out.println("0- Voltar ao Menu de Login");
+    }
+
+    public void classificacao(){
+        System.out.println("-----------CLASSIFICAÇÃO----------");
+        System.out.println("1- ★");
+        System.out.println("2- ★★");
+        System.out.println("3- ★★★");
+        System.out.println("4- ★★★★");
+        System.out.println("5- ★★★★★");
+        System.out.println("0- Voltar ao Menu");
     }
 
     public void printMensagem(String s){
@@ -31,7 +42,7 @@ public class UserView implements IUserView {
         }
         if(opcao=='V') {
             System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
-            System.out.println("VOLUNTÁRIOS       CÓDIGO      DISPONIBILIDADE        PREÇO  ");
+            System.out.println("VOLUNTÁRIOS       CÓDIGO      RAIO DE AÇÃO           PREÇO  ");
             System.out.println("«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»«»");
             for(ITipo tipo : res){
                 if(tipo instanceof Voluntario){

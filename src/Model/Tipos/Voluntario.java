@@ -15,7 +15,7 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
     private boolean availability;
     private boolean medicamentos;
 
-    private float volunteer_rating;
+    private int volunteer_rating;
     private LocalDateTime time_start;
     private  LocalDateTime time_finish;
     private List<String> package_list;
@@ -29,7 +29,7 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
         this.package_list = new ArrayList<>();
         this.availability = true;
         this.medicamentos = false;
-        this.volunteer_rating = 5;
+        this.volunteer_rating = 0;
         this.time_start = LocalDateTime.now();
         this.time_finish = LocalDateTime.now();
     }
@@ -53,7 +53,7 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
      */
     public Voluntario(String id_volunteer,String name, String id_package, String id_store_pickup, List<String> package_list,
                       float x_volunteer, float y_volunteer,
-                      float radius_volunteer, boolean availability, float volunteer_rating, LocalDateTime time_start,
+                      float radius_volunteer, boolean availability, int volunteer_rating, LocalDateTime time_start,
                       LocalDateTime time_finish){
 
         super(id_volunteer,name,x_volunteer,y_volunteer);
@@ -100,10 +100,10 @@ public class Voluntario extends Tipo implements IVoluntario, Serializable {
     public void setAvailability(boolean availability){
         this.availability=availability;
     }
-    public float getVolunteer_rating(){
+    public int getVolunteer_rating(){
         return this.volunteer_rating;
     }
-    public void setVolunteer_rating(float volunteer_rating){
+    public void setVolunteer_rating(int volunteer_rating){
         this.volunteer_rating=volunteer_rating;
     }
     public LocalDateTime getTime_start(){

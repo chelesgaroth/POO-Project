@@ -13,8 +13,8 @@ public interface IVoluntario {
     void setPackage_list(List<String> package_list);
     boolean getAvailability();
     void setAvailability(boolean availability);
-    float getVolunteer_rating();
-    void setVolunteer_rating(float volunteer_rating);
+    int getVolunteer_rating();
+    void setVolunteer_rating(int volunteer_rating);
     LocalDateTime getTime_start();
     void setTime_start(LocalDateTime time_start);
     LocalDateTime getTime_finish();

@@ -4,10 +4,7 @@ import Model.Encomendas.IEncomenda;
 import Model.Encomendas.IEntrega;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class FilaEntregues implements IFilaEntregues, Serializable {
     private Map<String, Set<IEntrega>> fila;
@@ -29,28 +26,79 @@ public class FilaEntregues implements IFilaEntregues, Serializable {
         }
     }
 
-    public int removeEncomenda(IEncomenda encomenda) {
-        return 0;
+    public int removeEncomenda(IEntrega e) {
+        String transpID = e.getTransporte().getId();
+        if(this.fila.containsKey(transpID)){
+            this.fila.get(transpID).remove(e);
+            return 0;
+        }
+        return -1;
     }
 
 
-    public Set<IEncomenda> getEncomendas(String codId) {
-        return null;
+    public Set<IEntrega> getEntregas(String codId) {
+        if(this.fila.containsKey(codId)) return this.fila.get(codId);
+        else return null;
     }
 
+    public Set<IEntrega> getEntregasFalse(String codId){
+        Set<IEntrega> res = new HashSet<>();
+        if(this.fila.containsKey(codId)){
+            Set<IEntrega> value = this.fila.get(codId);
+            for(IEntrega e : value){
+                if(e.getEntregue()) res.add(e);
+            }
+        }
+        return res;
+    }
 
-    public boolean containsEncTipo(String encId, String codId) {
+    public Set<IEntrega> getEntregasTrue(String codId){
+        Set<IEntrega> res = new HashSet<>();
+        if(this.fila.containsKey(codId)){
+            Set<IEntrega> value = this.fila.get(codId);
+            for(IEntrega e : value){
+                if(!e.getEntregue()) res.add(e);
+            }
+        }
+        return res;
+    }
+
+    public Set<IEntrega> getMedicamentos(String codId){
+        Set<IEntrega> set = new HashSet<>();
+        if(this.fila.containsKey(codId)) {
+            Set<IEntrega> value = this.fila.get(codId);
+            for(IEntrega e : value){
+                if(e.getEncomenda().getMedicamentos()) set.add(e);
+            }
+        }
+        return set;
+    }
+
+    public boolean containsEncFalse (String encId) {
+        Set<String> set = this.fila.keySet();
+        for(String aux : set){
+            Set<IEntrega> value = this.fila.get(aux);
+            for(IEntrega encomenda : value){
+                if(encomenda.getEncomenda().getEncomendaID().equals(encId)){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
 
-    public IEncomenda getEncomendaTipo(String encId, String codId) {
-        return null;
-    }
-
-
-    public IEncomenda existsEncomenda(String id) {
-        return null;
+    public IEntrega getEntrega(String id) {
+        Set<String> set = this.fila.keySet();
+        for(String aux : set){
+            Set<IEntrega> value = this.fila.get(aux);
+            for(IEntrega encomenda : value){
+                if(encomenda.getEncomenda().getEncomendaID().equals(id)){
+                    return encomenda;
+                }
+            }
+        }
+        return  null;
     }
 
     public String toString() {

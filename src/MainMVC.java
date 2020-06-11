@@ -20,29 +20,40 @@ public class MainMVC {
         ILojaView lojaView = new LojaView();
         ILojaController lojaController = new LojaController();
 
+        IVoluntarioView volView = new VoluntarioView();
+        IVoluntarioController volController = new VoluntarioController();
 
         controller.setSistema(sistema);
         controller.setAppView(view);
 
+        sistema = controller.runController();
 
+        controller.setSistema(sistema);
+        controller.setAppView(view);
 
+        userController.setSistema(sistema);
+        userController.setAppView(userView);
 
+        lojaController.setSistema(sistema);
+        lojaController.setView(lojaView);
 
-        controller.runController();
+        volController.setSistema(sistema);
+        volController.setAppView(volView);
+
         int res=0;
         char login = controller.signUp();
         while(login != '0') {
             if (login == 'u') {
-                userController.setSistema(sistema);
-                userController.setAppView(userView);
                 res = userController.userMode();
                 //if(res==1) login = 'l';
             }
             if (login == 'l') {
-                lojaController.setSistema(sistema);
-                lojaController.setView(lojaView);
                 System.out.println(sistema.toString());
                 lojaController.lojaMode();
+            }
+            if(login == 'v'){
+                System.out.println(sistema.toString());
+                volController.VoluntarioMode();
             }
 
             login = controller.signUp();

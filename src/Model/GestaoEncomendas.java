@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 public class GestaoEncomendas implements IGestaoEncomendas, Serializable {
 
 
-    public IEncomenda constroiEncomendaParaLoja (String loja , List<IProduto> prods, List<String> quantidades, ILogin user){
+    public IEncomenda constroiEncomendaParaLoja (String loja , List<IProduto> prods, List<String> quantidades, User user){
 
         ArrayList<LinhaEncomenda> encomendas = new ArrayList<>();
         IEncomenda encFinal = new Encomenda();
-        String userId = (user.getPassword()).substring(0,3);
+        String userId = user.getId();
 
         int i=0;
         for(IProduto produto : prods){
@@ -28,6 +28,7 @@ public class GestaoEncomendas implements IGestaoEncomendas, Serializable {
             linhaEncomenda.setQuantidade(Float.parseFloat(quantidades.get(i)));
             linhaEncomenda.setValor((produto.getPreco()* Float.parseFloat(quantidades.get(i))));
             encomendas.add(linhaEncomenda);
+            i++;
         }
         Random random = new Random();
         int numero = random.nextInt(10000);
@@ -51,22 +52,6 @@ public class GestaoEncomendas implements IGestaoEncomendas, Serializable {
         else return false;
     }
 
-    public boolean medicacao(IEncomenda encomenda , ITipo tipo ){
-        if(encomenda.getMedicamentos()){
-            if(tipo instanceof Voluntario){
-                Voluntario vol = (Voluntario) tipo;
-                if(vol.getMedicamentos()) return true;
-                else return false;
-            }
-            if(tipo instanceof Empresa){
-                Empresa emp = (Empresa) tipo;
-                if (emp.getAceitaMedicamento()) return true;
-                else return false;
-            }
-        }
-        return true;
-
-    }
 
     public HashSet<ITipo> verificarTransporte(ICatalogoTipo voluntarios, ICatalogoTipo empresas,IEncomenda encomenda, Loja loja){
 
@@ -102,5 +87,20 @@ public class GestaoEncomendas implements IGestaoEncomendas, Serializable {
             }
         }
         return res;
+    }
+
+    public float distanciaPercorrida( User user ,ITipo transp , Loja loja){
+        float destL,destU,xL,xT,xU,yL,yT,yU;
+        xU = user.getX();
+        yU = user.getY();
+        xL = loja.getX();
+        yL = loja.getY();
+        xT = transp.getX();
+        yT = transp.getY();
+        double resL = ((Math.pow((Math.abs(xL -xT)),2)) + (Math.pow((Math.abs(yL -yT)),2)));
+        double resU = (Math.pow((Math.abs(xU -yL)),2) + (Math.pow((Math.abs(yU -yL)),2)));
+        destL = (float) Math.sqrt(resL);
+        destU = (float) Math.sqrt(resU);
+        return destL + destU;
     }
 }

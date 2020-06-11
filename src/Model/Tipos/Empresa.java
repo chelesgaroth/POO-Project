@@ -17,6 +17,8 @@ Empresa extends Tipo implements IEmpresa, Serializable {
     private boolean chuva;
     private boolean transito;
 
+    private int classificacao;
+
 
     public Empresa () {
 
@@ -31,6 +33,7 @@ Empresa extends Tipo implements IEmpresa, Serializable {
         this.taxaAdicional = 0.0;
         this.chuva = false;
         this.transito = false;
+        this.classificacao = 5;
     }
 
     public Empresa (String id,int nif, boolean aceitaMedicamento, LocalDateTime tempo, double preco, float longitude,
@@ -130,6 +133,14 @@ Empresa extends Tipo implements IEmpresa, Serializable {
 
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
+    }
+
+    public int getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(int classificacao) {
+        this.classificacao = classificacao;
     }
 
     public Empresa clone () {

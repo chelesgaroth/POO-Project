@@ -8,4 +8,5 @@ public interface IUserView {
     void userMode();
     void printMensagem(String s);
     void transportes(char opcao, HashSet<ITipo> res);
+    void classificacao();
 }

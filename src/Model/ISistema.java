@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Catalogos.ICatalogoLogins;
 import Model.Catalogos.ICatalogoProds;
 import Model.Catalogos.ICatalogoTipo;
 import Model.Encomendas.IEncomenda;
@@ -12,7 +13,7 @@ import java.util.HashSet;
 
 public interface ISistema {
 
-    HashMap<String,ILogin> getLogins();
+    ICatalogoLogins getLogins();
     ICatalogoProds getCatalogoProds();
     ILogin getQuem();
     HashSet<String> getAceites();
@@ -39,9 +40,6 @@ public interface ISistema {
     void setCatalogo(ICatalogoProds cat);
 
 
-
-    void addLogin(ILogin log, String userID);
-    boolean existsLogin(ILogin log);
     void StockLoja();
 
 

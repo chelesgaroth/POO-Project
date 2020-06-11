@@ -10,6 +10,6 @@ import java.util.List;
 public interface IAppController {
     void setSistema(ISistema sistema);
     void setAppView(IAppView view);
-    void runController();
+    ISistema runController();
     char signUp ();
 }

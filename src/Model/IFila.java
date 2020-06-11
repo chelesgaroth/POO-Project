@@ -12,4 +12,5 @@ public interface IFila {
     boolean containsEncTipo (String encId, String codId);
     IEncomenda getEncomendaTipo (String encId, String codId);
     IEncomenda existsEncomenda(String id);
+    boolean existsKey(String codId);
 }

@@ -43,6 +43,9 @@ public class FilaEncomendas implements IFila, Serializable {
         else return null;
     }
 
+    public boolean existsKey(String codId){
+        return this.fila.containsKey(codId);
+    }
     public boolean containsEncTipo(String encId, String codId) {
         return false;
     }
@@ -59,6 +62,6 @@ public class FilaEncomendas implements IFila, Serializable {
 
     @Override
     public String toString() {
-        return "Fila: " + fila;
+        return "\n" + fila;
     }
 }

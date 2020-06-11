@@ -31,7 +31,7 @@ public class AppController implements IAppController {
         this.file = " ";
         this.nav = new Navegador();
         this.lerFiles = new ReadFile();
-        this.opcao = 0;
+        this.opcao = -1;
         this.rw = new RWEstado();
     }
 
@@ -43,11 +43,38 @@ public class AppController implements IAppController {
         this.view = view;
     }
 
-    public void runController() {
+    public ISistema runController() {
         Scanner ler = new Scanner(System.in);
-        view.printMensagem("Insira um ficheiro de leitura: ");
-        file = ler.nextLine();
-        lerFiles.leitura(file,sistema);
+        do{
+            view.preInicio();
+            opcao = ler.nextInt();
+            switch (opcao){
+                case 1:{
+                    view.printMensagem("Insira um ficheiro de leitura: ");
+                    ler = new Scanner(System.in);
+                    file = ler.nextLine();
+                    lerFiles.leitura(file,sistema);
+                    opcao = 0;
+                    break;
+                }
+                case 2: {
+                    view.printMensagem("Insira o nome do ficheiro:");
+                    ler = new Scanner(System.in);
+                    String f = ler.nextLine();
+                    rw.setFileIn(f);
+                    try {
+                        view.printMensagem("Loading ...");
+                        setSistema(rw.loadData());
+                    } catch (ClassNotFoundException | IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(sistema.toString());
+                    opcao = 0;
+                    break;
+                }
+            }
+        }while(opcao!=0);
+        return sistema;
     }
 
     /*Esta função faz login ou regista na aplicação.
@@ -78,7 +105,7 @@ public class AppController implements IAppController {
                     ILogin login = new Login();
                     login.setEmail(email);
                     login.setPassword(pass);
-                    while(!sistema.existsLogin(login)){
+                    while(!sistema.getLogins().existsLogin(login)){
                         view.login(3);
                         view.login(1);
                         email = ler.nextLine();
@@ -94,6 +121,9 @@ public class AppController implements IAppController {
                     opcao = 0;
                     break;
                 }
+                case 3:{
+                    break;
+                }
                 case 4:{
                     view.printMensagem("Insira um nome para o ficheiro .dat");
                     ler = new Scanner(System.in);
@@ -105,20 +135,6 @@ public class AppController implements IAppController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    break;
-                }
-                case 5:{
-                    view.printMensagem("Insira o nome do ficheiro:");
-                    ler = new Scanner(System.in);
-                    String f = ler.nextLine();
-                    rw.setFileIn(f);
-                    try {
-                        view.printMensagem("Loading ...");
-                        setSistema(rw.loadData());
-                    } catch (ClassNotFoundException | IOException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(sistema.toString());
                     break;
                 }
             }
